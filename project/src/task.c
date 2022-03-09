@@ -39,7 +39,7 @@ ptr_task create_task() {
     }
 
     if (set_task(task)) {
-        perror("Task hasn't been set");
+        perror("Set_task() error");
         free(task->number);
         free(task->description);
         free(task->priority);
@@ -57,26 +57,38 @@ int set_task(ptr_task task) {
     if (task == NULL) {
         return -1;
     }
+
+    printf("%s", "Enter task number: ");
     if (!(scanf("%zu", task->number))) {
         scanf( "%*[^\n]" ); // buffer was cleared
+        delete_task(task);
         perror("Input Error");
         return -1;
     }
     scanf( "%*[^\n]" ); // buffer was cleared
+
+    printf("%s", "Enter task description: ");
     if (!(scanf("%1024s", task->description))) {
         scanf( "%*[^\n]" ); // buffer was cleared
+        delete_task(task);
         perror("Input Error");
         return -1;
     }
     scanf( "%*[^\n]" ); // buffer was cleared
+
+    printf("%s", "Enter task priority: ");
     if (!(scanf("%zu", task->priority))) {
         scanf( "%*[^\n]" ); // buffer was cleared
+        delete_task(task);
         perror("Input Error");
         return -1;
     }
     scanf( "%*[^\n]" ); // buffer was cleared
+
+    printf("%s", "Enter task data: ");
     if (!(scanf("%lf", task->when))) {
         scanf( "%*[^\n]" ); // buffer was cleared
+        delete_task(task);
         perror("Input Error");
         return -1;
     }
@@ -84,25 +96,32 @@ int set_task(ptr_task task) {
     return 0;
 }
 
-
-
 int add_task(ptr_task task_list, const ptr_task task, size_t size) {
     if (task_list == NULL || task == NULL) {
-        perror("Tasks don't exist");
-        return -1;
+        perror("Add_task() error");
+        return ERROR;
     }
     task_list[size] = *task;
-    return 0;
+    return SUCCESS;
 }
 
 void print_task(const ptr_task task) {
     if (task != NULL) {
-        printf("%zu\n", *task->number);
-        printf("%-1024s\n", task->description);
-        printf("%zu\n", *task->priority);
-        printf("%lf\n", *task->when);
+        if (task->number != NULL) {
+            printf("%zu\n", *task->number);
+        }
+        if (task->description != NULL) {
+            printf("%s\n", task->description);
+        }
+        if (task->priority != NULL) {
+            printf("%zu\n", *task->priority);
+        }
+        if (task->when != NULL) {
+            printf("%lf\n", *task->when);
+        }
+    } else {
+        perror("Print_task() error");
     }
-    perror("No such task or task hasn't been created");
 }
 
 void delete_task(ptr_task task) {
@@ -152,12 +171,7 @@ int propose_action() {
         return INCORRECT;
     }
 
-    if (!(make_choice(choice))) {
-        printf("%s\n%s\n%s\n%s\n",
-               "Enter task number: ", "Enter a description of the task: ",
-               "Enter task priority: ", "Enter task date: ");
-        free(choice);
-    }
+    free(choice);
     return SUCCESS;
 }
 
