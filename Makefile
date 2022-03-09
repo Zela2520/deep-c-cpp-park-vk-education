@@ -5,7 +5,7 @@ SRCS = project/src/main.c \
        project/src/task_inout.c \
        project/src/task_list.c \
        project/src/proccesing_input.c \
-       project/src/task_alloc.c
+       project/src/task_memory.c
 
 .PHONY: all build ran rebuild clean
 
