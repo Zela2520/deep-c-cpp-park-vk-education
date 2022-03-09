@@ -1,12 +1,37 @@
-.PHONY: all build go clean
+TARGET = ./main.out
+TARGET_TEST = ./test_module.out
+HDRS_DIR = project/include
 
-all: build go
+SRCS = project/src/main.c \
+       project/src/information.c \
+       project/src/record.c \
+       project/src/streams.c
 
-build:
-	clang project/src/main.c project/src/task_methods.c -o main.out
+SRCS_TEST = project/src/test_module.c \
+	project/src/test_assistants.c
 
-go:
-	./main.out
+.PHONY: all build rebuild check test memtest clean
+
+all: clean check test memtest
+
+$(TARGET): $(SRCS) 
+	$(CC) -Wpedantic -Wall -Wextra -Werror -I $(HDRS_DIR) -o $(TARGET) $(CFLAGS) $(SRCS)
+
+$(TARGET_TEST): $(SRCS_TEST) 
+	$(CC) -Wpedantic -Wall -Wextra -Werror -I $(HDRS_DIR) -o $(TARGET_TEST) $(CFLAGS) $(SRCS_TEST)
+
+build: $(TARGET) $(TARGET_TEST)
+
+rebuild: clean build
+
+check:
+	./linters/run.sh
+
+test: $(TARGET)
+	./btests/run.sh $(TARGET)
+
+memtest: $(TARGET)
+	./btests/run.sh $(TARGET) --memcheck
 
 clean:
-	rm -rf *.o main.out
+	rm -rf $(TARGET) $(TARGET_TEST)
