@@ -5,7 +5,10 @@
 #define INCORRECT 1
 
 ptr_task create_task_list(ptr_task task_list) {
-    task_list = NULL;
+    if (task_list != NULL) {
+        free(task_list);
+        task_list = NULL;
+    }
     ptr_task temp_task_list;
     while (propose_action() == SUCCESS) {
         if (!(add_task(task_list, create_task(), sizeof(*task_list) / sizeof(task_info)))) {
@@ -22,7 +25,9 @@ ptr_task create_task_list(ptr_task task_list) {
     return task_list;
 }
 
-ptr sort_task_list() {}
+ptr_task sort_task_list() {
+    return NULL;
+}
 
 void print_task_list(const ptr_task task_list) {
     if (task_list != NULL) {
@@ -141,29 +146,29 @@ ptr_task create_task() {
 }
 
 // сделать проверку на размер вводимых данных
-int set_task(ptr_task cur_task) {
-    if (cur_task == NULL) {
+int set_task(ptr_task task) {
+    if (task == NULL) {
         return -1;
     }
-    if (!(scanf("%zu", &task->number))) {
+    if (!(scanf("%zu", task->number))) {
         scanf( "%*[^\n]" ); // buffer was cleared
         perror("Input Error");
-        return -1
+        return -1;
     }
     scanf( "%*[^\n]" ); // buffer was cleared
     if (!(scanf("%1024s", task->description))) {
         scanf( "%*[^\n]" ); // buffer was cleared
-        perror("Input Error")
+        perror("Input Error");
         return -1;
     }
     scanf( "%*[^\n]" ); // buffer was cleared
-    if (!(scanf("%zu", &task->priority))) {
+    if (!(scanf("%zu", task->priority))) {
         scanf( "%*[^\n]" ); // buffer was cleared
         perror("Input Error");
         return -1;
     }
     scanf( "%*[^\n]" ); // buffer was cleared
-    if (!(scanf("%lf", &task->when))) {
+    if (!(scanf("%lf", task->when))) {
         scanf( "%*[^\n]" ); // buffer was cleared
         perror("Input Error");
         return -1;
@@ -174,21 +179,21 @@ int set_task(ptr_task cur_task) {
 
 
 
-int add_task(ptr_task task_list, const ptr_task cur_task, size_t size) {
-    if (task_list == NULL || cur_task == NULL) {
+int add_task(ptr_task task_list, const ptr_task task, size_t size) {
+    if (task_list == NULL || task == NULL) {
         perror("Tasks don't exist");
         return -1;
     }
-    task_list[size] = cur_task;
+    task_list[size] = *task;
     return 0;
 }
 
-void print_task(const ptr_task cur_task) {
-    if (cur_task != NULL) {
-        printf("%zu\n", &task->number);
+void print_task(const ptr_task task) {
+    if (task != NULL) {
+        printf("%zu\n", *task->number);
         printf("%-1024s\n", task->description);
-        printf("%zu\n", &task->priority);
-        printf("%lf\n", &task->when);
+        printf("%zu\n", *task->priority);
+        printf("%lf\n", *task->when);
     }
     perror("No such task or task hasn't been created");
 }
