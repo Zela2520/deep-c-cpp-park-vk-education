@@ -2,8 +2,10 @@ TARGET = ./main.out
 HDRS_DIR = project/include
 
 SRCS = project/src/main.c \
-       project/src/task.c \
-       project/src/task_list.c
+       project/src/task_inout.c \
+       project/src/task_list.c \
+       project/src/proccesing_input.c \
+       project/src/task_alloc.c
 
 .PHONY: all build ran rebuild clean
 
