@@ -2,11 +2,11 @@
 
 int main(int argc, char *argv[]) {
     propose_action();
-    pointer_task_lists task_lists;
-    if (create_task_lists(task_lists) == NULL) {
+    ptr_task task_list;
+    if (!(create_task_list(task_list))) {
         perror("Failed to create task list");
     }
 
-    delete_task_lists(task_lists);
+    delete_task_list(task_list);
     return 0;
 }

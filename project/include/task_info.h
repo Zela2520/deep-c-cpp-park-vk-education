@@ -28,18 +28,19 @@ typedef struct {
     double* when;
 } task_info;
 
-typedef task_info* pointer_task_lists;
+typedef task_info* ptr_task;
 
 void propose_action();
 
-pointer_task_lists create_task_lists(pointer_task_lists current_task_lists);
-void print_task_lists(pointer_task_lists current_task_lists);
-void delete_task_lists(pointer_task_lists current_task_lists);
+ptr_task create_task_list(ptr_task task_list);
+void print_task_list(ptr_task task_list);
+void delete_task_list(ptr_task task_list);
 
-pointer_task_lists create_task();
-int set_task(pointer_task_lists current_task);
-void print_task(pointer_task_lists current_task);
-//void delete_task(pointer_task_lists task);
+ptr_task create_task();
+int set_task(ptr_task cur_task);
+int add_task(ptr_task task_list, ptr_task cur_task, size_t size);
+void print_task(ptr_task cur_task);
+//void delete_task(ptr_task task);
 
 //void free_all();
 
