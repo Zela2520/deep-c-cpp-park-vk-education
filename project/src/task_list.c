@@ -1,11 +1,10 @@
 #include "../include/task_info.h"
 
-#define SUCCESS 0
-#define ERROR -1
-#define INCORRECT 1
-
 ptr_task create_task_list(ptr_task task_list) {
-    task_list = NULL;
+    if (task_list != NULL) {
+        free(task_list);
+        task_list = NULL;
+    }
     ptr_task temp_task_list;
     while (propose_action() == SUCCESS) {
         if (!(add_task(task_list, create_task(), sizeof(*task_list) / sizeof(task_info)))) {
@@ -22,7 +21,9 @@ ptr_task create_task_list(ptr_task task_list) {
     return task_list;
 }
 
-ptr sort_task_list() {}
+ptr_task sort_task_list() {
+    return NULL;
+}
 
 void print_task_list(const ptr_task task_list) {
     if (task_list != NULL) {
