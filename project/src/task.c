@@ -4,90 +4,6 @@
 #define ERROR -1
 #define INCORRECT 1
 
-ptr_task create_task_list(ptr_task task_list) {
-    task_list = NULL;
-    ptr_task temp_task_list;
-    while (propose_action() == SUCCESS) {
-        if (!(add_task(task_list, create_task(), sizeof(*task_list) / sizeof(task_info)))) {
-            perror("task hasn't been created");
-            return NULL;
-        }
-        temp_task_list = (ptr_task)realloc(task_list, sizeof(task_info));
-        if (!(temp_task_list)) {
-            perror("Memory allocation error");
-            return NULL;
-        }
-        task_list = temp_task_list;
-    }
-    return task_list;
-}
-
-ptr sort_task_list() {}
-
-void print_task_list(const ptr_task task_list) {
-    if (task_list != NULL) {
-        for (size_t i = 0; i < sizeof(*task_list) / sizeof(task_info); ++i) {
-            print_task(&task_list[i]);
-        }
-    }
-    perror("No such tasklist or tasklist hasn't been created");
-}
-
-void delete_task_list(ptr_task task_list) {
-    if (task_list == NULL) {
-        perror("No such tasklist or tasklist hasn't been created");
-        return;
-    }
-    for (size_t i = 0; i < sizeof(*task_list) / sizeof(task_info); ++i) {
-        delete_task(&task_list[i]);
-    }
-    task_list = NULL;
-}
-
-int propose_action() {
-    char *choice = (char *) calloc(10, sizeof(char));
-
-    do {
-            if (printf("%-42s", "Would you like to add a new task? Yes/No:") < 0) {
-                perror("Data entry error");
-                return ERROR;
-            }
-
-            if (!(scanf("%5s", choice))) {
-                perror("Data entry error");
-                scanf( "%*[^\n]" ); // buffer was cleared
-                free(choice);
-                return ERROR;
-            }
-            scanf( "%*[^\n]" ); // buffer was cleared
-    } while (make_choice(choice) == ERROR);
-
-    if (make_choice(choice) == INCORRECT) {
-        puts("Task entry has been stopped");
-        free(choice);
-        return INCORRECT;
-    }
-
-    if (!(make_choice(choice))) {
-        printf("%s\n%s\n%s\n%s\n",
-               "Enter task number: ", "Enter a description of the task: ",
-               "Enter task priority: ", "Enter task date: ");
-        free(choice);
-    }
-    return SUCCESS;
-}
-
-int make_choice(char *choice) {
-    if ((strlen(choice) == (strlen("No")) && strncmp(choice, "No", 2) == 0)) {
-        return INCORRECT;
-    }
-    if ((strlen(choice) == (strlen("Yes")) && strncmp(choice, "Yes", 3) == 0)) {
-        return SUCCESS;
-    }
-    puts("Invalid data entered, please check again!");
-    return ERROR;
-}
-
 ptr_task create_task() {
     ptr_task task = (task_info*)calloc(1, sizeof(task_info));
     if (task == NULL) {
@@ -171,8 +87,6 @@ int set_task(ptr_task cur_task) {
     scanf( "%*[^\n]" ); // buffer was cleared
     return 0;
 }
-
-
 
 int add_task(ptr_task task_list, const ptr_task cur_task, size_t size) {
     if (task_list == NULL || cur_task == NULL) {
