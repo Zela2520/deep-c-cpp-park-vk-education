@@ -16,7 +16,7 @@
 
 typedef struct {
     size_t* number;
-    char* description;
+    char* description; // необходимо заменить на массив строк char* str[]
     size_t* priority;
     double* when;
 } task_info;
