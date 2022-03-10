@@ -9,9 +9,9 @@ typedef struct {
     size_t number;
     size_t month;
     size_t year;
-} data;
+} Data;
 
-typedef data* ptr_data;
+typedef Data* ptr_data;
 
 ptr_data creat_data(ptr_data when);
 ptr_data modify_data(ptr_data when);

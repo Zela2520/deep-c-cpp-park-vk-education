@@ -3,16 +3,21 @@
 
 #include "task_info.h"
 
-typedef ptr_task* ptr_list;
+#define DEFAULT_SIZE 5
+#define INCREMENT 1
+#define INIT_INS_POS 0
 
 typedef struct {
-    ptr_list* data;
+    ptr_task* data; // динамический массив из указателей на задачи
     size_t size;
     size_t capasity;
+    size_t insert_pos;
 } list;
 
-list* create_list(const size_t str_len);
-int increase_list(list* tasks, const size_t str_len);
+list* create_list(const size_t str_len); // готово к тесту
+int create_list_data(list* cur_list); // готово к тесту
+int put_elem(list* cur_list, const task_info* task); // готово к тесту
+int increase_list(list* tasks, const size_t str_len); // в процессе отладки
 int copy_list(list* left, const list* right, size_t num, size_t begin_copy);
 int free_list(list* tasks);
 
