@@ -57,7 +57,6 @@ int copy_list(list* left, const list* right, size_t num, size_t begin_copy) {
             ++j;
         }
     }
-    left->data[(left->size)] = NULL;
     return SUCCESS;
 }
 

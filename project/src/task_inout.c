@@ -14,6 +14,7 @@ int set_task(ptr_task task) {
         return -1;
     }
     scanf( "%*[^\n]" ); // buffer was cleared
+    printf("%zu\n", *task->number);
 
     printf("%s", "Enter task description: ");
     if (!(scanf("%1024s", task->description))) {
@@ -23,6 +24,7 @@ int set_task(ptr_task task) {
         return -1;
     }
     scanf( "%*[^\n]" ); // buffer was cleared
+    printf("%s\n", task->description);
 
     printf("%s", "Enter task priority: ");
     if (!(scanf("%zu", task->priority))) {
@@ -32,6 +34,7 @@ int set_task(ptr_task task) {
         return -1;
     }
     scanf( "%*[^\n]" ); // buffer was cleared
+    printf("%zu\n", *task->priority);
 
     printf("%s", "Enter task data: ");
     if (!(scanf("%lf", task->when))) {
@@ -40,13 +43,14 @@ int set_task(ptr_task task) {
         perror("Input Error");
         return -1;
     }
+    printf("%lf\n", *task->when);
     scanf( "%*[^\n]" ); // buffer was cleared
     return 0;
 }
 
 void print_task(const ptr_task task) {
     if (task != NULL) {
-        puts("Task exist"); // отладка
+        // puts("Task exist"); // отладка
         if (task->number != NULL) {
             puts("task field exist"); // отладка
             printf("%zu\n", *task->number);
