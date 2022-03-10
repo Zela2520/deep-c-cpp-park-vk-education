@@ -11,7 +11,8 @@ int main(void) {
 //        delete_task_list(user_task_list);
 //        user_task_list = NULL;
 //    }
-   // ptr_task task_list = NULL;
+// ptr_task task_list = NULL;
+
     ptr_task user_task_list = (ptr_task)calloc(1, sizeof(task_info));
 
     if (add_task(user_task_list, create_task(), sizeof(*user_task_list) / sizeof(task_info))) {
@@ -19,6 +20,11 @@ int main(void) {
     }
     if (add_task(user_task_list, create_task(), sizeof(*user_task_list) / sizeof(task_info))) {
         perror("add_task() error");
+    }
+
+    ptr_task temp_task = create_task();
+    if (temp_task != NULL) {
+        print_task(temp_task);
     }
 
     if (user_task_list != NULL) {
