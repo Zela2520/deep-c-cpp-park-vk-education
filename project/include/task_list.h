@@ -3,8 +3,10 @@
 
 #include "task_info.h"
 
+typedef ptr_task* ptr_list;
+
 typedef struct {
-    task_info* data;
+    ptr_list* data;
     size_t size;
     size_t capasity;
 } list;
