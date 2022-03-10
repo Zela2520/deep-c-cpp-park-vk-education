@@ -13,11 +13,12 @@ int main(void) {
 //    }
 // ptr_task task_list = NULL;
 
-    ptr_task user_task_list = (ptr_task)calloc(1, sizeof (task_info));
+    printf("%zu\n", sizeof (task_info));
+    ptr_task* user_task_list = (ptr_task*)calloc(1, sizeof (task_info));
     if (user_task_list == NULL) {
         perror("Memory allocation error");
     }
-    ptr_task temp_task_list = NULL;
+    ptr_task* temp_task_list = NULL;
     size_t list_size = 1;
 
     /////////////////////////// добавляем первую задачу ///////////////////////////////////
@@ -27,15 +28,17 @@ int main(void) {
     ++list_size;
     // увеличиваем емкость списка на единицу
     printf("%s%zu\n", "size of new memory ", list_size * sizeof(task_info));
-    temp_task_list = (ptr_task)realloc(user_task_list, list_size * sizeof(task_info));
+    temp_task_list = (ptr_task*)realloc(user_task_list, list_size * sizeof(task_info));
+    memset(temp_task_list + 1, 0, sizeof(task_info)); // обнуляем поля вновь выделенной памяти
+    printf("%s%zu\n", "size of the reallocated memory block ", sizeof (*((ptr_task)realloc(user_task_list, list_size * sizeof(task_info)))));
     if (!(temp_task_list)) {
         perror("Memory allocation error");
         return ERROR;
     }
     user_task_list = temp_task_list;
     temp_task_list = NULL;
-    printf("%s %zu\n", "size of list ", sizeof(*user_task_list) / sizeof (task_info)); // отладка
-    printf("%s %zu\n", "size of list in bytes", sizeof(*user_task_list)); // отладка
+    printf("%s %zu\n", "size of list ", sizeof(**user_task_list) / sizeof (task_info)); // отладка
+    printf("%s %zu\n", "size of list in bytes", sizeof(**user_task_list)); // отладка
 
     /////////////////////////// добавили первую задачу////////////////////////////////
 
@@ -46,15 +49,17 @@ int main(void) {
     ++list_size;
     // увеличиваем емкость списка на единицу
     printf("%s%zu\n", "size of new memory ", list_size * sizeof(task_info));
-    temp_task_list = (ptr_task)realloc(user_task_list, list_size * sizeof(task_info));
+    temp_task_list = (ptr_task*)realloc(user_task_list, list_size * sizeof(task_info));
+    memset(temp_task_list + 1, 0, sizeof(task_info)); // обнуляем поля вновь выделенной памяти
+    printf("%s%zu\n", "size of the reallocated memory block ", sizeof (*((ptr_task)realloc(user_task_list, list_size * sizeof(task_info)))));
     if (!(temp_task_list)) {
         perror("Memory allocation error");
         return ERROR;
     }
     user_task_list = temp_task_list;
     temp_task_list = NULL;
-    printf("%s %zu\n", "size of list ", sizeof(*user_task_list) / sizeof (task_info)); // отладка
-    printf("%s %zu\n", "size of list in bytes", sizeof(*user_task_list)); // отладка
+    printf("%s %zu\n", "size of list ", sizeof(**user_task_list) / sizeof (task_info)); // отладка
+    printf("%s %zu\n", "size of list in bytes", sizeof(**user_task_list)); // отладка
     /////////////////////////// добавили вторую задачу////////////////////////////////
 
     ptr_task temp_task = create_task();
