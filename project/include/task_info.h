@@ -26,11 +26,6 @@ typedef task_info* ptr_task;
 int propose_action();
 int make_choice(char *choice);
 
-ptr_task* create_task_list(ptr_task* task_list);
-ptr_task* sort_task_list();
-void print_task_list(const ptr_task* task_list);
-void delete_task_list(ptr_task* task_list);
-
 ptr_task create_task();
 int set_task(ptr_task task);
 int print_task(ptr_task task);
