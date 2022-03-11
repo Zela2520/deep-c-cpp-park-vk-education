@@ -1,4 +1,5 @@
 #include "../../include/task_info.h"
+//#include "task_parser.h" по сути модуль parser.h понадобится только тут
 
 // сделать проверку на размер вводимых данных
 int set_task(ptr_task task) {
@@ -7,7 +8,7 @@ int set_task(ptr_task task) {
     }
 
     printf("%s", "Enter task number: ");
-    if (!(scanf("%zu", task->number))) {
+    if (!(scanf("%s", task->number))) {
         scanf( "%*[^\n]" ); // buffer was cleared
         delete_task(task);
         perror("Input Error");
@@ -27,7 +28,7 @@ int set_task(ptr_task task) {
 //    printf("%s\n", task->description); // отладка
 
     printf("%s", "Enter task priority: ");
-    if (!(scanf("%zu", task->priority))) {
+    if (!(scanf("%s", task->priority))) {
         scanf( "%*[^\n]" ); // buffer was cleared
         delete_task(task);
         perror("Input Error");
@@ -37,7 +38,7 @@ int set_task(ptr_task task) {
 //    printf("%zu\n", *task->priority); // отладка
 
     printf("%s", "Enter task data: ");
-    if (!(scanf("%lf", task->when))) {
+    if (!(scanf("%s", task->when))) {
         scanf( "%*[^\n]" ); // buffer was cleared
         delete_task(task);
         perror("Input Error");
@@ -56,7 +57,7 @@ int print_task(const ptr_task task) {
     // puts("Task exist"); // отладка
     if (task->number != NULL) {
 //        puts("task field exist"); // отладка
-        printf("%zu\n", *task->number);
+        printf("%s\n", task->number);
     }
     if (task->description != NULL) {
 //        puts("task field exist"); // отладка
@@ -64,11 +65,11 @@ int print_task(const ptr_task task) {
     }
     if (task->priority != NULL) {
 //        puts("task field exist"); // отладка
-        printf("%zu\n", *task->priority);
+        printf("%s\n", task->priority);
     }
     if (task->when != NULL) {
 //        puts("task field exist"); // отладка
-        printf("%lf\n", *task->when);
+        printf("%s\n", task->when);
     }
     return SUCCESS;
 }

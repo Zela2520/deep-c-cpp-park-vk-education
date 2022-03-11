@@ -35,7 +35,7 @@ int create_list_data(list* cur_list) {
     return SUCCESS;
 }
 
-int delete_tasks(ptr_task* tasks) {
+int delete_tasks(ptr_task* tasks) { // сюда надо передавать еще и емкость списка
     if (tasks == NULL) {
         perror("delete_task_list() error");
         return ERROR;
