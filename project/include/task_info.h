@@ -23,12 +23,12 @@ typedef struct {
 
 typedef task_info* ptr_task;
 
-int propose_action();
-int make_choice(char *choice);
+int propose_action(); // готово
+int make_choice(char *choice); // готово
 
-ptr_task create_task();
-int set_task(ptr_task task);
-int print_task(ptr_task task);
-int delete_task(ptr_task task);
+ptr_task create_task(); // готово
+int set_task(ptr_task task); // готово
+int print_task(ptr_task task); // готово
+int delete_task(ptr_task task); // готово
 
 #endif //  PROJECT_INCLUDE_TASK_INFO_H_
