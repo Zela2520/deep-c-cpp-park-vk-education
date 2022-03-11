@@ -17,8 +17,9 @@ typedef struct {
 list* create_list(const size_t str_len); // готово к тесту
 int create_list_data(list* cur_list); // готово к тесту
 int put_elem(list* cur_list, const task_info* task); // готово к тесту
-int increase_list(list* tasks, const size_t str_len); // в процессе отладки
-int copy_list(list* left, const list* right, size_t num, size_t begin_copy);
+int increase_list(list* tasks, const size_t str_len); // готово к тесту
+int copy_list(list* left, const list* right, size_t num, size_t begin_copy); // готово к тесту
+int delete_tasks(ptr_task* tasks);
 int free_list(list* tasks);
 
 #endif //  PROJECT_INCLUDE_TASK_LIST_H_

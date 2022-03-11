@@ -67,12 +67,15 @@ int increase_list(list* tasks, const size_t str_len) {
     tasks->size += str_len;
     if (tasks->capasity < tasks->size) {
         tasks->capasity = 2 * tasks->size;
-        list* new_tasks = create_list(tasks->capasity);
-        if (new_tasks == NULL) {
+        ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity*sizeof(ptr_task)); // create_list_data
+        if (new_data == NULL) {
             perror("Memory allocation error");
             return ERROR;
         }
-        tasks->data = new_tasks->data;
+        for (size_t i = tasks->size - str_len; i < tasks->capasity; ++i) {
+            memset(&tasks->data[i], 0, sizeof(tasks->data[i]));
+        }
+        tasks->data = new_data;
     }
     return SUCCESS;
 }
@@ -89,6 +92,16 @@ int copy_list(list* left, const list* right, size_t num, size_t begin_copy) {
             return ERROR;
         }
     }
+    for (size_t i = 0; i < num; ++i) {
+        if (left->data[begin_copy + i] == NULL || right->data[i] == NULL) {
+            return ERROR;
+        }
+        if (delete_task(left->data[begin_copy + i])) {
+            perror("copy list error");
+            return ERROR;
+        }
+        ++i;
+    }
     for (size_t i = 0, j = 0; i < num; ++i) {
         if (right->data[i] != NULL) {
             left->data[j + begin_copy] = right->data[i];
@@ -103,8 +116,26 @@ int free_list(list* tasks) {
         perror("attempt to free unallocated memory");
         return ERROR;
     }
-    free(tasks->data);
+    if (delete_tasks(tasks->data)) {
+        return ERROR;
+    }
     tasks->data = NULL;
+    free(tasks);
+    tasks = NULL;
+    return SUCCESS;
+}
+
+int delete_tasks(ptr_task* tasks) {
+    if (tasks == NULL) {
+        perror("delete_task_list() error");
+        return ERROR;
+    }
+    for (size_t i = 0; i < sizeof(**tasks) / sizeof(ptr_task); ++i) {
+        printf("%s %zu %s", "element number ", i, "was deleted"); // отладка
+        if (delete_task(tasks[i])) {
+            return ERROR;
+        }
+    }
     free(tasks);
     tasks = NULL;
     return SUCCESS;
