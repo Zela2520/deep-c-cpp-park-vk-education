@@ -1,24 +1,15 @@
 #ifndef PROJECT_INCLUDE_TASK_INFO_H_
 #define PROJECT_INCLUDE_TASK_INFO_H_
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include "task_parser.h"
 
-#include "task_data.h"
-
-#define MAX_STR_SIZE 1024
 #define MAX_CHOICE_SIZE 10
 
-#define SUCCESS 0
-#define ERROR -1
-#define INCORRECT 1
-
 typedef struct {
-    size_t* number;
-    char* description; // необходимо заменить на массив строк char* str[]
-    size_t* priority;
-    double* when;
+    char* number;
+    char** description; // необходимо заменить на массив строк char* str[]
+    char* priority;
+    char* when;
 } task_info;
 
 typedef task_info* ptr_task;

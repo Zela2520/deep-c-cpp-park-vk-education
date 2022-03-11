@@ -7,20 +7,20 @@ ptr_task create_task() {
         return NULL;
     }
 
-    if (!(task->number = (size_t*)calloc(1, sizeof(size_t)))) {
+    if (!(task->number = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) {
         perror("Memory allocation error");
         free(task);
         memset(task, 0, sizeof(*task));
         return NULL;
     }
-    if (!(task->description = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) {
+    if (!(task->description = (char**)calloc(MAX_STR_SIZE + 1, sizeof(char*)))) {
         perror("Memory allocation error");
         free(task->number);
         free(task);
         memset(task, 0, sizeof(*task));
         return NULL;
     }
-    if (!(task->priority = (size_t*)calloc(1, sizeof(size_t)))) {
+    if (!(task->priority = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) {
         perror("Memory allocation error");
         free(task->number);
         free(task->description);
@@ -28,7 +28,7 @@ ptr_task create_task() {
         memset(task, 0, sizeof(*task));
         return NULL;
     }
-    if (!(task->when = (double *)calloc(1, sizeof(double)))) {
+    if (!(task->when = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) {
         perror("Memory allocation error");
         free(task->number);
         free(task->description);
