@@ -17,7 +17,7 @@ typedef struct {
 list* create_list(const size_t str_len); // готово к тесту
 int create_list_data(list* cur_list); // готово к тесту
 int business_logic(list* task_list); // готово к тесту
-int put_elem(list* cur_list, const task_info* task); // готово к тесту
+int put_elem(list* cur_list, const ptr_task task); // готово к тесту
 int increase_list(list* tasks, const size_t str_len); // готово к тесту
 int copy_list(list* left, const list* right, size_t num, size_t begin_copy); // готово к тесту
 int print_list(const list* tasks); // готово к тесту
