@@ -41,7 +41,7 @@ int delete_tasks(ptr_task* tasks) {
         return ERROR;
     }
     for (size_t i = 0; i < sizeof(**tasks) / sizeof(task_info*); ++i) {
-        printf("%s %zu %s\n", "element number ", i, "was deleted"); // отладка
+        printf("%s %zu %s\n", "element number ", i, "was deleted"); // отладк
         if (delete_task(tasks[i])) {
             return ERROR;
         }
