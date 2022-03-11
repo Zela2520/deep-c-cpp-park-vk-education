@@ -8,7 +8,7 @@ int set_task(ptr_task task) {
     }
 
     printf("%s", "Enter task number: ");
-    if (!(scanf("%s", task->number))) {
+    if (!(scanf("%1024s", task->number))) {
         scanf( "%*[^\n]" ); // buffer was cleared
         delete_task(task);
         perror("Input Error");
@@ -17,6 +17,7 @@ int set_task(ptr_task task) {
     scanf( "%*[^\n]" ); // buffer was cleared
 //    printf("%zu\n", *task->number); // отладка
 
+// Переписать как в ВК себе скинул
     printf("%s", "Enter task description: ");
     if (!(scanf("%1024s", task->description))) {
         scanf( "%*[^\n]" ); // buffer was cleared
@@ -28,7 +29,7 @@ int set_task(ptr_task task) {
 //    printf("%s\n", task->description); // отладка
 
     printf("%s", "Enter task priority: ");
-    if (!(scanf("%s", task->priority))) {
+    if (!(scanf("%1024s", task->priority))) {
         scanf( "%*[^\n]" ); // buffer was cleared
         delete_task(task);
         perror("Input Error");
@@ -38,7 +39,7 @@ int set_task(ptr_task task) {
 //    printf("%zu\n", *task->priority); // отладка
 
     printf("%s", "Enter task data: ");
-    if (!(scanf("%s", task->when))) {
+    if (!(scanf("%1024s", task->when))) {
         scanf( "%*[^\n]" ); // buffer was cleared
         delete_task(task);
         perror("Input Error");

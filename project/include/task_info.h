@@ -21,5 +21,6 @@ ptr_task create_task(); // готово
 int set_task(ptr_task task); // готово
 int print_task(ptr_task task); // готово
 int delete_task(ptr_task task); // готово
+int delete_string(char** string); // не готово
 
 #endif //  PROJECT_INCLUDE_TASK_INFO_H_
