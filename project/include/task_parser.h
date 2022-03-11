@@ -13,9 +13,9 @@
 #define ERROR -1
 #define INCORRECT 1
 
-int parser_number(char* number);
-int parser_description(char* description);
-int parser_priority(char* priority);
-int parser_data(char* data);
+int parser_number(const char* number);
+int parser_description(const char** description);
+int parser_priority(const char* priority);
+int parser_data(const char* data);
 
 #endif //  PROJECT_INCLUDE_TASK_PARSER_H_
