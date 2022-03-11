@@ -22,9 +22,9 @@ int print_list(const list* tasks) {
         perror("print_task_list() error");
         return ERROR;
     }
-    puts("print_task_list() out for"); // отладка
+//    puts("print_task_list() out for"); // отладка
     for (size_t i = 0; i < tasks->size; ++i) {
-        puts("print_task_list() in for"); // отладка
+        printf("%s %zu\n", "Task priority:", i);
         if (print_task(tasks->data[i])) {
             perror("print_list() error");
             return ERROR;

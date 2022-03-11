@@ -22,7 +22,7 @@ int increase_list(list* tasks, const size_t str_len); // готово к тес�
 int copy_list(list* left, const list* right, size_t num, size_t begin_copy); // готово к тесту
 int print_list(const list* tasks); // готово к тесту
 ptr_task* sort_list(); // не готово к тесту
-int delete_tasks(ptr_task* tasks); // готово к тесту
+int delete_tasks(ptr_task * tasks); // готово к тесту
 int free_list(list* tasks); // готово к тесту
 
 #endif //  PROJECT_INCLUDE_TASK_LIST_H_
