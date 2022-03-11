@@ -48,26 +48,27 @@ int set_task(ptr_task task) {
     return 0;
 }
 
-void print_task(const ptr_task task) {
-    if (task != NULL) {
-        // puts("Task exist"); // отладка
-        if (task->number != NULL) {
-            puts("task field exist"); // отладка
-            printf("%zu\n", *task->number);
-        }
-        if (task->description != NULL) {
-            puts("task field exist"); // отладка
-            printf("%s\n", task->description);
-        }
-        if (task->priority != NULL) {
-            puts("task field exist"); // отладка
-            printf("%zu\n", *task->priority);
-        }
-        if (task->when != NULL) {
-            puts("task field exist"); // отладка
-            printf("%lf\n", *task->when);
-        }
-    } else {
+int print_task(const ptr_task task) {
+    if (task == NULL) {
         perror("Print_task() error");
+        return ERROR;
     }
+    // puts("Task exist"); // отладка
+    if (task->number != NULL) {
+        puts("task field exist"); // отладка
+        printf("%zu\n", *task->number);
+    }
+    if (task->description != NULL) {
+        puts("task field exist"); // отладка
+        printf("%s\n", task->description);
+    }
+    if (task->priority != NULL) {
+        puts("task field exist"); // отладка
+        printf("%zu\n", *task->priority);
+    }
+    if (task->when != NULL) {
+        puts("task field exist"); // отладка
+        printf("%lf\n", *task->when);
+    }
+    return SUCCESS;
 }
