@@ -3,7 +3,8 @@ HDRS_DIR = project/include
 
 SRCS = project/src_2/main.c \
        project/src_2/list/business_logic.c \
-       project/src_2/list/task_list.c \
+       project/src_2/list/task_list_memory.c \
+       project/src_2/list/task_list_modify.c \
        project/src_2/task/task_proccesing.c \
        project/src_2/task/task_memory.c \
        project/src_2/task/task_inout.c

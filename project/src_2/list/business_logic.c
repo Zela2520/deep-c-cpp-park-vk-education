@@ -1,23 +1,34 @@
-#include "../../include/task_info.h"
+#include "../../include/task_list.h"
 
-ptr_task* create_task_list(ptr_task* task_list) {
-    if (task_list != NULL) {
-        free(task_list);
-        task_list = NULL;
-    }
-    ptr_task* temp_task_list;
+int business_logic(list* task_list) {
     while (propose_action() == SUCCESS) {
-        temp_task_list = (ptr_task*)realloc(task_list, sizeof(task_info));
-        if (!(temp_task_list)) {
-            perror("Memory allocation error");
-            return NULL;
+        ptr_task new_task = create_task();
+        if (new_task == NULL) {
+            return ERROR;
         }
-        printf("%s %zu\n", "size of list in bytes ", sizeof(**task_list));
-        task_list = temp_task_list;
-        if ((add_task(task_list, create_task(), sizeof(**task_list) / sizeof(task_info)))) {
-            perror("creat_task_list() error");
-            return NULL;
+        if (put_elem(task_list, new_task)) {
+            if (delete_task(new_task)) {
+                perror("memory free error");
+                return ERROR;
+            }
+            return ERROR;
         }
     }
-    return task_list;
+    return SUCCESS;
+}
+
+int print_list(const list* tasks) {
+    if (tasks == NULL || tasks->data == NULL) {
+        perror("print_task_list() error");
+        return ERROR;
+    }
+    puts("print_task_list() out for"); // отладка
+    for (size_t i = 0; i < tasks->size; ++i) {
+        puts("print_task_list() in for"); // отладка
+        if (print_task(task_list[i])) {
+            perror("print_list() error");
+            return ERROR;
+        }
+    }
+    return SUCCESS;
 }
