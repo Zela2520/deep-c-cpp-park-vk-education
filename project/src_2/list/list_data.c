@@ -1,14 +1,14 @@
 #include "../../include/task_list.h"
 
-int add_task(ptr_task* task_list, const ptr_task task, size_t tail) {
-    if (task_list == NULL || task == NULL) {
-        perror("Add_task() error");
-        return ERROR;
-    }
-    printf("%zu index for insert\n", tail - 1);
-    task_list[tail - 1] = task;
-    return SUCCESS;
-}
+//int add_task(ptr_task* task_list, const ptr_task task, size_t tail) {
+//    if (task_list == NULL || task == NULL) {
+//        perror("Add_task() error");
+//        return ERROR;
+//    }
+//    printf("%zu index for insert\n", tail - 1);
+//    task_list[tail - 1] = task;
+//    return SUCCESS;
+//}
 
 ptr_task* sort_task_list() {
     return NULL;

@@ -46,7 +46,7 @@ int put_elem(list* cur_list, task_info* task) {
             return ERROR;
         }
     }
-    if (cur_list->size - cur_list->insert_pos == INCREMENT) {
+    if (!(cur_list->size - cur_list->insert_pos)) {
         if (increase_list(cur_list, INCREMENT)) {
             puts("put_elem function error");
             return ERROR;
@@ -111,17 +111,19 @@ int copy_list(list* left, const list* right, size_t num, size_t begin_copy) {
     return SUCCESS;
 }
 
-int free_list(list* tasks) {
+int print_list(const list* tasks) {
     if (tasks == NULL || tasks->data == NULL) {
-        perror("attempt to free unallocated memory");
+        perror("print_task_list() error");
         return ERROR;
     }
-    if (delete_tasks(tasks->data)) {
-        return ERROR;
+    puts("print_task_list() out for"); // отладка
+    for (size_t i = 0; i < tasks->size; ++i) {
+        puts("print_task_list() in for"); // отладка
+        if (print_task(task_list[i])) {
+            perror("print_list() error");
+            return ERROR;
+        }
     }
-    tasks->data = NULL;
-    free(tasks);
-    tasks = NULL;
     return SUCCESS;
 }
 
@@ -136,6 +138,21 @@ int delete_tasks(ptr_task* tasks) {
             return ERROR;
         }
     }
+    free(tasks);
+    tasks = NULL;
+    return SUCCESS;
+}
+
+int free_list(list* tasks) {
+    if (tasks == NULL || tasks->data == NULL) {
+        perror("attempt to free unallocated memory");
+        return ERROR;
+    }
+    if (delete_tasks(tasks->data)) {
+        return ERROR;
+    }
+    tasks->data = NULL;
+
     free(tasks);
     tasks = NULL;
     return SUCCESS;

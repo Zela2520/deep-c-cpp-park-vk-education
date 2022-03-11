@@ -33,8 +33,7 @@ void delete_task_list(ptr_task* task_list);
 
 ptr_task create_task();
 int set_task(ptr_task task);
-int add_task(ptr_task* task_list, ptr_task task, size_t tail);
-void print_task(ptr_task task);
+int print_task(ptr_task task);
 int delete_task(ptr_task task);
 
 #endif //  PROJECT_INCLUDE_TASK_INFO_H_

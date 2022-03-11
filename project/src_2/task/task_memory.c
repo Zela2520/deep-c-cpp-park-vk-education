@@ -53,30 +53,26 @@ ptr_task create_task() {
 }
 
 int delete_task(ptr_task task) {
-    if (task != NULL && task->number != NULL) {
+    if (task == NULL) {
+        return ERROR;
+    }
+    if (task->number != NULL) {
         free(task->number);
         task->number = NULL;
-        return SUCCESS;
     }
-    if (task != NULL && task->description != NULL) {
+    if (task->description != NULL) {
         free(task->description);
         task->description = NULL;
-        return SUCCESS;
     }
-    if (task != NULL && task->priority != NULL) {
+    if (task->priority != NULL) {
         free(task->priority);
         task->priority = NULL;
-        return SUCCESS;
     }
-    if (task != NULL && task->when != NULL) {
+    if (task->when != NULL) {
         free(task->when);
         task->when = NULL;
-        return SUCCESS;
     }
-    if (task != NULL) {
-        free(task);
-        task = NULL;
-        return SUCCESS;
-    }
-    return ERROR;
+    free(task);
+    task = NULL;
+    return SUCCESS;
 }
