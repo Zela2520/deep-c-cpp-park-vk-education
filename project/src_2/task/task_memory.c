@@ -52,25 +52,31 @@ ptr_task create_task() {
     return task;
 }
 
-void delete_task(ptr_task task) {
+int delete_task(ptr_task task) {
     if (task != NULL && task->number != NULL) {
         free(task->number);
         task->number = NULL;
+        return SUCCESS;
     }
     if (task != NULL && task->description != NULL) {
         free(task->description);
         task->description = NULL;
+        return SUCCESS;
     }
     if (task != NULL && task->priority != NULL) {
         free(task->priority);
         task->priority = NULL;
+        return SUCCESS;
     }
     if (task != NULL && task->when != NULL) {
         free(task->when);
         task->when = NULL;
+        return SUCCESS;
     }
     if (task != NULL) {
         free(task);
         task = NULL;
+        return SUCCESS;
     }
+    return ERROR;
 }
