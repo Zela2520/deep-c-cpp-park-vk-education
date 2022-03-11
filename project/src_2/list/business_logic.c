@@ -25,7 +25,7 @@ int print_list(const list* tasks) {
     puts("print_task_list() out for"); // отладка
     for (size_t i = 0; i < tasks->size; ++i) {
         puts("print_task_list() in for"); // отладка
-        if (print_task(task_list[i])) {
+        if (print_task(tasks->data[i])) {
             perror("print_list() error");
             return ERROR;
         }

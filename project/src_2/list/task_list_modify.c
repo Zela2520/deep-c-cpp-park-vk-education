@@ -1,6 +1,6 @@
 #include "../../include/task_list.h"
 
-int put_elem(list* cur_list, task_info* task) {
+int put_elem(list* cur_list, const ptr_task task) {
     if (cur_list == NULL || task == NULL) {
         perror("put_elem method error");
         return ERROR;
@@ -17,7 +17,7 @@ int put_elem(list* cur_list, task_info* task) {
             return ERROR;
         }
     }
-    cur_list->data[cur_list++] = task;
+    cur_list->data[cur_list->insert_pos++] = task;
     return SUCCESS;
 }
 
@@ -65,7 +65,6 @@ int copy_list(list* left, const list* right, size_t num, size_t begin_copy) {
             perror("copy list error");
             return ERROR;
         }
-        ++i;
     }
     for (size_t i = 0, j = 0; i < num; ++i) {
         if (right->data[i] != NULL) {
