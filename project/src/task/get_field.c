@@ -2,11 +2,22 @@
 
 char get_symbol(FILE *stream_input) {
     char symbol = '\0';
+
+    if (stream_input == NULL) {
+        perror("get symbol error");
+        return symbol;
+    }
+
     while (fscanf(stream_input, "%c", &symbol) != 1);
     return symbol;
 }
 
 char* get_string(FILE *stream_input) {
+    if (stream_input == NULL) {
+        perror("get string error");
+        return NULL;
+    }
+
     struct buffer {
         char* string;
         size_t size;
@@ -75,19 +86,15 @@ int get_number(FILE *stream_input, char* string) {
 }
 
 int get_description(FILE* stream_input, char** string) {
-    if (string == NULL) {
+    // должны читать строки до того момента пока очередная строка не начнется с '\n'
+    if (string == NULL || stream_input == NULL) {
         perror("set string error");
         return ERROR;
     }
+    // если хотим как то поиграться с границами описания, то можем считывать символ новой строки задавать определённые услови и потом отматывать назад через fseek()
+    for (size_t i = 0; (string[i] = get_string(stream_input)); ++i);
 
-    for (size_t i = 0; i < MAX_STR_SIZE && string[i] != NULL; ++i) {
-        if (fscanf(input_stream, "%1024s", s[i])) {
-            perror("Memory input error");
-            scanf("%*[^\n]");
-            return ERROR;
-        }
-        scanf("%*[^\n]");
-    }
+    return SUCCESS;
 }
 
 int get_priority(FILE *stream_input, char* string) {
