@@ -1,7 +1,5 @@
 #include "../../include/task_info.h"
 
-#define MAX_NUMBER_SIZE 2
-
 char get_symbol(FILE *stream_input) {
     char symbol = '\0';
     while (fscanf(stream_input, "%c", &symbol) != 1);
@@ -55,6 +53,7 @@ int get_number(FILE *stream_input, char* string) {
         }
         --i;
     }
+    string = temp;
     return SUCCESS;
 }
 
@@ -75,6 +74,20 @@ int get_description(FILE* stream_input, char** string) {
 }
 
 int get_priority(FILE *stream_input, char* string) {
+    char* temp = get_string(stream_input);
+    if (strlen(temp) > MAX_PRIORITY_SIZE || strlen(temp) == 0) {
+        perror("get number error");
+        return ERROR;
+    }
+
+    size_t i = strlen(temp);
+    while (i) {
+        if (!(s[i - 1] >= '0' && s[i - 1] <= '9')) {
+            perror("get number error");
+            return ERROR;
+        }
+        --i;
+    }
     return SUCCESS;
 }
 
