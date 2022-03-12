@@ -33,9 +33,9 @@ int set_task(ptr_task task, FILE* input_stream); // не готово
 
 int print_task(ptr_task task); // готово
 int print_description(char** string); // готово
-// print_string не хочу писать, тупо через printf выведу
 
-char get_symbol(FILE *input_stream); // не готово
+char get_symbol(FILE* stream_input); // готово
+char* get_string(FILE* stream_input); // готово
 
 int get_number(FILE *stream_input, char* string); // не готово
 int get_description(FILE *stream_input, char** string); // не готово

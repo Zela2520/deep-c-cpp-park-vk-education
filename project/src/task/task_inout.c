@@ -48,9 +48,6 @@ int set_task(ptr_task task, FILE* stream_input) {
     size_t field = FIELDS_NAMES;
 
     while (field > 0) {
-
-        // можно написать функцию get_string, которая будет парсить любую переданную строку по нескольким параметрам
-        // но мне кажется проще написать четыре разных функции и для каждой задать свой фильтр
         if (field == NUMBER) {
             if (get_number(stream_input, task->number)) {
                 perror("get value error");
