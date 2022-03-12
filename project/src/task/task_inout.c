@@ -47,7 +47,7 @@ int set_task(ptr_task task, FILE* stream_input) {
 
     size_t field = FIELDS_NAMES;
 
-    while (field > 0) {
+    while (field) {
         if (field == NUMBER) {
             if (get_number(stream_input, task->number)) {
                 perror("get value error");

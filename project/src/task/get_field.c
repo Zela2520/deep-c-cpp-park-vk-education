@@ -12,24 +12,29 @@ char* get_string(FILE *stream_input) {
         size_t size;
         size_t capacity;
     } buf = {0};
+
     char c;
     while (c = get_symbol(stream_input), c != EOF && c != '\n') {
         if (buf.size + 1 >= buf.capacity) {
             size_t new_capacity = !buf.capacity ? 1 : buf.capacity * 2;
-            char *tmp = (char *)malloc((new_capacity + 1) * sizeof(char));
+            char *tmp = (char*)malloc((new_capacity + 1) * sizeof(char));
+
             if (!tmp) {
                 if (buf.string) {
                     free(buf.string);
                 }
                 return NULL;
             }
+
             if (buf.string) {
                 tmp = strcpy(tmp, buf.string);
                 free(buf.string);
             }
+
             buf.string = tmp;
             buf.capacity = new_capacity;
         }
+
         buf.string[buf.size] = c;
         buf.string[buf.size + 1] = '\0';
         ++buf.size;
@@ -38,13 +43,18 @@ char* get_string(FILE *stream_input) {
 }
 
 int get_number(FILE *stream_input, char* string) {
-    // можно написать функцию get_string(), дальше парсить эти строку и потом привоить в string
+
     char* temp = get_string(stream_input);
+    if (temp == NULL) {
+        perror("get number error");
+        return ERROR;
+    }
+
     if (strlen(temp) > MAX_NUMBER_SIZE || strlen(temp) == 0) {
         perror("get number error");
         return ERROR;
     }
-    // если длина строки больше двух символов и каждый из символов в строке не находится в диапазоне [0, 9], то возвращаем ошибку
+
     size_t i = strlen(temp);
     while (i) {
         if (!(s[i - 1] >= '0' && s[i - 1] <= '9')) {
@@ -53,7 +63,14 @@ int get_number(FILE *stream_input, char* string) {
         }
         --i;
     }
-    string = temp;
+
+    if (!(strcpy(string, temp))) {
+        perror("string copy error");
+        return ERROR;
+    }
+
+    free(temp);
+
     return SUCCESS;
 }
 
@@ -75,19 +92,32 @@ int get_description(FILE* stream_input, char** string) {
 
 int get_priority(FILE *stream_input, char* string) {
     char* temp = get_string(stream_input);
+    if (temp == NULL) {
+        perror("get priority error");
+        return ERROR;
+    }
+
     if (strlen(temp) > MAX_PRIORITY_SIZE || strlen(temp) == 0) {
-        perror("get number error");
+        perror("get priority error");
         return ERROR;
     }
 
     size_t i = strlen(temp);
     while (i) {
         if (!(s[i - 1] >= '0' && s[i - 1] <= '9')) {
-            perror("get number error");
+            perror("get priority error");
             return ERROR;
         }
         --i;
     }
+
+    if (!(strcpy(string, temp))) {
+        perror("string copy error");
+        return ERROR;
+    }
+
+    free(temp);
+
     return SUCCESS;
 }
 
