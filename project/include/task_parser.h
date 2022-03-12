@@ -9,8 +9,8 @@
 
 #define MAX_STR_SIZE 1024
 
-#define SUCCESS 0
 #define ERROR -1
+#define SUCCESS 0
 #define INCORRECT 1
 
 int parser_number(const char* number);
