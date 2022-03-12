@@ -1,76 +1,85 @@
 #include "../../include/task_info.h"
-//#include "task_parser.h" по сути модуль parser.h понадобится только тут
-
-// сделать проверку на размер вводимых данных
-int set_task(ptr_task task) {
-    if (task == NULL) {
-        return -1;
-    }
-
-    printf("%s", "Enter task number: ");
-    if (!(scanf("%1024s", task->number))) {
-        scanf( "%*[^\n]" ); // buffer was cleared
-        delete_task(task);
-        perror("Input Error");
-        return -1;
-    }
-    scanf( "%*[^\n]" ); // buffer was cleared
-//    printf("%zu\n", *task->number); // отладка
-
-// Переписать как в ВК себе скинул
-    printf("%s", "Enter task description: ");
-    if (!(scanf("%1024s", task->description))) {
-        scanf( "%*[^\n]" ); // buffer was cleared
-        delete_task(task);
-        perror("Input Error");
-        return -1;
-    }
-    scanf( "%*[^\n]" ); // buffer was cleared
-//    printf("%s\n", task->description); // отладка
-
-    printf("%s", "Enter task priority: ");
-    if (!(scanf("%1024s", task->priority))) {
-        scanf( "%*[^\n]" ); // buffer was cleared
-        delete_task(task);
-        perror("Input Error");
-        return -1;
-    }
-    scanf( "%*[^\n]" ); // buffer was cleared
-//    printf("%zu\n", *task->priority); // отладка
-
-    printf("%s", "Enter task data: ");
-    if (!(scanf("%1024s", task->when))) {
-        scanf( "%*[^\n]" ); // buffer was cleared
-        delete_task(task);
-        perror("Input Error");
-        return -1;
-    }
-//    printf("%lf\n", *task->when); // отладка
-    scanf( "%*[^\n]" ); // buffer was cleared
-    return 0;
-}
 
 int print_task(const ptr_task task) {
     if (task == NULL) {
         perror("Print_task() error");
         return ERROR;
     }
-    // puts("Task exist"); // отладка
+
     if (task->number != NULL) {
-//        puts("task field exist"); // отладка
-        printf("%s\n", task->number);
+        printf("%-1024s\n", task->number);
     }
+
     if (task->description != NULL) {
-//        puts("task field exist"); // отладка
-        printf("%s\n", task->description);
+        print_description(task->description);
     }
+
     if (task->priority != NULL) {
-//        puts("task field exist"); // отладка
-        printf("%s\n", task->priority);
+        printf("%-1024s\n", task->priority);
     }
+
     if (task->when != NULL) {
-//        puts("task field exist"); // отладка
-        printf("%s\n", task->when);
+        printf("%-1024s\n", task->when);
     }
     return SUCCESS;
+}
+
+int print_description(char** string) {
+    if (string == NULL) {
+        perror("print_description error");
+        return ERROR;
+    }
+
+    for (size_t i = 0; i < MAX_STR_SIZE && string[i] != NULL; ++i) {
+        for (size_t j = 0; string[i][j] != '\0'; ++j) {
+            printf("%c", string[i][j]);
+        }
+    }
+
+    return SUCCESS;
+}
+
+
+int set_task(ptr_task task, FILE* stream_input) {
+    if (task == NULL || stream_input) {
+        return ERROR;
+    }
+
+    size_t field = FIELDS_NAMES;
+
+    while (field > 0) {
+
+        // можно написать функцию get_string, которая будет парсить любую переданную строку по нескольким параметрам
+        // но мне кажется проще написать четыре разных функции и для каждой задать свой фильтр
+        if (field == NUMBER) {
+            if (get_number(stream_input, task->number)) {
+                perror("get value error");
+                return ERROR;
+            }
+        }
+
+        if (field == DESCRIPTION) {
+            if (get_description(stream_input, task->description)) {
+                perror("get value error");
+                return ERROR;
+            }
+        }
+
+        if (field == PRIORITY) {
+            if (get_priority(stream_input, task->priority)) {
+                perror("get value error");
+                return ERROR;
+            }
+        }
+
+        if (field == WHEN) {
+            if (get_data(stream_input,task->when)) {
+                perror("get value error");
+                return ERROR;
+            }
+        }
+        --fields;
+    }
+
+    return 0;
 }

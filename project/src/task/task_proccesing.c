@@ -1,7 +1,7 @@
 #include "../../include/task_info.h"
 
 
-int propose_action() {
+int propose_action(FILE* stream_input) {
     char *choice = (char *) calloc(10, sizeof(char));
 
     do {
@@ -10,14 +10,14 @@ int propose_action() {
             return ERROR;
         }
 
-        if (!(scanf("%5s", choice))) {
+        if (!(scanf("%3s", choice))) {
             perror("Data entry error");
-            scanf( "%*[^\n]" ); // buffer was cleared
+            scanf("%*[^\n]"); // buffer was cleared
             free(choice);
             return ERROR;
         }
-        scanf( "%*[^\n]" ); // buffer was cleared
-    } while (make_choice(choice) == ERROR);
+        scanf("%*[^\n]"); // buffer was cleared
+    } while (make_choice(choice) == ERROR || !(feof(stream_input)));
 
     if (make_choice(choice) == INCORRECT) {
         puts("Task entry has been stopped");
