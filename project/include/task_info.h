@@ -1,10 +1,19 @@
 #ifndef PROJECT_INCLUDE_TASK_INFO_H_
 #define PROJECT_INCLUDE_TASK_INFO_H_
 
-#include "task_parser.h"
+#include <stdio.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX_STR_SIZE 10000
 
 #define MAX_CHOICE_SIZE 10
 
+#define ERROR -1
+#define SUCCESS 0
+#define INCORRECT 1
 
 #define FIELDS_NAMES 4
 #define NUMBER 4
