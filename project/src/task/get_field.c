@@ -86,19 +86,21 @@ int get_number(FILE *stream_input, char* string) {
 }
 
 int get_description(FILE* stream_input, char** string) {
-    // должны читать строки до того момента пока очередная строка не начнется с '\n'
+    // должны читать строки до того момента пока очередная строка не начнется с '\0'
     if (string == NULL || stream_input == NULL) {
         perror("set string error");
         return ERROR;
     }
     // если хотим как то поиграться с границами описания, то можем считывать символ новой строки задавать определённые услови и потом отматывать назад через fseek()
-    for (size_t i = 0; (string[i] = get_string(stream_input)); ++i);
+    size_t i = 0;
+    while(fgets(stream_input[i], 10000, ))
 
     return SUCCESS;
 }
 
 int get_priority(FILE *stream_input, char* string) {
     char* temp = get_string(stream_input);
+
     if (temp == NULL) {
         perror("get priority error");
         return ERROR;
