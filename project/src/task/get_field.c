@@ -148,6 +148,9 @@ int get_priority(FILE *stream_input, char* string) {
     return SUCCESS;
 }
 
+
+
+
 static int check_data_num(int data_num) {
     if (data_num < 0 || data_num > 31) {
         perror("check data error");
@@ -175,13 +178,16 @@ static int check_year(int year) {
 static char* strcut(char* begin, char end) {
     char* new_string = (char*)calloc(MAX_STR_SIZE, sizeof(char));
 
-    for (size_t i = 0; begin[i] != end ; ++i) {
+    for (size_t i = 0; begin[i] != end && begin[i] != '\0'; ++i) {
         new_string[i] += begin[i];
     }
     return new_string;
 }
 
-int get_data(FILE *stream_input, char* string) {
+
+
+
+int get_data(FILE *stream_input, Data* cur_data) {
     if (string == NULL || stream_input == NULL) {
         perror("get data error");
         return ERROR;
@@ -204,44 +210,61 @@ int get_data(FILE *stream_input, char* string) {
     for (size_t i = 0; i < PARTS_NUMBERS; ++i) {
         switch (i) {
             case FIRST_PART: {
-                char* str_part = strcut(cur_char, '.');
-                if (check_data_num(atoi(str_part))) {
+                char* str_part_1 = strcut(cur_char, '.');
+                if (check_data_num(atoi(str_part_1))) {
+                    free(str_part_1);
+                    str_part_1 = NULL;
+                    free(temp_string);
+                    temp_string = NULL;
                     return ERROR;
                 }
+
+                cur_data->number = atoi(str_part_1);
+                free(str_part_1);
+                str_part_1 = NULL;
+
                 cur_char = strchr(cur_char, '.') + 1;
-                free(str_part);
-                str_part = NULL;
                 break;
             }
 
             case SECOND_PART: {
                 char* str_part_2 = strcut(cur_char, '.');
                 if (check_month(atoi(str_part_2))) {
+                    free(str_part_2);
+                    str_part_2 = NULL;
+                    free(temp_string);
+                    temp_string = NULL;
                     return ERROR;
                 }
-                cur_char = strchr(cur_char, '.') + 1;
+
+                cur_data->month = atoi(str_part_2);
                 free(str_part_2);
                 str_part_2 = NULL;
+
+                cur_char = strchr(cur_char, '.') + 1;
                 break;
             }
 
             case THIRD_PART: {
                 char* str_part_3 = strcut(cur_char, '.');
                 if (check_year(atoi(str_part_3))) {
+                    free(str_part_3);
+                    str_part_3 = NULL;
+                    free(temp_string);
+                    temp_string = NULL;
                     return ERROR;
                 }
+
+                cur_data->year = atoi(str_part_3);
                 free(str_part_3);
                 str_part_3 = NULL;
+
                 break;
             }
         }
     }
 
-    if (!(strcpy(string, temp_string))) {
-        perror("string copy error");
-        return ERROR;
-    }
-
     free(temp_string);
+    temp_string = NULL;
     return SUCCESS;
 }

@@ -19,7 +19,9 @@ int print_task(const ptr_task task) {
     }
 
     if (task->when != NULL) {
-        printf("%-1024s\n", task->when);
+        printf("%d.", task->when->number);
+        printf("%d.", task->when->month);
+        printf("%d\n", task->when->year);
     }
     return SUCCESS;
 }
