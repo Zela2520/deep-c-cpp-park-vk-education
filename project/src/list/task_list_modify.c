@@ -43,47 +43,18 @@ int increase_list(list* tasks, const size_t str_len) {
             return ERROR;
         }
 
-        for (size_t i = tasks->size - str_len; i < tasks->capasity; ++i) {
+        for (size_t i = tasks->size; i < tasks->capasity; ++i) {
             memset(&tasks->data[i], 0, sizeof(tasks->data[i]));
         }
-        tasks->data = new_data;
-    }
 
-    return SUCCESS;
-}
-
-int copy_list(list* left, const list* right, size_t num, size_t begin_copy) {
-    if (left == NULL || right == NULL) {
-        return ERROR;
-    }
-
-    if (right->size < num) {
-        return ERROR;
-    }
-
-    if (left->size <= num + begin_copy) {
-        if (increase_list(left, begin_copy + num)) {
-            return ERROR;
-        }
-    }
-
-    for (size_t i = 0; i < num; ++i) {
-        if (left->data[begin_copy + i] == NULL || right->data[i] == NULL) {
+        if (delete_tasks(tasks)) {
+            perror("increase list error");
             return ERROR;
         }
 
-        if (delete_task(left->data[begin_copy + i])) {
-            perror("copy list error");
-            return ERROR;
-        }
+        tasks->data = new_data; // как будто тут забыл почистить поле дата старую
     }
 
-    for (size_t i = 0, j = 0; i < num; ++i) {
-        if (right->data[i] != NULL) {
-            left->data[j + begin_copy] = right->data[i];
-            ++j;
-        }
-    }
     return SUCCESS;
 }
 

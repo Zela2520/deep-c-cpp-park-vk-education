@@ -2,6 +2,10 @@
 
 
 int propose_action(FILE* stream_input) {
+    if (stream_input == NULL) {
+        return ERROR;
+    }
+
     char *choice;
 
     do {

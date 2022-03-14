@@ -21,13 +21,12 @@ int create_list_data(list* cur_list); // готово к тесту
 int business_logic(list* task_list, const char* input_stream); // готово к тесту
 
 int increase_list(list* tasks, const size_t str_len); // готово к тесту
-int copy_list(list* left, const list* right, size_t num, size_t begin_copy); // готово к тесту
 
 int put_elem(list* cur_list, const ptr_task task); // готово к тесту
 int print_list(const list* tasks); // готово к тесту
 list* sort_list(list* cur_list); // готово к тесту
 
-int delete_tasks(list* tasks); // не готово к тесту
+int delete_tasks(list* tasks); // готово к тесту
 int free_list(list* tasks); // готово к тесту
 
 #endif //  PROJECT_INCLUDE_TASK_LIST_H_
