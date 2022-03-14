@@ -126,10 +126,13 @@ int create_string(char** string) {
     for (size_t i = 0; i < MAX_STR_SIZE; ++i) {
         if (string[i] != NULL) {
             free(string[i]);
+            string[i] = NULL;
         }
 
         string[i] = (char*)calloc(MAX_STR_SIZE, sizeof (char));
         if (string[i] == NULL) {
+            free(string);
+            string = NULL;
             perror("Memory allocation error in creating_string function");
             return ERROR;
         }

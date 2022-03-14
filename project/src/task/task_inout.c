@@ -34,7 +34,7 @@ int print_description(char** string) {
 
     for (size_t i = 0; i < MAX_STR_SIZE && string[i] != NULL; ++i) {
         for (size_t j = 0; string[i][j] != '\0'; ++j) {
-            printf("%c", string[i][j]);
+            printf("%c", string[i][j]); // maybe there will be a memory leak
         }
     }
 
@@ -80,5 +80,5 @@ int set_task(ptr_task task, FILE* stream_input) {
         --fields;
     }
 
-    return 0;
+    return SUCCESS;
 }
