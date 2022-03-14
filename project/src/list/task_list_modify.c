@@ -86,3 +86,37 @@ int copy_list(list* left, const list* right, size_t num, size_t begin_copy) {
     }
     return SUCCESS;
 }
+
+static void swap_task(ptr_task left, ptr_task right) {
+    ptr_task temp = left;
+    left = right;
+    right = temp;
+}
+
+list* sort_list(list* cur_list) {
+    for (size_t i = 0; i  + 1 < cur_list->size; ++i) {
+        for (size_t j = 0; j + 1 < cur_list->size - i; ++i) {
+            if (atoi(cur_list->data[j + 1]->priority) > atoi(cur_list->data[j]->priority)) {
+                swap_task(cur_list->data[j + 1], cur_list->data[j]);
+            }
+
+            if (atoi(cur_list->data[j + 1]->priority) == atoi(cur_list->data[j]->priority)) {
+                if (cur_list->data[j + 1]->when->year < cur_list->data[j]->when->year) {
+                    swap_task(cur_list->data[j + 1], cur_list->data[j]);
+                }
+
+                if (cur_list->data[j + 1]->when->year == cur_list->data[j]->when->year &&
+                    cur_list->data[j + 1]->when->month < cur_list->data[j]->when->month) {
+                    swap_task(cur_list->data[j + 1], cur_list->data[j]);
+                }
+
+                if (cur_list->data[j + 1]->when->year == cur_list->data[j]->when->year &&
+                    cur_list->data[j + 1]->when->month == cur_list->data[j]->when->month &&
+                    cur_list->data[j + 1]->when->number < cur_list->data[j]->when->number) {
+                    swap_task(cur_list->data[j + 1], cur_list->data[j]);
+                }
+            }
+        }
+    }
+    return cur_list;
+}
