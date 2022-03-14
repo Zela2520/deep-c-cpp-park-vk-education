@@ -22,20 +22,20 @@ int create_list_data(list* cur_list) {
         perror("Memory allocation error");
         return ERROR;
     }
-    for (size_t i = 0; i < cur_list->size; ++i) {
+    for (size_t i = 0; i < cur_list->capasity; ++i) {
         cur_list->data[i] = (task_info*)calloc(INCREMENT, sizeof (task_info));
         if (cur_list->data[i] == NULL) {
             perror("Memory allocation error");
             return ERROR;
         }
     }
-    for (size_t i = cur_list->size; i < cur_list->capasity; ++i) {
-        memset(&cur_list->data[i], 0, sizeof(cur_list->data[i]));
-    }
+//    for (size_t i = cur_list->size; i < cur_list->capasity; ++i) {
+//        memset(&cur_list->data[i], 0, sizeof(cur_list->data[i]));
+//    }
     return SUCCESS;
 }
 
-int delete_tasks(list* tasks) { // сюда надо передавать еще и емкость списка
+int delete_tasks(list* tasks) {
     if (tasks == NULL || tasks->data == NULL) {
         perror("delete_task_list() error");
         return ERROR;
@@ -46,9 +46,9 @@ int delete_tasks(list* tasks) { // сюда надо передавать еще
             return ERROR;
         }
     }
+
     free(tasks->data);
-    free(tasks);
-    tasks = NULL;
+    tasks->data = NULL;
     return SUCCESS;
 }
 
@@ -57,11 +57,11 @@ int free_list(list* tasks) {
         perror("attempt to free unallocated memory");
         return ERROR;
     }
+
     if (delete_tasks(tasks)) {
         return ERROR;
     }
 
-    tasks->data = NULL;
     free(tasks);
     tasks = NULL;
     return SUCCESS;

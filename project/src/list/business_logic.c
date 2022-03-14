@@ -1,6 +1,11 @@
 #include "../../include/task_list.h"
 
 int business_logic(list* task_list, const char* path_file) {
+    if (path_file == NULL) {
+        perror("path to the file doesn't exist");
+        return ERROR;
+    }
+
     FILE* input_stream = fopen(path_file, "r");
     if (input_stream == NULL) {
         perror("file open error");
@@ -22,7 +27,7 @@ int business_logic(list* task_list, const char* path_file) {
                 return ERROR;
             }
 
-            fclose(fptr);
+            fclose(input_stream);
             return ERROR;
         }
 
@@ -40,7 +45,6 @@ int print_list(const list* tasks) {
 
 //    puts("print_task_list() out for"); // отладка
     for (size_t i = 0; i < tasks->size; ++i) {
-        printf("%s %zu\n", "Task priority:", i);
         if (print_task(tasks->data[i])) {
             perror("print_list() error");
             return ERROR;
