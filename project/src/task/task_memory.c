@@ -34,7 +34,7 @@ ptr_task create_task(FILE* stream_input) {
         perror("Memory allocation error");
 
         if (delete_string(task->description)) {
-            return NULL;
+            perror("create task error. delete string error");
         }
 
         free(task->number);
@@ -48,7 +48,7 @@ ptr_task create_task(FILE* stream_input) {
         perror("Memory allocation error");
 
         if (delete_string(task->description)) {
-            return NULL;
+            perror("create task error. delete string error");
         }
 
         free(task->number);
