@@ -54,6 +54,10 @@ char* get_string(FILE *stream_input) {
 }
 
 int get_number(FILE *stream_input, char* string) {
+    if (string == NULL || stream_input == NULL) {
+        perror("get number error");
+        return ERROR;
+    }
 
     char* temp = get_string(stream_input);
     if (temp == NULL) {
@@ -86,19 +90,34 @@ int get_number(FILE *stream_input, char* string) {
 }
 
 int get_description(FILE* stream_input, char** string) {
-    // должны читать строки до того момента пока очередная строка не начнется с '\0'
     if (string == NULL || stream_input == NULL) {
         perror("set string error");
         return ERROR;
     }
-    // если хотим как то поиграться с границами описания, то можем считывать символ новой строки задавать определённые услови и потом отматывать назад через fseek()
-    size_t i = 0;
-    while(fgets(stream_input[i], 10000, ))
+
+    char new_line;
+
+    while(new_line = get_symbol(stream_input), new_line != '\n' && new_line != EOF) {
+        if (fseek(stream_input, -1, SEEK_CUR)) {
+            perror("fseek error");
+            return ERROR;
+        }
+
+        if (fgets(stream_input[i], MAX_STR_SIZE, stream_input) == NULL) {
+            perror("fgets error");
+            return ERROR;
+        }
+    }
 
     return SUCCESS;
 }
 
 int get_priority(FILE *stream_input, char* string) {
+    if (string == NULL || stream_input == NULL) {
+        perror("get priority error");
+        return ERROR;
+    }
+
     char* temp = get_string(stream_input);
 
     if (temp == NULL) {
@@ -126,10 +145,83 @@ int get_priority(FILE *stream_input, char* string) {
     }
 
     free(temp);
-
     return SUCCESS;
 }
 
+static int check_data_num(int data_num) {
+    if (data_num < 0 || data_num > 31) {
+        perror("check data error");
+        return ERROR;
+    }
+    return SUCCESS;
+}
+
+static int check_month(int month) {
+    if (month < 0 || month > 12) {
+        perror("check month error");
+        return ERROR;
+    }
+    return SUCCESS;
+}
+
+static int check_year(int year) {
+    if (year < 1930 || year > 2050) {
+        perror("check month error");
+        return ERROR;
+    }
+    return SUCCESS;
+}
+
+static char* strcut(char* begin, char end) {
+    char* new_string = (char*)calloc(MAX_STR_SIZE, sizeof(char));
+
+    for (size_t i = 0; begin[i] != end ; ++i) {
+        new_string[i] += begin[i];
+    }
+    return new_string;
+}
+
 int get_data(FILE *stream_input, char* string) {
+    if (string == NULL || stream_input == NULL) {
+        perror("get data error");
+        return ERROR;
+    }
+
+    char* temp = get_string(stream_input);
+
+
+    if (strlen(temp) > MAX_DATA_SIZE || strlen(temp) == 0) {
+        perror("get data error");
+        return ERROR;
+    }
+
+    if (temp[FIRST_DIVIDER] != '.' && temp[FIRST_DIVIDER] != temp[SECOND_DIVIDER]) {
+        perror("get data error");
+        return ERROR;
+    }
+
+    char* parsing_string = temp;
+
+    if (check_data_num(temp)) {
+        perror("get data error");
+        return ERROR;
+    }
+
+    if (check_month(temp)) {
+        perror("get data error");
+        return ERROR;
+    }
+
+    if (check_year(temp)) {
+        perror("get data error");
+        return ERROR;
+    }
+
+    if (!(strcpy(string, temp))) {
+        perror("string copy error");
+        return ERROR;
+    }
+
+    free(temp);
     return SUCCESS;
 }

@@ -23,7 +23,12 @@
 
 #define MAX_PRIORITY_SIZE 1
 #define MAX_NUMBER_SIZE 2
+#define MAX_DATA_SIZE 12
 
+typedef enum {
+    FIRST_DIVIDER = 2,
+    SECOND_DIVIDER = 5
+} data_points;
 
 typedef struct {
     char* number; // число в диапазоне [0, 100]
@@ -42,7 +47,7 @@ int delete_string(char** string); // готово
 
 ptr_task create_task(FILE* stream_input); // готово
 int delete_task(ptr_task task); // готово
-int set_task(ptr_task task, FILE* stream_input); // не готово
+int set_task(ptr_task task, FILE* stream_input); // готово
 
 int print_task(ptr_task task); // готово
 int print_description(char** string); // готово
@@ -51,7 +56,7 @@ char get_symbol(FILE* stream_input); // готово
 char* get_string(FILE* stream_input); // готово
 
 int get_number(FILE *stream_input, char* string); // готово
-int get_description(FILE *stream_input, char** string); // не готово
+int get_description(FILE *stream_input, char** string); // готово
 int get_priority(FILE *stream_input, char* string); // готово
 int get_data(FILE *stream_input, char* string); // не готово
 
