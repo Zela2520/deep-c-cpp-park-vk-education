@@ -60,12 +60,15 @@ int get_number(FILE *stream_input, char* string) {
     }
 
     char* temp = get_string(stream_input);
+
     if (temp == NULL) {
         perror("get number error");
         return ERROR;
     }
 
     if (strlen(temp) > MAX_NUMBER_SIZE || strlen(temp) == 0) {
+        free(temp);
+        temp = NULL;
         perror("get number error");
         return ERROR;
     }
@@ -73,6 +76,8 @@ int get_number(FILE *stream_input, char* string) {
     size_t i = strlen(temp);
     while (i) {
         if (!(s[i - 1] >= '0' && s[i - 1] <= '9')) {
+            free(temp);
+            temp = NULL;
             perror("get number error");
             return ERROR;
         }
@@ -80,11 +85,14 @@ int get_number(FILE *stream_input, char* string) {
     }
 
     if (!(strcpy(string, temp))) {
+        free(temp);
+        temp = NULL;
         perror("string copy error");
         return ERROR;
     }
 
     free(temp);
+    temp = NULL;
 
     return SUCCESS;
 }
@@ -126,6 +134,8 @@ int get_priority(FILE *stream_input, char* string) {
     }
 
     if (strlen(temp) > MAX_PRIORITY_SIZE || strlen(temp) == 0) {
+        free(temp);
+        temp = NULL;
         perror("get priority error");
         return ERROR;
     }
@@ -133,6 +143,8 @@ int get_priority(FILE *stream_input, char* string) {
     size_t i = strlen(temp);
     while (i) {
         if (!(s[i - 1] >= '0' && s[i - 1] <= '9')) {
+            free(temp);
+            temp = NULL;
             perror("get priority error");
             return ERROR;
         }
@@ -140,6 +152,8 @@ int get_priority(FILE *stream_input, char* string) {
     }
 
     if (!(strcpy(string, temp))) {
+        free(temp);
+        temp = NULL;
         perror("string copy error");
         return ERROR;
     }
@@ -147,7 +161,6 @@ int get_priority(FILE *stream_input, char* string) {
     free(temp);
     return SUCCESS;
 }
-
 
 
 
@@ -201,6 +214,7 @@ int get_data(FILE *stream_input, Data* cur_data) {
     }
 
     if (temp_string[FIRST_DIVIDER] != '.' && temp_string[FIRST_DIVIDER] != temp_string[SECOND_DIVIDER]) {
+        free(temp_string);
         perror("get data error");
         return ERROR;
     }
