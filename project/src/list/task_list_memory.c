@@ -35,17 +35,18 @@ int create_list_data(list* cur_list) {
     return SUCCESS;
 }
 
-int delete_tasks(ptr_task* tasks) { // сюда надо передавать еще и емкость списка
-    if (tasks == NULL) {
+int delete_tasks(list* tasks) { // сюда надо передавать еще и емкость списка
+    if (tasks == NULL || tasks->data == NULL) {
         perror("delete_task_list() error");
         return ERROR;
     }
-    for (size_t i = 0; i < sizeof(**tasks) / sizeof(task_info*); ++i) {
+    for (size_t i = 0; i < tasks->capasity; ++i) {
         printf("%s %zu %s\n", "element number ", i, "was deleted"); // отладк
-        if (delete_task(tasks[i])) {
+        if (delete_task(tasks->data[i])) {
             return ERROR;
         }
     }
+    free(tasks->data);
     free(tasks);
     tasks = NULL;
     return SUCCESS;
@@ -56,11 +57,11 @@ int free_list(list* tasks) {
         perror("attempt to free unallocated memory");
         return ERROR;
     }
-    if (delete_tasks(tasks->data)) {
+    if (delete_tasks(tasks)) {
         return ERROR;
     }
-    tasks->data = NULL;
 
+    tasks->data = NULL;
     free(tasks);
     tasks = NULL;
     return SUCCESS;
