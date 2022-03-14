@@ -31,7 +31,7 @@ typedef enum {
     FIRST_PART = 0,
     SECOND_PART = 1,
     THIRD_PART = 2
-} data_part;
+} data_parts;
 
 typedef enum {
     FIRST_DIVIDER = 2,
@@ -39,16 +39,16 @@ typedef enum {
 } data_points;
 
 typedef struct {
-    size_t number;
-    size_t month;
-    size_t year;
+    int number;
+    int month;
+    int year;
 } Data;
 
 typedef struct {
     char* number; // число в диапазоне [0, 100]
     char** description; // читаем строку, следующая строка должна начинаться с '\t' тогда считаем что описание продолжается, описание заканчивается когда следующая строка начинается не с '\t'
     char* priority; // число в диапазоне [0, 10]
-    char* when; // формат даты 12.12.2022 (длина строки 10 символов, 2 и 5 символы точки)
+    Data* when; // формат даты 12.12.2022 (длина строки 10 символов, 2 и 5 символы точки)
 } task_info;
 
 typedef task_info* ptr_task;
@@ -72,6 +72,6 @@ char* get_string(FILE* stream_input); // готово
 int get_number(FILE *stream_input, char* string); // готово
 int get_description(FILE *stream_input, char** string); // готово
 int get_priority(FILE *stream_input, char* string); // готово
-int get_data(FILE *stream_input, char* string); // не готово
+int get_data(FILE *stream_input, Data* cur_data); // готово
 
 #endif //  PROJECT_INCLUDE_TASK_INFO_H_

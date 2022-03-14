@@ -44,7 +44,7 @@ ptr_task create_task(FILE* stream_input) {
         return NULL;
     }
 
-    if (!(task->when = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) {
+    if (!(task->when = (Data*)calloc(1, sizeof(Data)))) {
         perror("Memory allocation error");
 
         if (delete_string(task->description)) {
@@ -63,7 +63,7 @@ ptr_task create_task(FILE* stream_input) {
         perror("Set_task() error");
 
         if (delete_string(task->description)) {
-            return NULL;
+            perror("delete string error. Create task function");
         }
 
         free(task->number);
@@ -90,7 +90,7 @@ int delete_task(ptr_task task) {
 
     if (task->description != NULL) {
         if (delete_string(task->description)) {
-            return ERROR;
+            perror("delete task error. delete string error");
         }
     }
 
