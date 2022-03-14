@@ -2,7 +2,7 @@
 
 
 int propose_action(FILE* stream_input) {
-    char *choice = (char *) calloc(10, sizeof(char));
+    char *choice;
 
     do {
         if (printf("%-42s", "Would you like to add a new task? Yes/No:") < 0) {
@@ -10,14 +10,12 @@ int propose_action(FILE* stream_input) {
             return ERROR;
         }
 
-        if (!(scanf("%3s", choice))) {
+        choice = get_string(stream_input);
+        if (choice == NULL) {
             perror("Data entry error");
-            scanf("%*[^\n]"); // buffer was cleared
-            free(choice);
             return ERROR;
         }
-        scanf("%*[^\n]"); // buffer was cleared
-    } while (make_choice(choice) == ERROR || !(feof(stream_input)));
+    } while (make_choice(choice) == ERROR && !(feof(stream_input)));
 
     if (make_choice(choice) == INCORRECT) {
         puts("Task entry has been stopped");

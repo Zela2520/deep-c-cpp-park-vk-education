@@ -53,7 +53,7 @@ typedef struct {
 
 typedef task_info* ptr_task;
 
-int propose_action(FILE* stream_input); // не готово
+int propose_action(FILE* stream_input); // готово
 int make_choice(char *choice); // готово
 
 int create_string(char** string); // готово
