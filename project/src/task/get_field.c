@@ -187,41 +187,61 @@ int get_data(FILE *stream_input, char* string) {
         return ERROR;
     }
 
-    char* temp = get_string(stream_input);
+    char* temp_string = get_string(stream_input);
 
-
-    if (strlen(temp) > MAX_DATA_SIZE || strlen(temp) == 0) {
+    if (strlen(temp_string) > MAX_DATA_SIZE || strlen(temp_string) == 0) {
         perror("get data error");
         return ERROR;
     }
 
-    if (temp[FIRST_DIVIDER] != '.' && temp[FIRST_DIVIDER] != temp[SECOND_DIVIDER]) {
+    if (temp_string[FIRST_DIVIDER] != '.' && temp_string[FIRST_DIVIDER] != temp_string[SECOND_DIVIDER]) {
         perror("get data error");
         return ERROR;
     }
 
-    char* parsing_string = temp;
+    char* cur_char = temp_string;
 
-    if (check_data_num(temp)) {
-        perror("get data error");
-        return ERROR;
+    for (size_t i = 0; i < PARTS_NUMBERS; ++i) {
+        switch (i) {
+            case FIRST_PART: {
+                char* str_part = strcut(cur_char, '.');
+                if (check_data_num(atoi(str_part))) {
+                    return ERROR;
+                }
+                cur_char = strchr(cur_char, '.') + 1;
+                free(str_part);
+                str_part = NULL;
+                break;
+            }
+
+            case SECOND_PART: {
+                char* str_part_2 = strcut(cur_char, '.');
+                if (check_month(atoi(str_part_2))) {
+                    return ERROR;
+                }
+                cur_char = strchr(cur_char, '.') + 1;
+                free(str_part_2);
+                str_part_2 = NULL;
+                break;
+            }
+
+            case THIRD_PART: {
+                char* str_part_3 = strcut(cur_char, '.');
+                if (check_year(atoi(str_part_3))) {
+                    return ERROR;
+                }
+                free(str_part_3);
+                str_part_3 = NULL;
+                break;
+            }
+        }
     }
 
-    if (check_month(temp)) {
-        perror("get data error");
-        return ERROR;
-    }
-
-    if (check_year(temp)) {
-        perror("get data error");
-        return ERROR;
-    }
-
-    if (!(strcpy(string, temp))) {
+    if (!(strcpy(string, temp_string))) {
         perror("string copy error");
         return ERROR;
     }
 
-    free(temp);
+    free(temp_string);
     return SUCCESS;
 }

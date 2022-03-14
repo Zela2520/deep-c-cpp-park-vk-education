@@ -25,10 +25,24 @@
 #define MAX_NUMBER_SIZE 2
 #define MAX_DATA_SIZE 12
 
+#define PARTS_NUMBERS 3
+
+typedef enum {
+    FIRST_PART = 0,
+    SECOND_PART = 1,
+    THIRD_PART = 2
+} data_part;
+
 typedef enum {
     FIRST_DIVIDER = 2,
     SECOND_DIVIDER = 5
 } data_points;
+
+typedef struct {
+    size_t number;
+    size_t month;
+    size_t year;
+} Data;
 
 typedef struct {
     char* number; // число в диапазоне [0, 100]
