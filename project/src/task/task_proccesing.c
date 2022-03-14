@@ -20,10 +20,12 @@ int propose_action(FILE* stream_input) {
     if (make_choice(choice) == INCORRECT) {
         puts("Task entry has been stopped");
         free(choice);
+        choice = NULL;
         return INCORRECT;
     }
 
     free(choice);
+    choice = NULL;
     return SUCCESS;
 }
 
