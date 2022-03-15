@@ -34,6 +34,9 @@ int propose_action(FILE* stream_input) {
 }
 
 int make_choice(char *choice) {
+    if (choice == NULL) {
+        return ERROR;
+    }
     if ((strlen(choice) == (strlen("No")) && strncmp(choice, "No", 2) == 0)) {
         return INCORRECT;
     }
