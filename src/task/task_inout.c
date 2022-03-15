@@ -7,7 +7,7 @@ int print_task(const ptr_task task) {
     }
 
     if (task->number != NULL) {
-        printf("%-1024s\n", task->number);
+        printf("%s\n", task->number);
     }
 
     if (task->description != NULL) {
@@ -15,7 +15,7 @@ int print_task(const ptr_task task) {
     }
 
     if (task->priority != NULL) {
-        printf("%-1024s\n", task->priority);
+        printf("%s\n", task->priority);
     }
 
     if (task->when != NULL) {
@@ -43,14 +43,17 @@ int print_description(char** string) {
 
 
 int set_task(ptr_task task, FILE* stream_input) {
-    if (task == NULL || stream_input) {
+    if (task == NULL || stream_input == NULL) {
+        perror("task = NULL");
         return ERROR;
     }
 
     size_t field = FIELDS_NAMES;
 
     while (field) {
+
         if (field == NUMBER) {
+            puts("start get number function"); // отладка
             if (get_number(stream_input, task->number)) {
                 perror("get value error");
                 return ERROR;
@@ -58,13 +61,15 @@ int set_task(ptr_task task, FILE* stream_input) {
         }
 
         if (field == DESCRIPTION) {
-            if (get_description(stream_input, task->description)) {
+            puts("start get description function"); // отладка
+            if (get_description(stream_input, task->description)) { // непонятно когда description заканчивает свою работу
                 perror("get value error");
                 return ERROR;
             }
         }
 
         if (field == PRIORITY) {
+            puts("start get priority function"); // отладка
             if (get_priority(stream_input, task->priority)) {
                 perror("get value error");
                 return ERROR;
@@ -72,12 +77,13 @@ int set_task(ptr_task task, FILE* stream_input) {
         }
 
         if (field == WHEN) {
+            puts("start get data function"); // отладка
             if (get_data(stream_input,task->when)) {
                 perror("get value error");
                 return ERROR;
             }
         }
-        --fields;
+        --field;
     }
 
     return SUCCESS;

@@ -1,12 +1,13 @@
 #include "../include/task_list.h"
 
-int main(int argc, const char **argv) {
-    if (argc != 2) {
-        perror("input path error");
-        return ERROR;
-    }
+int main() {
+    //    int argc, const char **argv отладка
+//    if (argc != 2) {
+//        perror("input path error");
+//        return ERROR;
+//    }
 
-    const char *input_stream_path = argv[1];
+    const char *input_stream_path = "grigory";
 
     list* user_list = create_list(DEFAULT_SIZE);
 
@@ -20,7 +21,7 @@ int main(int argc, const char **argv) {
             perror("memory free error");
         }
         perror("business logic error");
-        return ERROR,
+        return ERROR;
     }
 
 //    if (!(sort_list(user_list))) {
