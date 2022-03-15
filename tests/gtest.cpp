@@ -30,20 +30,19 @@ TEST(TASK_LIST_TEST, creat_list_data) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
-//TEST(TASK_LIST_TEST, business_logic) {
-//    list* new_list = create_list(DEFAULT_SIZE);
-//    EXPECT_EQ(business_logic(NULL, "./start_server"), ERROR);
-//    EXPECT_EQ(business_logic(new_list, NULL), ERROR);
-//    EXPECT_EQ(propose_action(NULL), ERROR);
-//    EXPECT_EQ(get_string(NULL), NULL);
-//    EXPECT_EQ(get_symbol(NULL), '\0');
-//    EXPECT_EQ(make_choice(NULL), ERROR);
-//
-//    ptr_task new_task = NULL;
-//    EXPECT_TRUE(new_task == NULL);
-//    new_task = create_task(input_stream);
-//
-//}
+TEST(TASK_LIST_TEST, business_logic) {
+    list* new_list = create_list(DEFAULT_SIZE);
+    EXPECT_EQ(business_logic(NULL, "./start_server"), ERROR);
+    EXPECT_EQ(business_logic(new_list, NULL), ERROR);
+    EXPECT_EQ(propose_action(NULL), ERROR);
+    EXPECT_EQ(get_string(NULL), NULL);
+    EXPECT_EQ(get_symbol(NULL), '\0');
+    EXPECT_EQ(make_choice(NULL), ERROR);
+
+    ptr_task new_task = NULL;
+    EXPECT_TRUE(new_task == NULL);
+
+}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
