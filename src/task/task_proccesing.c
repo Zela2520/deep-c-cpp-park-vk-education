@@ -22,7 +22,7 @@ int propose_action(FILE* stream_input) {
     } while (make_choice(choice) == ERROR && !(feof(stream_input)));
 
     if (make_choice(choice) == INCORRECT) {
-        puts("Task entry has been stopped");
+        puts("Task input stream has been stopped");
         free(choice);
         choice = NULL;
         return INCORRECT;
