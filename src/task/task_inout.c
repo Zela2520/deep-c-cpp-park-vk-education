@@ -36,6 +36,9 @@ int print_description(char** string) {
         for (size_t j = 0; string[i][j] != '\0'; ++j) {
             printf("%c", string[i][j]); // maybe there will be a memory leak
         }
+        if (strlen(string[i])) {
+            printf("%c", '\n');
+        }
     }
 
     return SUCCESS;

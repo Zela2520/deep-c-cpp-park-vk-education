@@ -32,8 +32,10 @@ char* get_string(FILE *stream_input) {
 
             if (!tmp) {
                 if (buf.string) {
+                    perror("Memory allocation error in get_string function");
                     free(buf.string);
                 }
+                perror("Memory allocation error in get_string function");
                 return NULL;
             }
 
@@ -108,27 +110,21 @@ int get_description(FILE* stream_input, char** string) {
         return ERROR;
     }
 
-    char new_line = '\0';
-    // можно создать временную строку, в которую данные будут считываться, а затем копировать их description
+    char* new_line = NULL;
     size_t i = 0;
-    do {
-         printf("%c\t%zu\n", new_line, i); // отладка
-
-        if (i) {
-            if (fseek(stream_input, -1, SEEK_CUR)) {
-                perror("fseek error");
-                return ERROR;
-            }
-        }
-
-        if (fgets(string[i], MAX_STR_SIZE, stream_input) == NULL) {
-            perror("fgets error");
+    // можно создать временную строку, в которую данные будут считываться, а затем копировать их description
+    while((new_line = get_string(stream_input))) {
+        if (!(strcpy(string[i], new_line))) {
+            free(new_line);
+            new_line = NULL;
+            perror("string copy error");
             return ERROR;
         }
-
         ++i;
-    } while(new_line = get_symbol(stream_input), new_line != '\n' && new_line != EOF && string[i]);
+    }
 
+    free(new_line);
+    new_line = NULL;
     return SUCCESS;
 }
 
