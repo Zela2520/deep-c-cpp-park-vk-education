@@ -41,8 +41,8 @@ TEST(TASK_LIST_TEST, creat_list_data) {
 //
 //    ptr_task new_task = NULL;
 //    EXPECT_TRUE(new_task == NULL);
-
-}
+//
+//}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
