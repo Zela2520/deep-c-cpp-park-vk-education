@@ -19,5 +19,5 @@ enable_testing()
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)
 
-add_executable(test.out test/gtest.cpp)
+add_executable(test.out tests/gtest.cpp)
 target_link_libraries(test.out lib ${GTEST_LIBRARIES} Threads::Threads)
