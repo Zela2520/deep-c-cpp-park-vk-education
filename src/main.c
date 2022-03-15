@@ -7,7 +7,7 @@ int main() {
 //        return ERROR;
 //    }
 
-    const char *input_stream_path = "grigory";
+    const char *input_stream_path = "./start_server";
 
     list* user_list = create_list(DEFAULT_SIZE);
 
