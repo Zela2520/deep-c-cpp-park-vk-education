@@ -30,6 +30,16 @@ TEST(TASK_LIST_TEST, creat_list_data) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
+TEST(TASK_LIST_TEST, increase_list) {
+    list* new_list = create_list(DEFAULT_SIZE);
+
+    EXPECT_EQ(new_list->size, DEFAULT_SIZE);
+    EXPECT_EQ(increase_list(new_list, DEFAULT_SIZE), SUCCESS);
+    EXPECT_EQ(new_list->size, DEFAULT_SIZE * 2);
+
+    EXPECT_EQ(free_list(new_list), SUCCESS);
+}
+
 //TEST(TASK_LIST_TEST, business_logic) {
 //    list* new_list = create_list(DEFAULT_SIZE);
 //    EXPECT_EQ(business_logic(NULL, "./start_server"), ERROR);
