@@ -58,42 +58,43 @@ int increase_list(list* tasks, const size_t str_len) {
     return SUCCESS;
 }
 
-static int swap_task(ptr_task left, ptr_task right) {
+static int swap_task(ptr_task* left, ptr_task* right) {
     if (right == NULL || left == NULL) {
+        perror("swap error");
         return ERROR;
     }
-    ptr_task temp = left;
-    left = right;
-    right = temp;
+    ptr_task temp = *left;
+    *left = *right;
+    *right = temp;
     return SUCCESS;
 }
 
-list* sort_list(list* cur_list) {
+list* sort_list(list* cur_list) { // можно будет тупо создавать новый список и записывать туда элементы в отсортированном виде
     if (cur_list == NULL || cur_list->data == NULL) {
-        perror("sort list error");
+        perror("sort list error cur_list = NULL");
         return NULL;
     }
 
-    for (size_t i = 0; i  + 1 < cur_list->size; ++i) {
-        for (size_t j = 0; j + 1 < cur_list->size - i; ++i) {
-            if (cur_list->data[j + 1] == NULL || cur_list->data[j]) {
-                perror("sort list error");
+    printf("%zu\n\n", cur_list->insert_pos);
+    for (size_t i = 0; i  + 1 < cur_list->insert_pos; ++i) {
+        for (size_t j = 0; j + 1 < cur_list->insert_pos - i; ++i) {
+            if (cur_list->data[j + 1] == NULL || cur_list->data[j] == NULL) {
+                printf("%zu\n", j);
+                perror("sort list error. null pointer");
                 return NULL;
             }
 
             if (atoi(cur_list->data[j + 1]->priority) > atoi(cur_list->data[j]->priority)) {
-
-                if (swap_task(cur_list->data[j + 1], cur_list->data[j])) {
+                if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
                     perror("swap error");
                     return NULL;
                 }
-
             }
 
             if (atoi(cur_list->data[j + 1]->priority) == atoi(cur_list->data[j]->priority)) {
                 if (cur_list->data[j + 1]->when->year < cur_list->data[j]->when->year) {
 
-                    if (swap_task(cur_list->data[j + 1], cur_list->data[j])) {
+                    if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
                         perror("swap error");
                         return NULL;
                     }
@@ -103,7 +104,7 @@ list* sort_list(list* cur_list) {
                 if (cur_list->data[j + 1]->when->year == cur_list->data[j]->when->year &&
                     cur_list->data[j + 1]->when->month < cur_list->data[j]->when->month) {
 
-                    if (swap_task(cur_list->data[j + 1], cur_list->data[j])) {
+                    if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
                         perror("swap error");
                         return NULL;
                     }
@@ -114,7 +115,7 @@ list* sort_list(list* cur_list) {
                     cur_list->data[j + 1]->when->month == cur_list->data[j]->when->month &&
                     cur_list->data[j + 1]->when->number < cur_list->data[j]->when->number) {
 
-                    if (swap_task(cur_list->data[j + 1], cur_list->data[j])) {
+                    if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
                         perror("swap error");
                         return NULL;
                     }

@@ -45,12 +45,12 @@ int print_list(const list* tasks) {
         return ERROR;
     }
 
-//    puts("print_task_list() out for"); // отладка
     for (size_t i = 0; i < tasks->size; ++i) {
         if (print_task(tasks->data[i])) {
             perror("print_list() error");
             return ERROR;
         }
+        printf("%c", '\n');
     }
     return SUCCESS;
 }
