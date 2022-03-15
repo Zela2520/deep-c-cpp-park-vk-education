@@ -21,13 +21,17 @@ ptr_task create_task(FILE* stream_input) {
         return NULL;
     }
 
-    if (create_string(task->description)) {
+    if (!(task->description = create_string())) {
         perror("Memory allocation error");
         free(task->number);
-        task = {};
+        memset(task, 0, sizeof(task_info));
         free(task);
         task = NULL;
         return NULL;
+    }
+
+    if (task->description != NULL) { // отладка
+        puts("WOOOOOOOOOW");
     }
 
     if (!(task->priority = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) {
@@ -38,7 +42,7 @@ ptr_task create_task(FILE* stream_input) {
         }
 
         free(task->number);
-        task = {};
+        memset(task, 0, sizeof(task_info));
         free(task);
         task = NULL;
         return NULL;
@@ -53,23 +57,23 @@ ptr_task create_task(FILE* stream_input) {
 
         free(task->number);
         free(task->priority);
-        task = {};
+        memset(task, 0, sizeof(task_info));
         free(task);
         task = NULL;
         return NULL;
     }
 
-    if (set_task(task, stream_input)) {
+    if (set_task(task, stream_input)) { // ошибка тут
         perror("Set_task() error");
 
         if (delete_string(task->description)) {
-            perror("delete string error. Create task function");
+            perror("delete string error. Create task function"); // ошибка тут
         }
 
         free(task->number);
         free(task->priority);
         free(task->when);
-        task = {};
+        memset(task, 0, sizeof(task_info));
         free(task);
         task = NULL;
         return NULL;
@@ -110,17 +114,12 @@ int delete_task(ptr_task task) {
 }
 
 
-int create_string(char** string) {
-    if (string != NULL) {
-        if (delete_string(string)) {
-            return ERROR;
-        }
-    }
+char** create_string() {
 
-    string = (char**)calloc(MAX_STR_SIZE, sizeof(char*));
+    char** string = (char**)calloc(MAX_STR_SIZE, sizeof(char*));
     if (string == NULL) {
         perror("Memory allocation error in create_string function");
-        return ERROR;
+        return NULL;
     }
 
     for (size_t i = 0; i < MAX_STR_SIZE; ++i) {
@@ -134,11 +133,11 @@ int create_string(char** string) {
             free(string);
             string = NULL;
             perror("Memory allocation error in creating_string function");
-            return ERROR;
+            return NULL;
         }
     }
 
-    return SUCCESS;
+    return string;
 }
 
 int delete_string(char** string) {

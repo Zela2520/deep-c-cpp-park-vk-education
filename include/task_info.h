@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX_STR_SIZE 10000
+#define MAX_STR_SIZE 1024
 
 #define MAX_CHOICE_SIZE 10
 
@@ -56,7 +56,7 @@ typedef task_info* ptr_task;
 int propose_action(FILE* stream_input); // готово
 int make_choice(char *choice); // готово
 
-int create_string(char** string); // готово
+char** create_string(); // готово
 int delete_string(char** string); // готово
 
 ptr_task create_task(FILE* stream_input); // готово

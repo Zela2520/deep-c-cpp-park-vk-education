@@ -6,7 +6,8 @@ int business_logic(list* task_list, const char* path_file) {
         return ERROR;
     }
 
-    FILE* input_stream = fopen(path_file, "r");
+//    FILE* input_stream = fopen(path_file, "r");
+    FILE* input_stream = stdin;
     if (input_stream == NULL) {
         perror("file open error");
         return ERROR;
@@ -19,6 +20,7 @@ int business_logic(list* task_list, const char* path_file) {
             fclose(input_stream);
             return ERROR;
         }
+        puts("task has been created");
 
         if (put_elem(task_list, new_task)) {
             if (delete_task(new_task)) {

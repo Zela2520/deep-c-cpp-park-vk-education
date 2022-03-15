@@ -75,7 +75,7 @@ int get_number(FILE *stream_input, char* string) {
 
     size_t i = strlen(temp);
     while (i) {
-        if (!(s[i - 1] >= '0' && s[i - 1] <= '9')) {
+        if (!(temp[i - 1] >= '0' && temp[i - 1] <= '9')) {
             free(temp);
             temp = NULL;
             perror("get number error");
@@ -98,24 +98,33 @@ int get_number(FILE *stream_input, char* string) {
 }
 
 int get_description(FILE* stream_input, char** string) {
-    if (string == NULL || stream_input == NULL) {
-        perror("set string error");
+    if (stream_input == NULL) {
+        perror("stream input error. set string error. get description error");
         return ERROR;
     }
 
-    char new_line;
+    if (string == NULL) {
+        perror("string error. set string error. get description error");
+        return ERROR;
+    }
 
-    while(new_line = get_symbol(stream_input), new_line != '\n' && new_line != EOF) {
+    char new_line = '\0';
+
+    size_t i = 0;
+    do {
+        printf("%c\n", new_line); // отладка
+
         if (fseek(stream_input, -1, SEEK_CUR)) {
             perror("fseek error");
             return ERROR;
         }
 
-        if (fgets(stream_input[i], MAX_STR_SIZE, stream_input) == NULL) {
+        if (fgets(string[i], MAX_STR_SIZE, stream_input) == NULL) {
             perror("fgets error");
             return ERROR;
         }
-    }
+        ++i;
+    } while(new_line = get_symbol(stream_input), new_line != '\n' && new_line != EOF && string[i]);
 
     return SUCCESS;
 }
@@ -142,7 +151,7 @@ int get_priority(FILE *stream_input, char* string) {
 
     size_t i = strlen(temp);
     while (i) {
-        if (!(s[i - 1] >= '0' && s[i - 1] <= '9')) {
+        if (!(temp[i - 1] >= '0' && temp[i - 1] <= '9')) {
             free(temp);
             temp = NULL;
             perror("get priority error");
@@ -201,7 +210,7 @@ static char* strcut(char* begin, char end) {
 
 
 int get_data(FILE *stream_input, Data* cur_data) {
-    if (string == NULL || stream_input == NULL) {
+    if (cur_data == NULL || stream_input == NULL) {
         perror("get data error");
         return ERROR;
     }
