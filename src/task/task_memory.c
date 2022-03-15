@@ -105,7 +105,6 @@ int delete_task(ptr_task task) {
     }
 
     free(task);
-    task = NULL;
     return SUCCESS;
 }
 
@@ -150,6 +149,5 @@ int delete_string(char** string) {
     }
 
     free(string);
-    string = NULL;
     return SUCCESS;
 }
