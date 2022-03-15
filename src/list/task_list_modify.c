@@ -98,7 +98,6 @@ list* sort_list(list* cur_list) { // можно будет тупо создав
                         perror("swap error");
                         return NULL;
                     }
-
                 }
 
                 if (cur_list->data[j + 1]->when->year == cur_list->data[j]->when->year &&
@@ -108,7 +107,6 @@ list* sort_list(list* cur_list) { // можно будет тупо создав
                         perror("swap error");
                         return NULL;
                     }
-
                 }
 
                 if (cur_list->data[j + 1]->when->year == cur_list->data[j]->when->year &&
@@ -119,7 +117,6 @@ list* sort_list(list* cur_list) { // можно будет тупо создав
                         perror("swap error");
                         return NULL;
                     }
-
                 }
             }
         }

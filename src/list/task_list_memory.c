@@ -29,9 +29,6 @@ int create_list_data(list* cur_list) {
             return ERROR;
         }
     }
-//    for (size_t i = cur_list->size; i < cur_list->capasity; ++i) {
-//        memset(&cur_list->data[i], 0, sizeof(cur_list->data[i]));
-//    }
     return SUCCESS;
 }
 

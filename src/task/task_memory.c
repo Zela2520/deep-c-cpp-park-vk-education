@@ -30,10 +30,6 @@ ptr_task create_task(FILE* stream_input) {
         return NULL;
     }
 
-    if (task->description != NULL) { // отладка
-        puts("WOOOOOOOOOW");
-    }
-
     if (!(task->priority = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) {
         perror("Memory allocation error");
 
