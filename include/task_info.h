@@ -59,7 +59,7 @@ int make_choice(char *choice); // готово
 char** create_string(); // готово
 int delete_string(char** string); // готово
 
-ptr_task create_task(FILE* stream_input); // готово
+ptr_task create_task(); // готово
 int delete_task(ptr_task task); // готово
 int set_task(ptr_task task, FILE* stream_input); // готово
 

@@ -52,7 +52,7 @@ int increase_list(list* tasks, const size_t str_len) {
             return ERROR;
         }
 
-        tasks->data = new_data; // как будто тут забыл почистить поле дата старую
+        tasks->data = new_data;
     }
 
     return SUCCESS;
