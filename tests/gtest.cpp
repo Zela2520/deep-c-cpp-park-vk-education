@@ -115,7 +115,7 @@ TEST(TASK_LIST_TEST, sort_list) {
 //    put_elem(new_list, third_task);
 
     EXPECT_FALSE(sort_list(new_list) == NULL);
-    EXPECT_EQ(new_list->insert_pos, 3);
+    EXPECT_EQ(new_list->insert_pos, 2);
 
 //    EXPECT_EQ(atoi(new_list->data[0]->number), 3);
 //    EXPECT_FALSE(new_list->data[0]->description == NULL);
