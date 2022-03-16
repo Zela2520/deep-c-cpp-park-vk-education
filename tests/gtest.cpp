@@ -76,9 +76,9 @@ TEST(TASK_LIST_TEST, put_elem) {
     EXPECT_EQ(*new_list->data[0]->number, "1");
     EXPECT_EQ(*new_list->data[0]->description[0], "hello");
     EXPECT_EQ(*new_list->data[0]->priority, "2");
-    EXPECT_EQ(new_list->data[0]->when->number), 28);
-    EXPECT_EQ(new_list->data[0]->when->month), 4);
-    EXPECT_EQ(new_list->data[0]->when->year), 2020);
+    EXPECT_EQ(new_list->data[0]->when->number, 28);
+    EXPECT_EQ(new_list->data[0]->when->month, 4);
+    EXPECT_EQ(new_list->data[0]->when->year, 2020);
 
     EXPECT_EQ(delete_task(new_task), SUCCESS);
     EXPECT_EQ(free_list(new_list), SUCCESS);
