@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.20)
 project(Deep_c)
 
 set(CMAKE_C_STANDARD 99)
-
 set(CMAKE_CXX_FLAGS "-g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage")
 set(CMAKE_C_FLAGS "-g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage")
 set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
