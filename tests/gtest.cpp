@@ -48,7 +48,7 @@ TEST(TASK_LIST_TEST, increase_list) {
 //}
 
 TEST(TASK_TEST, create_task) {
-    list* new_task = NULL;
+    ptr_task new_task = NULL;
     EXPECT_TRUE(new_task == NULL);
 
     new_task = create_task();
