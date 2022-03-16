@@ -37,7 +37,7 @@ TEST(TASK_LIST_TEST, increase_list) {
     EXPECT_EQ(increase_list(new_list, DEFAULT_SIZE), SUCCESS);
     EXPECT_EQ(new_list->size, DEFAULT_SIZE * 2);
     EXPECT_EQ(increase_list(new_list, DEFAULT_SIZE), SUCCESS);
-    EXPECT_EQ(new_list->capacity, DEFAULT_SIZE * 6);
+    EXPECT_EQ(new_list->capasity, DEFAULT_SIZE * 6);
 
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
