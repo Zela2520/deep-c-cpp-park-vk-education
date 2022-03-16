@@ -158,6 +158,15 @@ TEST(TASK_LIST_TEST, print_list) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
+TEST(TASK_LIST_TEST, business_logic) {
+    list* new_list = create_list(DEFAULT_SIZE);
+    char** stroka = create_string();
+    EXPECT_EQ(business_logic(new_list, NULL), ERROR);
+    EXPECT_EQ(business_logic(NULL, stroka), ERROR);
+    EXPECT_EQ(delete_string(stroka), SUCCESS);
+    EXPECT_EQ(free_list(new_list), SUCCESS);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
