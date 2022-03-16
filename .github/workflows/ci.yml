@@ -13,11 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name : Check style code
+      - name : Check codestyle
         run : |
           sudo apt-get install -y cppcheck
           cppcheck --enable=warning,style,performance,portability src/ include/
-      - name : Building
+      - name : Build
         run : |
           mkdir build
           cd build
@@ -25,7 +25,7 @@ jobs:
           cmake ..
           make
           cd ..
-      - name: Coverage test
+      - name: Test coverage
         run: |
           sudo apt-get install lcov
           ./build/test.out
@@ -35,13 +35,13 @@ jobs:
           cd ..
           lcov --capture --directory coverage/ --output-file lib.info
           genhtml lib.info --output-directory coverage-report/
-      - name: Archive coverage test results
+      - name: Test coverage directory
         uses: actions/upload-artifact@v2
         with:
-          name: Coverage test
+          name: Test coverage
           path: coverage-report/
 
-      - name: Valgrind test
+      - name: Test valgrind
         run: |
           echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
           curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
@@ -49,8 +49,8 @@ jobs:
           sudo apt-get install -y valgrind
           mkdir valgrid-output
           valgrind --leak-check=full --tool=memcheck --show-leak-kinds=all --log-file=valgrid-output/report -q ./build/test.out
-      - name: Archive valgrind test results
+      - name: Test valgrind directory
         uses: actions/upload-artifact@v2
         with:
-          name: Valgrind test
+          name: Test valgrind
           path: valgrid-output/
