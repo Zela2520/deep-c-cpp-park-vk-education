@@ -15,7 +15,22 @@ int business_logic(list* task_list, const char* path_file) {
 
     while (propose_action(input_stream) == SUCCESS) {
 
-        ptr_task new_task = create_task(input_stream);
+        ptr_task new_task = create_task();
+        if ((set_task(new_task, input_stream))) {
+            perror("Set_task() error");
+
+            if (delete_string(new_task->description)) {
+                perror("delete string error. Create task function"); // ошибка тут
+            }
+
+            free(new_task->number);
+            free(new_task->priority);
+            free(new_task->when);
+            memset(new_task, 0, sizeof(task_info));
+            free(new_task);
+            new_task = NULL;
+            return ERROR;
+        }
         if (new_task == NULL) {
             fclose(input_stream);
             return ERROR;

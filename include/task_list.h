@@ -15,18 +15,18 @@ typedef struct {
 } list;
 
 
-list* create_list(const size_t str_len); // готово к тесту
-int create_list_data(list* cur_list); // готово к тесту
+list* create_list(const size_t str_len); // протестировано
+int create_list_data(list* cur_list); // протестировано
 
 int business_logic(list* task_list, const char* input_stream); // готово к тесту
 
-int increase_list(list* tasks, const size_t str_len); // готово к тесту
+int increase_list(list* tasks, const size_t str_len); // протестировано
 
 int put_elem(list* cur_list, const ptr_task task); // готово к тесту
 int print_list(const list* tasks); // готово к тесту
 list* sort_list(list* cur_list); // готово к тесту
 
-int delete_tasks(list* tasks); // готово к тесту
-int free_list(list* tasks); // готово к тесту
+int delete_tasks(list* tasks); // протестировано
+int free_list(list* tasks); // протестировано
 
 #endif //  PROJECT_INCLUDE_TASK_LIST_H_

@@ -1,6 +1,6 @@
 #include "../../include/task_info.h"
 
-char get_symbol(FILE *stream_input) {
+char get_symbol(FILE *stream_input) { // можно сделать статическим методом
     char symbol = '\0';
 
     if (stream_input == NULL) {
@@ -12,7 +12,7 @@ char get_symbol(FILE *stream_input) {
     return symbol;
 }
 
-char* get_string(FILE *stream_input) {
+char* get_string(FILE *stream_input) { // можно сделать статическим методом
     if (stream_input == NULL) {
         perror("get string error");
         return NULL;

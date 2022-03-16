@@ -1,11 +1,6 @@
 #include "../../include/task_info.h"
 
-ptr_task create_task(FILE* stream_input) {
-
-    if (stream_input == NULL) {
-        perror("create task error");
-        return NULL;
-    }
+ptr_task create_task() {
 
     ptr_task task = (task_info*)calloc(1, sizeof(task_info));
 
@@ -53,22 +48,6 @@ ptr_task create_task(FILE* stream_input) {
 
         free(task->number);
         free(task->priority);
-        memset(task, 0, sizeof(task_info));
-        free(task);
-        task = NULL;
-        return NULL;
-    }
-
-    if (set_task(task, stream_input)) { // ошибка тут
-        perror("Set_task() error");
-
-        if (delete_string(task->description)) {
-            perror("delete string error. Create task function"); // ошибка тут
-        }
-
-        free(task->number);
-        free(task->priority);
-        free(task->when);
         memset(task, 0, sizeof(task_info));
         free(task);
         task = NULL;
