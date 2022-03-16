@@ -37,7 +37,7 @@ int increase_list(list* tasks, const size_t str_len) {
     if (tasks->capasity < tasks->size) {
 
         tasks->capasity = 2 * tasks->size;
-        ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity*sizeof(ptr_task)); // create_list_data
+        ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity*sizeof(ptr_task));
         if (new_data == NULL) {
             perror("Memory allocation error");
             return ERROR;
@@ -69,17 +69,16 @@ static int swap_task(ptr_task* left, ptr_task* right) {
     return SUCCESS;
 }
 
-list* sort_list(list* cur_list) { // можно будет тупо создавать новый список и записывать туда элементы в отсортированном виде
+list* sort_list(list* cur_list) {
     if (cur_list == NULL || cur_list->data == NULL) {
         perror("sort list error cur_list = NULL");
         return NULL;
     }
 
-    printf("%zu\n\n", cur_list->insert_pos);
-    for (size_t i = 0; i  + 1 < cur_list->insert_pos; ++i) {
-        for (size_t j = 0; j + 1 < cur_list->insert_pos - i; ++i) {
+    for (size_t i = 0; i + 1< cur_list->insert_pos; ++i) {
+        for (size_t j = 0; j + 1 < cur_list->insert_pos - i; ++j) {
+
             if (cur_list->data[j + 1] == NULL || cur_list->data[j] == NULL) {
-                printf("%zu\n", j);
                 perror("sort list error. null pointer");
                 return NULL;
             }
@@ -91,7 +90,7 @@ list* sort_list(list* cur_list) { // можно будет тупо создав
                 }
             }
 
-            if (atoi(cur_list->data[j + 1]->priority) == atoi(cur_list->data[j]->priority)) {
+            else if (atoi(cur_list->data[j + 1]->priority) == atoi(cur_list->data[j]->priority)) {
                 if (cur_list->data[j + 1]->when->year < cur_list->data[j]->when->year) {
 
                     if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
@@ -100,7 +99,7 @@ list* sort_list(list* cur_list) { // можно будет тупо создав
                     }
                 }
 
-                if (cur_list->data[j + 1]->when->year == cur_list->data[j]->when->year &&
+                else if (cur_list->data[j + 1]->when->year == cur_list->data[j]->when->year &&
                     cur_list->data[j + 1]->when->month < cur_list->data[j]->when->month) {
 
                     if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
@@ -109,7 +108,7 @@ list* sort_list(list* cur_list) { // можно будет тупо создав
                     }
                 }
 
-                if (cur_list->data[j + 1]->when->year == cur_list->data[j]->when->year &&
+                else if (cur_list->data[j + 1]->when->year == cur_list->data[j]->when->year &&
                     cur_list->data[j + 1]->when->month == cur_list->data[j]->when->month &&
                     cur_list->data[j + 1]->when->number < cur_list->data[j]->when->number) {
 
