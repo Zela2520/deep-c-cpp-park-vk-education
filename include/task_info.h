@@ -45,10 +45,10 @@ typedef struct {
 } Data;
 
 typedef struct {
-    char* number; // число в диапазоне [0, 100]
-    char** description; // читаем строку, следующая строка должна начинаться с '\t' тогда считаем что описание продолжается, описание заканчивается когда следующая строка начинается не с '\t'
-    char* priority; // число в диапазоне [0, 10]
-    Data* when; // формат даты 12.12.2022 (длина строки 10 символов, 2 и 5 символы точки)
+    char* number;
+    char** description;
+    char* priority;
+    Data* when;
 } task_info;
 
 typedef task_info* ptr_task;
