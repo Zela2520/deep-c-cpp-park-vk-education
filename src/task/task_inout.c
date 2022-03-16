@@ -56,7 +56,7 @@ int set_task(ptr_task task, FILE* stream_input) {
     while (field) {
 
         if (field == NUMBER) {
-            puts("start get number function"); // отладка
+            puts("Enter the task number"); // отладка
             if (get_number(stream_input, task->number)) {
                 perror("get value error");
                 return ERROR;
@@ -64,7 +64,7 @@ int set_task(ptr_task task, FILE* stream_input) {
         }
 
         if (field == DESCRIPTION) {
-            puts("start get description function"); // отладка
+            puts("Enter the task description"); // отладка
             if (get_description(stream_input, task->description)) { // непонятно когда description заканчивает свою работу
                 perror("get value error");
                 return ERROR;
@@ -72,7 +72,7 @@ int set_task(ptr_task task, FILE* stream_input) {
         }
 
         if (field == PRIORITY) {
-            puts("start get priority function"); // отладка
+            puts("Enter the task priority"); // отладка
             if (get_priority(stream_input, task->priority)) {
                 perror("get value error");
                 return ERROR;
@@ -80,7 +80,7 @@ int set_task(ptr_task task, FILE* stream_input) {
         }
 
         if (field == WHEN) {
-            puts("start get data function"); // отладка
+            puts("Enter the task data"); // отладка
             if (get_data(stream_input,task->when)) {
                 perror("get value error");
                 return ERROR;

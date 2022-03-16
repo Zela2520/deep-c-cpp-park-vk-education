@@ -38,7 +38,7 @@ int delete_tasks(list* tasks) {
         return ERROR;
     }
     for (size_t i = 0; i < tasks->capasity; ++i) {
-        printf("%s %zu %s\n", "element number ", i, "was deleted");
+//        printf("%s %zu %s\n", "element number ", i, "was deleted"); // отладка
         if (delete_task(tasks->data[i])) {
             return ERROR;
         }

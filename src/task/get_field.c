@@ -112,7 +112,6 @@ int get_description(FILE* stream_input, char** string) {
 
     char* new_line = NULL;
     size_t i = 0;
-    // можно создать временную строку, в которую данные будут считываться, а затем копировать их description
     while((new_line = get_string(stream_input))) {
         if (!(strcpy(string[i], new_line))) {
             free(new_line);
