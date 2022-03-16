@@ -20,7 +20,7 @@ int business_logic(list* task_list, const char* path_file) {
             perror("Set_task() error");
 
             if (delete_string(new_task->description)) {
-                perror("delete string error. Create task function"); // ошибка тут
+                perror("delete string error. Create task function");
             }
 
             free(new_task->number);
