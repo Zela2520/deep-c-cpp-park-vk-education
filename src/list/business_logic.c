@@ -47,9 +47,7 @@ int business_logic(list* task_list, const char* path_file) {
             fclose(input_stream);
             return ERROR;
         }
-
     }
-
     fclose(input_stream);
     return SUCCESS;
 }

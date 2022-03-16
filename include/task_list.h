@@ -23,7 +23,7 @@ int business_logic(list* task_list, const char* input_stream); // не тест�
 int increase_list(list* tasks, const size_t str_len); // протестировано
 
 int put_elem(list* cur_list, const ptr_task task); // протестировано
-int print_list(const list* tasks); // готово к тесту
+int print_list(const list* tasks); // протестировано
 list* sort_list(list* cur_list); // протестировано
 
 int delete_tasks(list* tasks); // протестировано
