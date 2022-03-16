@@ -34,7 +34,7 @@ int print_description(char** string) {
 
     for (size_t i = 0; i < MAX_STR_SIZE && string[i] != NULL; ++i) {
         for (size_t j = 0; string[i][j] != '\0'; ++j) {
-            printf("%c", string[i][j]); // maybe there will be a memory leak
+            printf("%c", string[i][j]);
         }
         if (strlen(string[i])) {
             printf("%c", '\n');
@@ -65,7 +65,7 @@ int set_task(ptr_task task, FILE* stream_input) {
 
         if (field == DESCRIPTION) {
             puts("Enter the task description"); // отладка
-            if (get_description(stream_input, task->description)) { // непонятно когда description заканчивает свою работу
+            if (get_description(stream_input, task->description)) {
                 perror("get value error");
                 return ERROR;
             }

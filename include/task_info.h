@@ -53,25 +53,25 @@ typedef struct {
 
 typedef task_info* ptr_task;
 
-int propose_action(FILE* stream_input); // нельзя протестировать, так как используется стандартный поток ввода
-int make_choice(char *choice); // готово
+int propose_action(FILE* stream_input);
+int make_choice(char *choice);
 
-char** create_string(); // протестировано
-int delete_string(char** string); // протестировано
-ptr_task create_task(); // протестировано
-int delete_task(ptr_task task); // протестировано
+char** create_string();
+int delete_string(char** string);
+ptr_task create_task();
+int delete_task(ptr_task task);
 
-int set_task(ptr_task task, FILE* stream_input); // нельзя протестировать, так как вызываются функции использующие стандартный поток ввода
+int set_task(ptr_task task, FILE* stream_input);
 
-int print_task(ptr_task task); // протестировано при вызове print list
-int print_description(char** string); // протестировано при вызове print list
+int print_task(ptr_task task);
+int print_description(char** string);
 
-char get_symbol(FILE* stream_input); // нельзя протестировать, так как используется стандартный поток ввода
-char* get_string(FILE* stream_input); // нельзя протестировать, так как используется стандартный поток ввода
+char get_symbol(FILE* stream_input);
+char* get_string(FILE* stream_input);
 
-int get_number(FILE *stream_input, char* string); // нельзя протестировать, так как используется стандартный поток ввода
-int get_description(FILE *stream_input, char** string); // нельзя протестировать, так как используется стандартный поток ввода
-int get_priority(FILE *stream_input, char* string); // нельзя протестировать, так как используется стандартный поток ввода
-int get_data(FILE *stream_input, Data* cur_data); // нельзя протестировать, так как используется стандартный поток ввода
+int get_number(FILE *stream_input, char* string);
+int get_description(FILE *stream_input, char** string);
+int get_priority(FILE *stream_input, char* string);
+int get_data(FILE *stream_input, Data* cur_data);
 
 #endif //  PROJECT_INCLUDE_TASK_INFO_H_
