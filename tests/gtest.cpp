@@ -64,17 +64,21 @@ TEST(TASK_LIST_TEST, put_elem) {
     ptr_task new_task = create_task();
     list* new_list = create_list(DEFAULT_SIZE);
 
-    new_task->number = "1";
-    new_task->description = {"hello ", "world!"};
-    new_task->priority = "2";
-    new_task->when = "12.12.2012";
+    strcpy(new_task->number, "1");
+    strcpy(new_task->description[0], "hello");
+    strcpy(new_task->priority, "2");
+    new_task->when->number = 28;
+    new_task->when->month = 4;
+    new_task->when->year = 2020;
 
     EXPECT_EQ(put_elem(new_list, new_task), SUCCESS);
     EXPECT_EQ(new_list->insert_pos, 1);
     EXPECT_EQ(new_list->data[0]->number, "1");
-    EXPECT_FALSE(new_list->data[0]->description == NULL);
+    EXPECT_EQ(new_list->data[0]->description[0], "hello");
     EXPECT_EQ(new_list->data[0]->priority, "2");
-    EXPECT_EQ(new_list->data[0]->when, "12.12.2012");
+    EXPECT_EQ(new_list->data[0]->when->number, 28);
+    EXPECT_EQ(new_list->data[0]->when->month, 4);
+    EXPECT_EQ(new_list->data[0]->when->year, 2020);
 
     EXPECT_EQ(delete_task(new_task), SUCCESS);
     EXPECT_EQ(free_list(new_list), SUCCESS);
