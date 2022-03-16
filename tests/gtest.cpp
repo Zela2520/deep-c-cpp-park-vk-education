@@ -49,12 +49,22 @@ TEST(TASK_LIST_TEST, increase_list) {
 
 TEST(TASK_TEST, create_task) {
     list* new_task = NULL;
-    EXPECT_TRUE(new_list == NULL);
+    EXPECT_TRUE(new_task == NULL);
 
-    new_list = create_task();
+    new_task = create_task();
     EXPECT_FALSE(new_task == NULL);
 
     EXPECT_EQ(delete_task(new_task), SUCCESS);
+}
+
+TEST(TASK_TEST, create_string) {
+    char** new_string = NULL;
+    EXPECT_TRUE(new_string == NULL);
+
+    new_string = create_string();
+    EXPECT_FALSE(new_string == NULL);
+
+    EXPECT_EQ(delete_string(new_string), SUCCESS);
 }
 
 //TEST(TASK_LIST_TEST, business_logic) {
