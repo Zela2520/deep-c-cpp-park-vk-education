@@ -73,9 +73,9 @@ TEST(TASK_LIST_TEST, put_elem) {
 
     EXPECT_EQ(put_elem(new_list, new_task), SUCCESS);
     EXPECT_EQ(new_list->insert_pos, 1);
-    EXPECT_EQ(*new_list->data[0]->number, "1");
-    EXPECT_EQ(*new_list->data[0]->description[0], "hello");
-    EXPECT_EQ(*new_list->data[0]->priority, "2");
+    EXPECT_EQ(atoi(new_list->data[0]->number), 1);
+    EXPECT_FALSE(new_list->data[0]->description == NULL);
+    EXPECT_EQ(atoi(new_list->data[0]->priority), 2);
     EXPECT_EQ(new_list->data[0]->when->number, 28);
     EXPECT_EQ(new_list->data[0]->when->month, 4);
     EXPECT_EQ(new_list->data[0]->when->year, 2020);
