@@ -158,13 +158,6 @@ TEST(TASK_LIST_TEST, print_list) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
-TEST(TASK_LIST, get_number) {
-    char* string = (char*)calloc(MAX_STR_SIZE, sizeof(char));
-    EXPECT_EQ(get_number(NULL, string), ERROR);
-    free(string);
-}
-
-
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
