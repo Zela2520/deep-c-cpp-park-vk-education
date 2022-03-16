@@ -53,7 +53,7 @@ typedef struct {
 
 typedef task_info* ptr_task;
 
-int propose_action(FILE* stream_input); // нельзя протестировать
+int propose_action(FILE* stream_input); // нельзя протестировать, так как используется стандартный поток ввода
 int make_choice(char *choice); // готово
 
 char** create_string(); // протестировано
@@ -61,17 +61,17 @@ int delete_string(char** string); // протестировано
 ptr_task create_task(); // протестировано
 int delete_task(ptr_task task); // протестировано
 
-int set_task(ptr_task task, FILE* stream_input); // готово
+int set_task(ptr_task task, FILE* stream_input); // нельзя протестировать, так как вызываются функции использующие стандартный поток ввода
 
-int print_task(ptr_task task); // готово
-int print_description(char** string); // готово
+int print_task(ptr_task task); // протестировано при вызове print list
+int print_description(char** string); // протестировано при вызове print list
 
-char get_symbol(FILE* stream_input); // нельзя протестировать
-char* get_string(FILE* stream_input); // нельзя протестировать
+char get_symbol(FILE* stream_input); // нельзя протестировать, так как используется стандартный поток ввода
+char* get_string(FILE* stream_input); // нельзя протестировать, так как используется стандартный поток ввода
 
-int get_number(FILE *stream_input, char* string); // нельзя протестировать
-int get_description(FILE *stream_input, char** string); // нельзя протестировать
-int get_priority(FILE *stream_input, char* string); // нельзя протестировать
-int get_data(FILE *stream_input, Data* cur_data); // нельзя протестировать
+int get_number(FILE *stream_input, char* string); // нельзя протестировать, так как используется стандартный поток ввода
+int get_description(FILE *stream_input, char** string); // нельзя протестировать, так как используется стандартный поток ввода
+int get_priority(FILE *stream_input, char* string); // нельзя протестировать, так как используется стандартный поток ввода
+int get_data(FILE *stream_input, Data* cur_data); // нельзя протестировать, так как используется стандартный поток ввода
 
 #endif //  PROJECT_INCLUDE_TASK_INFO_H_
