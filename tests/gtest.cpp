@@ -138,20 +138,23 @@ TEST(TASK_LIST_TEST, sort_list) {
     EXPECT_EQ(new_list->data[2]->when->month, 4);
     EXPECT_EQ(new_list->data[2]->when->year, 2020);
 
-//    EXPECT_EQ(atoi(new_list->data[0]->number), 2);
-//    EXPECT_FALSE(new_list->data[0]->description == NULL);
-//    EXPECT_EQ(atoi(new_list->data[0]->priority), 5);
-//    EXPECT_EQ(new_list->data[0]->when->number, 20);
-//    EXPECT_EQ(new_list->data[0]->when->month, 4);
-//    EXPECT_EQ(new_list->data[0]->when->year, 2020);
-//
-//    EXPECT_EQ(atoi(new_list->data[1]->number), 1);
-//    EXPECT_FALSE(new_list->data[1]->description == NULL);
-//    EXPECT_EQ(atoi(new_list->data[1]->priority), 2);
-//    EXPECT_EQ(new_list->data[1]->when->number, 28);
-//    EXPECT_EQ(new_list->data[1]->when->month, 4);
-//    EXPECT_EQ(new_list->data[1]->when->year, 2020);
+    EXPECT_EQ(free_list(new_list), SUCCESS);
+}
 
+TEST(TASK_LIST_TEST, print_list) {
+    EXPECT_EQ(print_list(NULL), ERROR);
+
+    ptr_task new_task = create_task();
+    list* new_list = create_list(DEFAULT_SIZE);
+
+    strcpy(new_task->number, "1");
+    strcpy(new_task->description[0], "hello");
+    strcpy(new_task->priority, "2");
+    new_task->when->number = 28;
+    new_task->when->month = 4;
+    new_task->when->year = 2020;
+
+    EXPECT_EQ(print_list(new_list), SUCCESS);
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
