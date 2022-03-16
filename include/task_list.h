@@ -18,7 +18,7 @@ typedef struct {
 list* create_list(const size_t str_len); // протестировано
 int create_list_data(list* cur_list); // протестировано
 
-int business_logic(list* task_list, const char* input_stream); // тестируется
+int business_logic(list* task_list, const char* input_stream); // нельзя протестировать, так как вызываются функции использующие стандартный поток ввода
 
 int increase_list(list* tasks, const size_t str_len); // протестировано
 

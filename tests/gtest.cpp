@@ -158,13 +158,10 @@ TEST(TASK_LIST_TEST, print_list) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
-TEST(TASK_LIST_TEST, business_logic) {
-    list* new_list = create_list(DEFAULT_SIZE);
-    char* stroka = (char*)calloc(10, sizeof(char));
-    EXPECT_EQ(business_logic(new_list, NULL), ERROR);
-    EXPECT_EQ(business_logic(NULL, stroka), ERROR);
-    EXPECT_EQ(free_list(new_list), SUCCESS);
-    free(stroka);
+TEST(TASK_LIST, get_number) {
+    char* string = (char*)calloc(MAX_STR_SIZE, sizeof(char));
+    EXPECT_EQ(get_number(NULL, string), ERROR);
+    free(string);
 }
 
 
