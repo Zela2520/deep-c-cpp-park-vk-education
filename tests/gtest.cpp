@@ -40,13 +40,6 @@ TEST(TASK_LIST_TEST, increase_list) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
-//TEST(TASK_LIST_TEST, put_elem) {
-//    list* new_list = create_list(DEFAULT_SIZE);
-//
-//    auto new_task = (ptr_task)cre
-//
-//}
-
 TEST(TASK_TEST, create_task) {
     ptr_task new_task = NULL;
     EXPECT_TRUE(new_task == NULL);
@@ -65,6 +58,26 @@ TEST(TASK_TEST, create_string) {
     EXPECT_FALSE(new_string == NULL);
 
     EXPECT_EQ(delete_string(new_string), SUCCESS);
+}
+
+TEST(TASK_LIST_TEST, put_elem) {
+    ptr_task new_task = create_task();
+    list* new_list = create_list(DEFAULT_SIZE);
+
+    new_task->number = "1";
+    new_task->description = {"hello ", "world!"};
+    new_task->priority = "2";
+    new_task->when = "12.12.2012";
+
+    EXPECT_EQ(put_elem(new_list, new_task), SUCCESS);
+    EXPECT_EQ(new_list->insert_pos, 1);
+    EXPECT_EQ(new_list->data[0]->number, "1");
+    EXPECT_FALSE(new_list->data[0]->description == NULL);
+    EXPECT_EQ(new_list->data[0]->priority, "2");
+    EXPECT_EQ(new_list->data[0]->when, "12.12.2012");
+
+    EXPECT_EQ(delete_task(new_task), SUCCESS);
+    EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
 //TEST(TASK_LIST_TEST, business_logic) {

@@ -53,25 +53,25 @@ typedef struct {
 
 typedef task_info* ptr_task;
 
-int propose_action(FILE* stream_input); // готово
+int propose_action(FILE* stream_input); // нельзя протестировать
 int make_choice(char *choice); // готово
 
-char** create_string(); // готово
-int delete_string(char** string); // готово
+char** create_string(); // протестировано
+int delete_string(char** string); // протестировано
+ptr_task create_task(); // протестировано
+int delete_task(ptr_task task); // протестировано
 
-ptr_task create_task(); // готово
-int delete_task(ptr_task task); // готово
 int set_task(ptr_task task, FILE* stream_input); // готово
 
 int print_task(ptr_task task); // готово
 int print_description(char** string); // готово
 
-char get_symbol(FILE* stream_input); // готово
-char* get_string(FILE* stream_input); // готово
+char get_symbol(FILE* stream_input); // нельзя протестировать
+char* get_string(FILE* stream_input); // нельзя протестировать
 
-int get_number(FILE *stream_input, char* string); // готово
-int get_description(FILE *stream_input, char** string); // готово
-int get_priority(FILE *stream_input, char* string); // готово
-int get_data(FILE *stream_input, Data* cur_data); // готово
+int get_number(FILE *stream_input, char* string); // нельзя протестировать
+int get_description(FILE *stream_input, char** string); // нельзя протестировать
+int get_priority(FILE *stream_input, char* string); // нельзя протестировать
+int get_data(FILE *stream_input, Data* cur_data); // нельзя протестировать
 
 #endif //  PROJECT_INCLUDE_TASK_INFO_H_
