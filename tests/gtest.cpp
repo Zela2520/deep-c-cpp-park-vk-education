@@ -40,32 +40,6 @@ TEST(TASK_LIST_TEST, increase_list) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
-TEST(TASK_TEST, create_task) {
-    ptr_task new_task = NULL;
-    EXPECT_TRUE(new_task == NULL);
-
-    new_task = create_task();
-    EXPECT_FALSE(new_task == NULL);
-
-    EXPECT_EQ(delete_task(new_task), SUCCESS);
-}
-
-TEST(TASK_TEST, create_string) {
-    char** new_string = NULL;
-    EXPECT_TRUE(new_string == NULL);
-
-    new_string = create_string();
-    EXPECT_FALSE(new_string == NULL);
-
-    EXPECT_EQ(delete_string(new_string), SUCCESS);
-}
-
-TEST(TASK_TEST, delete_string) {
-    char** new_string = create_string();
-    EXPECT_EQ(delete_string(new_string), SUCCESS);
-    EXPECT_EQ(new_string, NULL);
-}
-
 TEST(TASK_LIST_TEST, put_elem) {
     ptr_task new_task = create_task();
     list* new_list = create_list(DEFAULT_SIZE);
@@ -162,6 +136,32 @@ TEST(TASK_LIST_TEST, print_list) {
 
     EXPECT_EQ(print_list(new_list), SUCCESS);
     EXPECT_EQ(free_list(new_list), SUCCESS);
+}
+
+TEST(TASK_TEST, create_task) {
+    ptr_task new_task = NULL;
+    EXPECT_TRUE(new_task == NULL);
+
+    new_task = create_task();
+    EXPECT_FALSE(new_task == NULL);
+
+    EXPECT_EQ(delete_task(new_task), SUCCESS);
+}
+
+TEST(TASK_TEST, create_string) {
+    char** new_string = NULL;
+    EXPECT_TRUE(new_string == NULL);
+
+    new_string = create_string();
+    EXPECT_FALSE(new_string == NULL);
+
+    EXPECT_EQ(delete_string(new_string), SUCCESS);
+}
+
+TEST(TASK_TEST, delete_string) {
+    char** new_string = create_string();
+    EXPECT_EQ(delete_string(new_string), SUCCESS);
+    EXPECT_EQ(new_string, NULL);
 }
 
 
