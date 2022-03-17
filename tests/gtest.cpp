@@ -161,7 +161,6 @@ TEST(TASK_TEST, create_string) {
 TEST(TASK_TEST, delete_string) {
     char** new_string = create_string();
     EXPECT_EQ(delete_string(new_string), SUCCESS);
-    EXPECT_EQ(new_string, NULL);
 }
 
 
