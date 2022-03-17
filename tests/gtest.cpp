@@ -60,6 +60,12 @@ TEST(TASK_TEST, create_string) {
     EXPECT_EQ(delete_string(new_string), SUCCESS);
 }
 
+TEST(TASK_TEST, delete_string) {
+    char** new_string = create_string();
+    EXPECT_EQ(delete_string(new_string), SUCCESS);
+    EXPECT_EQ(new_string, NULL);
+}
+
 TEST(TASK_LIST_TEST, put_elem) {
     ptr_task new_task = create_task();
     list* new_list = create_list(DEFAULT_SIZE);
