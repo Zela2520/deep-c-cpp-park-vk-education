@@ -2,21 +2,21 @@
 
 ptr_task create_task() {
 
-    ptr_task task = (ptr_task)calloc(1, sizeof(task_info));
+    ptr_task task = (ptr_task)calloc(1, sizeof(task_info)); // тут утечка
 
     if (task == NULL) {
         // perror("Memory allocation error");
         return NULL;
     }
 
-    if (!(task->number = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) {
+    if (!(task->number = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) { // тут утечка
         perror("Memory allocation error");
         free(task);
         task = NULL;
         return NULL;
     }
 
-    if (!(task->description = create_string())) {
+    if (!(task->description = create_string())) { // тут утечка
         // perror("Memory allocation error");
         free(task->number);
         memset(task, 0, sizeof(task_info));
@@ -25,7 +25,7 @@ ptr_task create_task() {
         return NULL;
     }
 
-    if (!(task->priority = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) {
+    if (!(task->priority = (char*)calloc(MAX_STR_SIZE + 1, sizeof(char)))) { // тут утечка
         perror("Memory allocation error");
 
         if (delete_string(task->description)) {
@@ -39,7 +39,7 @@ ptr_task create_task() {
         return NULL;
     }
 
-    if (!(task->when = (Data*)calloc(1, sizeof(Data)))) {
+    if (!(task->when = (Data*)calloc(1, sizeof(Data)))) { // тут утечка
         perror("Memory allocation error");
 
         if (delete_string(task->description)) {
@@ -90,7 +90,7 @@ int delete_task(ptr_task task) {
 
 char** create_string() {
 
-    char** string = (char**)calloc(MAX_STR_SIZE, sizeof(char*));
+    char** string = (char**)calloc(MAX_STR_SIZE, sizeof(char*)); // тут утечка
     if (string == NULL) {
         // perror("Memory allocation error in create_string function");
         return NULL;
@@ -102,7 +102,7 @@ char** create_string() {
             string[i] = NULL;
         }
 
-        string[i] = (char*)calloc(MAX_STR_SIZE, sizeof (char));
+        string[i] = (char*)calloc(MAX_STR_SIZE, sizeof (char)); // тут утечка
         if (string[i] == NULL) {
             if (i == 0) {
                 free(string);

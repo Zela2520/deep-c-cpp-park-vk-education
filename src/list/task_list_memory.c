@@ -34,8 +34,17 @@ int create_list_data(list* cur_list) {
         cur_list->data[i] = (task_info*)calloc(INCREMENT, sizeof (task_info));
 
         if (cur_list->data[i] == NULL) {
-            perror("Memory allocation error");
-            return ERROR;
+            if (i == 0) {
+                free(cur_list->data);
+                cur_list = NULL;
+                return ERROR;
+            }
+            while(i) {
+                --i;
+                free(cur_list->data[i]);
+                cur_list->data[i] = NULL;
+                return  ERROR;
+            }
         }
     }
     return SUCCESS;

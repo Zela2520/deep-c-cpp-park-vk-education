@@ -158,6 +158,7 @@ TEST(TASK_LIST_TEST, sort_list) {
 
 //    EXPECT_EQ(free_list(new_list), SUCCESS);
     free_list(new_list);
+    new_list = NULL;
 }
 
 TEST(TASK_LIST_TEST, print_list) {
@@ -175,6 +176,7 @@ TEST(TASK_LIST_TEST, print_list) {
 
     EXPECT_EQ(print_list(new_list), SUCCESS);
 //    EXPECT_EQ(free_list(new_list), SUCCESS);
+    delete_task(new_task);
     free_list(new_list);
 }
 
