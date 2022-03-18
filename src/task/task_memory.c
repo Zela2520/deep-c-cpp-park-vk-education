@@ -2,7 +2,9 @@
 
 ptr_task create_task() {
 
-    if (ptr_task task = (ptr_task)calloc(1, sizeof(task_info))) {
+    ptr_task task = (ptr_task)calloc(1, sizeof(task_info))
+
+    if (task == NULL) {
         // perror("Memory allocation error");
         return NULL;
     }
