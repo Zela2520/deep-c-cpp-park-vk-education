@@ -83,6 +83,5 @@ int free_list(list* tasks) {
     }
 
     free(tasks);
-    tasks = NULL;
     return SUCCESS;
 }
