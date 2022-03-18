@@ -18,7 +18,7 @@ TEST(TASK_LIST_TEST, create_list) {
     EXPECT_TRUE(new_list->insert_pos == INIT_INS_POS);
 
     free_list(new_list);
-    EXPECT_EQ(new_list, NULL);
+    EXPECT_TRUE(new_list == NULL);
 }
 
 TEST(TASK_LIST_TEST, creat_list_data) {
