@@ -21,6 +21,8 @@ TEST(TASK_LIST_TEST, create_list) {
 }
 
 TEST(TASK_LIST_TEST, creat_list_data) {
+    EXPECT_EQ(create_list_data(NULL), ERROR);
+
     list* new_list = NULL;
     EXPECT_TRUE(new_list == NULL);
 
@@ -31,6 +33,7 @@ TEST(TASK_LIST_TEST, creat_list_data) {
     EXPECT_TRUE(new_list->data == NULL);
     EXPECT_EQ(create_list_data(new_list), SUCCESS);
     EXPECT_FALSE(new_list->data == NULL);
+
 
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }

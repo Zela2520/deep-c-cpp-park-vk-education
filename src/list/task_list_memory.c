@@ -17,6 +17,10 @@ list* create_list(const size_t str_len) {
 }
 
 int create_list_data(list* cur_list) {
+    if (cur_list == NULL) {
+        perror("create list data error");
+        return ERROR;
+    }
     cur_list->data = (ptr_task*)calloc(cur_list->capasity, sizeof(task_info*));
     if (cur_list->data == NULL) {
         perror("Memory allocation error");
