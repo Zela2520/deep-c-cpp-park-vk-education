@@ -12,6 +12,11 @@ TEST(TASK_LIST_TEST, create_list) {
     new_list = create_list(DEFAULT_SIZE);
     EXPECT_FALSE(new_list == NULL);
 
+    EXPECT_FALSE(new_list->data == NULL);
+    EXPECT_TRUE(new_list->size == DEFAULT_SIZE);
+    EXPECT_TRUE(new_list->capasity == 2 * DEFAULT_SIZE);
+    EXPECT_TRUE(new_list->insert_pos == INIT_INS_POS);
+
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
