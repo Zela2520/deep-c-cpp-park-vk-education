@@ -18,7 +18,6 @@ TEST(TASK_LIST_TEST, create_list) {
     EXPECT_TRUE(new_list->insert_pos == INIT_INS_POS);
 
     free_list(new_list);
-    EXPECT_TRUE(new_list == NULL);
 }
 
 TEST(TASK_LIST_TEST, creat_list_data) {
@@ -35,8 +34,6 @@ TEST(TASK_LIST_TEST, creat_list_data) {
     EXPECT_EQ(create_list_data(new_list), SUCCESS);
     EXPECT_FALSE(new_list->data == NULL);
 
-
-//    EXPECT_EQ(free_list(new_list), SUCCESS);
     free_list(new_list);
 }
 
@@ -46,8 +43,6 @@ TEST(TASK_LIST_TEST, delete_tasks) {
     list* new_list = create_list(DEFAULT_SIZE);
     EXPECT_FALSE(new_list->data == NULL);
 
-//    EXPECT_EQ(delete_tasks(new_list), SUCCESS);
-//    EXPECT_EQ(free_list(new_list), SUCCESS);
     free_list(new_list);
 }
 
@@ -89,7 +84,8 @@ TEST(TASK_LIST_TEST, put_elem) {
 
 //    delete_task(new_task);
     free_list(new_list);
-    new_task = NULL;
+//    new_task = NULL;
+    delete [] new_task;
 }
 
 TEST(TASK_LIST_TEST, increase_list) {
