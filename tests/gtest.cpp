@@ -55,7 +55,6 @@ TEST(TASK_LIST_TEST, free_list) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 
     new_list = create_list(DEFAULT_SIZE);
-//    EXPECT_EQ(free_list(new_list), SUCCESS);
     free_list(new_list);
 }
 
@@ -73,14 +72,14 @@ TEST(TASK_LIST_TEST, put_elem) {
     new_task->when->month = 4;
     new_task->when->year = 2020;
 
-//    EXPECT_EQ(put_elem(new_list, new_task), SUCCESS);
-//    EXPECT_EQ(new_list->insert_pos, 1);
-//    EXPECT_EQ(atoi(new_list->data[0]->number), 1);
-//    EXPECT_FALSE(new_list->data[0]->description == NULL);
-//    EXPECT_EQ(atoi(new_list->data[0]->priority), 2);
-//    EXPECT_EQ(new_list->data[0]->when->number, 28);
-//    EXPECT_EQ(new_list->data[0]->when->month, 4);
-//    EXPECT_EQ(new_list->data[0]->when->year, 2020);
+    EXPECT_EQ(put_elem(new_list, new_task), SUCCESS);
+    EXPECT_EQ(new_list->insert_pos, 1);
+    EXPECT_EQ(atoi(new_list->data[0]->number), 1);
+    EXPECT_FALSE(new_list->data[0]->description == NULL);
+    EXPECT_EQ(atoi(new_list->data[0]->priority), 2);
+    EXPECT_EQ(new_list->data[0]->when->number, 28);
+    EXPECT_EQ(new_list->data[0]->when->month, 4);
+    EXPECT_EQ(new_list->data[0]->when->year, 2020);
 
     free_list(new_list);
 }
@@ -98,11 +97,6 @@ TEST(TASK_LIST_TEST, increase_list) {
 TEST(TASK_LIST_TEST, sort_list) {
     list* new_list = create_list(DEFAULT_SIZE); // утечка тут
     EXPECT_FALSE(new_list == NULL);
-
-    free_list(new_list);
-
-    EXPECT_TRUE(new_list == NULL);
-    new_list = create_list(DEFAULT_SIZE);
 
     ptr_task first_task = create_task();
     EXPECT_FALSE(first_task == NULL);
@@ -132,9 +126,9 @@ TEST(TASK_LIST_TEST, sort_list) {
     third_task->when->month = 4;
     third_task->when->year = 2020;
 
-    EXPECT_EQ(put_elem(new_list, first_task), SUCCESS);
-    EXPECT_EQ(put_elem(new_list, second_task), SUCCESS);
-    EXPECT_EQ(put_elem(new_list, third_task), SUCCESS);
+    put_elem(new_list, first_task);
+    put_elem(new_list, second_task);
+    put_elem(new_list, third_task);
 
     EXPECT_FALSE(sort_list(new_list) == NULL);
     EXPECT_EQ(new_list->insert_pos, 3);
@@ -159,10 +153,6 @@ TEST(TASK_LIST_TEST, sort_list) {
     EXPECT_EQ(new_list->data[2]->when->number, 28);
     EXPECT_EQ(new_list->data[2]->when->month, 4);
     EXPECT_EQ(new_list->data[2]->when->year, 2020);
-
-//    EXPECT_EQ(delete_task(first_task), SUCCESS);
-//    EXPECT_EQ(delete_task(second_task), SUCCESS);
-//    EXPECT_EQ(delete_task(third_task), SUCCESS);
 
     free_list(new_list);
     new_list = NULL;
