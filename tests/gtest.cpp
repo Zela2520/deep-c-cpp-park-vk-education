@@ -106,7 +106,9 @@ TEST(TASK_LIST_TEST, sort_list) {
     list* new_list = create_list(DEFAULT_SIZE); // утечка тут
     EXPECT_FALSE(new_list == NULL);
 
-    EXPECT_TRUE(free_list(new_list) == NULL);
+    free_list(new_list);
+
+    EXPECT_TRUE(new_list == NULL);
     new_list = create_list(DEFAULT_SIZE);
 
     ptr_task first_task = create_task();
