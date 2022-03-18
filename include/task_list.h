@@ -20,12 +20,12 @@ int create_list_data(list* cur_list);
 int free_list(list* tasks);
 int delete_tasks(list* tasks);
 
-int business_logic(list* task_list, const char* input_stream);
-
-int increase_list(list* tasks, const size_t str_len);
-
 int put_elem(list* cur_list, const ptr_task task);
-int print_list(const list* tasks);
+int increase_list(list* tasks, const size_t str_len);
+int swap_task(ptr_task* left, ptr_task* right);
 list* sort_list(list* cur_list);
+
+int business_logic(list* task_list, const char* input_stream);
+int print_list(const list* tasks);
 
 #endif //  PROJECT_INCLUDE_TASK_LIST_H_

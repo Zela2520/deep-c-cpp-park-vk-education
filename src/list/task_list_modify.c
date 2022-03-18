@@ -13,7 +13,7 @@ int put_elem(list* cur_list, const ptr_task task) {
         }
     }
 
-    if (!(cur_list->size - cur_list->insert_pos)) {
+    if ((cur_list->size - cur_list->insert_pos == 1)) {
         if (increase_list(cur_list, INCREMENT)) {
             puts("put_elem function error");
             return ERROR;
@@ -37,8 +37,12 @@ int increase_list(list* tasks, const size_t str_len) {
     if (tasks->capasity < tasks->size) {
 
         tasks->capasity = 2 * tasks->size;
-        ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity*sizeof(ptr_task));
+        ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity * sizeof(ptr_task));
         if (new_data == NULL) {
+            if (tasks->data) {
+                perror("Memory allocation error");
+                return ERROR;
+            }
             perror("Memory allocation error");
             return ERROR;
         }
@@ -58,7 +62,7 @@ int increase_list(list* tasks, const size_t str_len) {
     return SUCCESS;
 }
 
-static int swap_task(ptr_task* left, ptr_task* right) {
+int swap_task(ptr_task* left, ptr_task* right) {
     if (right == NULL || left == NULL) {
         perror("swap error");
         return ERROR;
