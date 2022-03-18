@@ -86,7 +86,7 @@ TEST(TASK_LIST_TEST, put_elem) {
     EXPECT_EQ(new_list->data[0]->when->month, 4);
     EXPECT_EQ(new_list->data[0]->when->year, 2020);
 
-    delete_task(new_task);
+//    delete_task(new_task);
     free_list(new_list);
 }
 
