@@ -38,6 +38,16 @@ TEST(TASK_LIST_TEST, creat_list_data) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 }
 
+TEST(TASK_LIST_TEST, delete_tasks) {
+    EXPECT_EQ(delete_tasks(NULL), ERROR);
+
+    list* new_list = create_list(DEFAULT_SIZE);
+    EXPECT_FALSE(new_list->data == NULL);
+
+    EXPECT_EQ(delete_tasks(new_list), SUCCESS);
+    EXPECT_EQ(free_list(new_list), SUCCESS);
+}
+
 TEST(TASK_LIST_TEST, increase_list) {
     list* new_list = create_list(DEFAULT_SIZE);
 
