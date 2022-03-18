@@ -1,11 +1,6 @@
 #include "../include/task_list.h"
 
 int main() {
-//    int argc, const char **argv отладка
-//    if (argc != 2) {
-//        perror("input path error");
-//        return ERROR;
-//    }
 
     const char *input_stream_path = "./start_server";
 

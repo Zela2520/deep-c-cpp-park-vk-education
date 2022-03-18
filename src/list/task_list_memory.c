@@ -2,6 +2,7 @@
 
 list* create_list(const size_t str_len) {
     list* tasks = (list*) calloc(INCREMENT, sizeof(list));
+    puts("выделяем память под список задач");
     if (tasks == NULL) {
         perror("Memory allocation error");
         return NULL;
@@ -9,6 +10,7 @@ list* create_list(const size_t str_len) {
     tasks->size = str_len;
     tasks->insert_pos = INIT_INS_POS;
     tasks->capasity = 2 * str_len;
+
     if (create_list_data(tasks)) {
         puts("create_list function error");
         return NULL;
@@ -17,17 +19,20 @@ list* create_list(const size_t str_len) {
 }
 
 int create_list_data(list* cur_list) {
-    if (cur_list == NULL) {
+    if (cur_list == NULL) { // возможно тут надо почистить память
         perror("create list data error");
         return ERROR;
     }
+
     cur_list->data = (ptr_task*)calloc(cur_list->capasity, sizeof(task_info*));
     if (cur_list->data == NULL) {
         perror("Memory allocation error");
         return ERROR;
     }
+
     for (size_t i = 0; i < cur_list->capasity; ++i) {
         cur_list->data[i] = (task_info*)calloc(INCREMENT, sizeof (task_info));
+
         if (cur_list->data[i] == NULL) {
             perror("Memory allocation error");
             return ERROR;
@@ -42,7 +47,7 @@ int delete_tasks(list* tasks) {
         return ERROR;
     }
 
-    for (size_t i = 0; i < tasks->insert_pos; ++i) {
+    for (size_t i = 0; i < tasks->capasity; ++i) {
         if (delete_task(tasks->data[i])) {
             return ERROR;
         }
