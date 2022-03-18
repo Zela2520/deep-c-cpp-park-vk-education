@@ -11,7 +11,7 @@ list* create_list(const size_t str_len) {
     tasks->insert_pos = INIT_INS_POS;
     tasks->capasity = 2 * str_len;
 
-    if (create_list_data(tasks)) {
+    if (create_list_data(tasks)) { // утечка тут
         puts("create_list function error");
         return NULL;
     }
@@ -31,7 +31,7 @@ int create_list_data(list* cur_list) {
     }
 
     for (size_t i = 0; i < cur_list->capasity; ++i) {
-        cur_list->data[i] = (task_info*)calloc(INCREMENT, sizeof (task_info));
+        cur_list->data[i] = (task_info*)calloc(INCREMENT, sizeof (task_info)); // утечка тут
 
         if (cur_list->data[i] == NULL) {
             if (i == 0) {
@@ -43,8 +43,10 @@ int create_list_data(list* cur_list) {
                 --i;
                 free(cur_list->data[i]);
                 cur_list->data[i] = NULL;
-                return  ERROR;
             }
+            free(cur_list->data);
+            cur_list = NULL;
+            return ERROR;
         }
     }
     return SUCCESS;
