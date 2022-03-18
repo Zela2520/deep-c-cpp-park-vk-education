@@ -88,6 +88,7 @@ TEST(TASK_LIST_TEST, put_elem) {
 
 //    delete_task(new_task);
     free_list(new_list);
+    new_task = NULL;
 }
 
 TEST(TASK_LIST_TEST, increase_list) {
@@ -97,16 +98,19 @@ TEST(TASK_LIST_TEST, increase_list) {
     EXPECT_EQ(increase_list(new_list, DEFAULT_SIZE), SUCCESS);
     EXPECT_EQ(new_list->size, DEFAULT_SIZE * 2);
 
-//    EXPECT_EQ(free_list(new_list), SUCCESS);
     free_list(new_list);
     new_list = NULL;
 }
 
 TEST(TASK_LIST_TEST, sort_list) {
     list* new_list = create_list(DEFAULT_SIZE); // утечка тут
+    EXPECT_FALSE(new_list == NULL);
     ptr_task first_task = create_task();
+    EXPECT_FALSE(first_task == NULL);
     ptr_task second_task = create_task();
+    EXPECT_FALSE(second_task == NULL);
     ptr_task third_task = create_task();
+    EXPECT_FALSE(third_task == NULL);
 
     strcpy(first_task->number, "1");
     strcpy(first_task->description[0], "hello");
@@ -129,9 +133,9 @@ TEST(TASK_LIST_TEST, sort_list) {
     third_task->when->month = 4;
     third_task->when->year = 2020;
 
-    put_elem(new_list, first_task);
-    put_elem(new_list, second_task);
-    put_elem(new_list, third_task);
+    EXPECT_EQ(put_elem(new_list, first_task), SUCCESS);
+    EXPECT_EQ(put_elem(new_list, second_task), SUCCESS);
+    EXPECT_EQ(put_elem(new_list, third_task), SUCCESS);
 
     EXPECT_FALSE(sort_list(new_list) == NULL);
     EXPECT_EQ(new_list->insert_pos, 3);
