@@ -17,7 +17,7 @@ TEST(TASK_LIST_TEST, create_list) {
     EXPECT_TRUE(new_list->capasity == 2 * DEFAULT_SIZE);
     EXPECT_TRUE(new_list->insert_pos == INIT_INS_POS);
 
-    EXPECT_EQ(free_list(new_list), SUCCESS);
+    free_list(new_list);
 }
 
 TEST(TASK_LIST_TEST, creat_list_data) {
@@ -35,7 +35,8 @@ TEST(TASK_LIST_TEST, creat_list_data) {
     EXPECT_FALSE(new_list->data == NULL);
 
 
-    EXPECT_EQ(free_list(new_list), SUCCESS);
+//    EXPECT_EQ(free_list(new_list), SUCCESS);
+    free_list(new_list);
 }
 
 TEST(TASK_LIST_TEST, delete_tasks) {
@@ -45,7 +46,8 @@ TEST(TASK_LIST_TEST, delete_tasks) {
     EXPECT_FALSE(new_list->data == NULL);
 
     EXPECT_EQ(delete_tasks(new_list), SUCCESS);
-    EXPECT_EQ(free_list(new_list), SUCCESS);
+//    EXPECT_EQ(free_list(new_list), SUCCESS);
+    free_list(new_list);
 }
 
 TEST(TASK_LIST_TEST, free_list) {
@@ -57,22 +59,16 @@ TEST(TASK_LIST_TEST, free_list) {
     EXPECT_EQ(free_list(new_list), SUCCESS);
 
     new_list = create_list(DEFAULT_SIZE);
-    EXPECT_EQ(free_list(new_list), SUCCESS);
-}
-
-TEST(TASK_LIST_TEST, increase_list) {
-    list* new_list = create_list(DEFAULT_SIZE);
-
-    EXPECT_EQ(new_list->size, DEFAULT_SIZE);
-    EXPECT_EQ(increase_list(new_list, DEFAULT_SIZE), SUCCESS);
-    EXPECT_EQ(new_list->size, DEFAULT_SIZE * 2);
-
-    EXPECT_EQ(free_list(new_list), SUCCESS);
+//    EXPECT_EQ(free_list(new_list), SUCCESS);
+    free_list(new_list);
 }
 
 TEST(TASK_LIST_TEST, put_elem) {
     ptr_task new_task = create_task();
     list* new_list = create_list(DEFAULT_SIZE);
+
+    EXPECT_FALSE(new_task, NULL);
+    EXPECT_FALSE(new_list, NULL);
 
     strcpy(new_task->number, "1");
     strcpy(new_task->description[0], "hello");
@@ -90,7 +86,19 @@ TEST(TASK_LIST_TEST, put_elem) {
     EXPECT_EQ(new_list->data[0]->when->month, 4);
     EXPECT_EQ(new_list->data[0]->when->year, 2020);
 
-    EXPECT_EQ(free_list(new_list), SUCCESS);
+//    EXPECT_EQ(free_list(new_list), SUCCESS);
+    free_list(new_list);
+}
+
+TEST(TASK_LIST_TEST, increase_list) {
+    list* new_list = create_list(DEFAULT_SIZE);
+
+    EXPECT_EQ(new_list->size, DEFAULT_SIZE);
+    EXPECT_EQ(increase_list(new_list, DEFAULT_SIZE), SUCCESS);
+    EXPECT_EQ(new_list->size, DEFAULT_SIZE * 2);
+
+//    EXPECT_EQ(free_list(new_list), SUCCESS);
+free_list(new_list);
 }
 
 TEST(TASK_LIST_TEST, sort_list) {
@@ -148,7 +156,8 @@ TEST(TASK_LIST_TEST, sort_list) {
     EXPECT_EQ(new_list->data[2]->when->month, 4);
     EXPECT_EQ(new_list->data[2]->when->year, 2020);
 
-    EXPECT_EQ(free_list(new_list), SUCCESS);
+//    EXPECT_EQ(free_list(new_list), SUCCESS);
+free_list(new_list);
 }
 
 TEST(TASK_LIST_TEST, print_list) {
@@ -165,7 +174,8 @@ TEST(TASK_LIST_TEST, print_list) {
     new_task->when->year = 2020;
 
     EXPECT_EQ(print_list(new_list), SUCCESS);
-    EXPECT_EQ(free_list(new_list), SUCCESS);
+//    EXPECT_EQ(free_list(new_list), SUCCESS);
+free_list(new_list);
 }
 
 TEST(TASK_TEST, create_task) {
@@ -175,7 +185,8 @@ TEST(TASK_TEST, create_task) {
     new_task = create_task();
     EXPECT_FALSE(new_task == NULL);
 
-    EXPECT_EQ(delete_task(new_task), SUCCESS);
+//    EXPECT_EQ(delete_task(new_task), SUCCESS);
+    delete_task(new_task);
 }
 
 TEST(TASK_TEST, create_string) {
@@ -185,12 +196,14 @@ TEST(TASK_TEST, create_string) {
     new_string = create_string();
     EXPECT_FALSE(new_string == NULL);
 
-    EXPECT_EQ(delete_string(new_string), SUCCESS);
+//    EXPECT_EQ(delete_string(new_string), SUCCESS);
+    delete_string(new_string);
 }
 
 TEST(TASK_TEST, delete_string) {
     char** new_string = create_string();
-    EXPECT_EQ(delete_string(new_string), SUCCESS);
+//    EXPECT_EQ(delete_string(new_string), SUCCESS);
+    delete_string(new_string);
 }
 
 
