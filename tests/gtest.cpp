@@ -158,9 +158,8 @@ TEST(TASK_LIST_TEST, sort_list) {
     EXPECT_EQ(new_list->data[2]->when->year, 2020);
 
     EXPECT_EQ(delete_task(first_task), SUCCESS);
-    delete_task(second_task);
-    delete_task(third_task);
-    third_task = NULL;
+    EXPECT_EQ(delete_task(second_task), SUCCESS);
+    EXPECT_EQ(delete_task(third_task), SUCCESS);
 
     free_list(new_list);
     new_list = NULL;
