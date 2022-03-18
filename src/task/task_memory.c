@@ -2,10 +2,8 @@
 
 ptr_task create_task() {
 
-    ptr_task task = (task_info*)calloc(1, sizeof(task_info));
-
-    if (task == NULL) {
-        perror("Memory allocation error");
+    if (ptr_task task = (ptr_task)calloc(1, sizeof(task_info))) {
+        // perror("Memory allocation error");
         return NULL;
     }
 
@@ -17,7 +15,7 @@ ptr_task create_task() {
     }
 
     if (!(task->description = create_string())) {
-        perror("Memory allocation error");
+        // perror("Memory allocation error");
         free(task->number);
         memset(task, 0, sizeof(task_info));
         free(task);
@@ -92,7 +90,7 @@ char** create_string() {
 
     char** string = (char**)calloc(MAX_STR_SIZE, sizeof(char*));
     if (string == NULL) {
-        perror("Memory allocation error in create_string function");
+        // perror("Memory allocation error in create_string function");
         return NULL;
     }
 
@@ -104,9 +102,19 @@ char** create_string() {
 
         string[i] = (char*)calloc(MAX_STR_SIZE, sizeof (char));
         if (string[i] == NULL) {
+            if (i == 0) {
+                free(string);
+                string = NULL;
+                return NULL;
+            }
+            while(i) {
+                --i;
+                free(string[i]);
+                string[i] = NULL;
+            }
             free(string);
             string = NULL;
-            perror("Memory allocation error in creating_string function");
+//            perror("Memory allocation error in creating_string function");
             return NULL;
         }
     }
