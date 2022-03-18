@@ -87,7 +87,9 @@ TEST(TASK_LIST_TEST, put_elem) {
     EXPECT_EQ(new_list->data[0]->when->year, 2020);
 
     delete_task(new_task);
+    new_task = NULL;
     free_list(new_list);
+    new_list = NULL;
 }
 
 TEST(TASK_LIST_TEST, increase_list) {
@@ -99,6 +101,7 @@ TEST(TASK_LIST_TEST, increase_list) {
 
 //    EXPECT_EQ(free_list(new_list), SUCCESS);
     free_list(new_list);
+    new_list = NULL;
 }
 
 TEST(TASK_LIST_TEST, sort_list) {
@@ -158,8 +161,11 @@ TEST(TASK_LIST_TEST, sort_list) {
 
 //    EXPECT_EQ(free_list(new_list), SUCCESS);
     delete_task(first_task);
+    first_task = NULL;
     delete_task(second_task);
+    second_task = NULL;
     delete_task(third_task);
+    third_task = NULL;
 
     free_list(new_list);
     new_list = NULL;
