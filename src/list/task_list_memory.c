@@ -37,7 +37,7 @@ int create_list_data(list* cur_list) {
         if (cur_list->data[i] == NULL) {
             if (i == 0) {
                 free(cur_list->data);
-                cur_list = NULL;
+                cur_list->data = NULL;
                 return ERROR;
             }
             while(i) {
@@ -46,7 +46,7 @@ int create_list_data(list* cur_list) {
                 cur_list->data[i] = NULL;
             }
             free(cur_list->data);
-            cur_list = NULL;
+            cur_list->data = NULL;
             return ERROR;
         }
     }
