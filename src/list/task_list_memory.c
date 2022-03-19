@@ -2,24 +2,25 @@
 
 list* create_list(const size_t str_len) {
     list* tasks = (list*) calloc(INCREMENT, sizeof(list));
-    puts("выделяем память под список задач");
     if (tasks == NULL) {
         perror("Memory allocation error");
         return NULL;
     }
     tasks->size = str_len;
     tasks->insert_pos = INIT_INS_POS;
-    tasks->capasity = 2 * str_len;
+    tasks->capasity = 2 * tasks->size;
 
-    if (create_list_data(tasks)) { // утечка тут
+    if (create_list_data(tasks)) {
         puts("create_list function error");
+        free(tasks);
+        tasks = NULL;
         return NULL;
     }
     return tasks;
 }
 
 int create_list_data(list* cur_list) {
-    if (cur_list == NULL) { // возможно тут надо почистить память
+    if (cur_list == NULL) {
         perror("create list data error");
         return ERROR;
     }
