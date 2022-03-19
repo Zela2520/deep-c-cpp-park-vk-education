@@ -146,7 +146,7 @@ TEST(TASK_LIST_TEST, delete_tasks) {
 
     list* new_list = create_list(DEFAULT_SIZE);
 
-    EXPECT_EQ(free_list(new_list), SUCCESS);
+    free_list(new_list);
     EXPECT_TRUE(new_list == NULL);
 
     new_list = create_list(DEFAULT_SIZE);
