@@ -139,15 +139,15 @@ TEST(TASK_LIST_TEST, delete_tasks) {
     EXPECT_TRUE(new_list->data == NULL);
 
     free_list(new_list);
-    }
+}
 
-    TEST(TASK_LIST_TEST, free_list) {
+TEST(TASK_LIST_TEST, free_list) {
     EXPECT_EQ(free_list(NULL), ERROR);
 
     list* new_list = create_list(DEFAULT_SIZE);
 
-    free_list(new_list);
-    EXPECT_TRUE(new_list == NULL);
+    EXPECT_EQ(free_list(new_list), SUCCESS);
+    EXPECT_TRUE(new_list == TRUE);
 
     new_list = create_list(DEFAULT_SIZE);
     free_list(new_list);
