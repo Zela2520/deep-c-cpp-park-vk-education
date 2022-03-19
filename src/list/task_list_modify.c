@@ -29,7 +29,7 @@ static int increase_list(list* tasks, const size_t str_len) {
             return ERROR;
         }
 
-        for (size_t i = prev_capasity; i < tasks->capasity; ++i) {
+        for (size_t i = prev_capasity + 1; i < tasks->capasity; ++i) {
             new_data[i] = NULL;
         }
 
