@@ -41,7 +41,7 @@ TEST(TASK_LIST_TEST, business_logic) {
     list* new_list = create_list(DEFAULT_SIZE);
     EXPECT_FALSE(new_list == NULL);
 
-    EXPECT_EQ(business_logic(new_list, "correct_data.txt"), SUCCESS);
+    EXPECT_EQ(business_logic(new_list, "tests/correct_data.txt"), SUCCESS);
 
     free_list(new_list);
 }
