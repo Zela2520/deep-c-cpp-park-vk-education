@@ -20,12 +20,17 @@ static int increase_list(list* tasks, const size_t str_len) {
 
     if (tasks->capasity < tasks->size) {
 
+        size_t prev_capasity = tasks->capasity;
         tasks->capasity = 2 * tasks->size;
         printf("%zu\n", tasks->capasity);
         ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity * sizeof(ptr_task));
         if (new_data == NULL) {
             perror("Memory allocation error");
             return ERROR;
+        }
+
+        for (size_t i = prev_capasity; i < tasks->capasity; ++i) {
+            new_data[i] = NULL;
         }
 
         tasks->data = new_data;
