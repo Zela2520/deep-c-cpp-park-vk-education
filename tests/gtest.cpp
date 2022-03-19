@@ -43,6 +43,9 @@ TEST(TASK_LIST_TEST, delete_tasks) {
     list* new_list = create_list(DEFAULT_SIZE);
     EXPECT_FALSE(new_list->data == NULL);
 
+    delete_tasks(new_list);
+    EXPECT_TRUE(new_list->data == NULL);
+
     free_list(new_list);
 }
 
