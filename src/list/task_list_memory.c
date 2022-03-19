@@ -28,7 +28,6 @@ int create_list_data(list* cur_list) {
     cur_list->data = (ptr_task*)calloc(cur_list->capasity, sizeof(task_info*));
     if (cur_list->data == NULL) {
         perror("Memory allocation error");
-        free(cur_list);
         return ERROR;
     }
 
@@ -55,14 +54,14 @@ int create_list_data(list* cur_list) {
 }
 
 int delete_tasks(list* tasks) {
-    if (tasks == NULL || tasks->data == NULL) {
+    if (tasks->data == NULL) {
         perror("delete_task_list() error");
         return ERROR;
     }
 
     for (size_t i = 0; i < tasks->capasity; ++i) {
         if (delete_task(tasks->data[i])) {
-            return ERROR;
+            perror("attempt to free unallocated memory in delete tasks function");
         }
     }
 
@@ -79,10 +78,13 @@ int free_list(list* tasks) {
 
     if (tasks->data != NULL) {
         if (delete_tasks(tasks)) {
+            free(tasks);
+            tasks = NULL;
             return ERROR;
         }
     }
 
     free(tasks);
+    tasks = NULL;
     return SUCCESS;
 }
