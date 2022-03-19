@@ -184,7 +184,6 @@ TEST(TASK_TEST, create_task) {
     new_task = create_task();
     EXPECT_FALSE(new_task == NULL);
 
-//    EXPECT_EQ(delete_task(new_task), SUCCESS);
     delete_task(new_task);
 }
 
@@ -195,13 +194,11 @@ TEST(TASK_TEST, create_string) {
     new_string = create_string();
     EXPECT_FALSE(new_string == NULL);
 
-//    EXPECT_EQ(delete_string(new_string), SUCCESS);
     delete_string(new_string);
 }
 
 TEST(TASK_TEST, delete_string) {
     char** new_string = create_string();
-//    EXPECT_EQ(delete_string(new_string), SUCCESS);
     delete_string(new_string);
 }
 

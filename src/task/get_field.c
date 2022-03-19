@@ -196,6 +196,10 @@ static int check_year(int year) {
 }
 
 static char* strcut(char* begin, char end) {
+    if (begin == NULL) {
+        perror("strcut function error");
+        return NULL;
+    }
     char* new_string = (char*)calloc(MAX_STR_SIZE, sizeof(char));
 
     for (size_t i = 0; begin[i] != end && begin[i] != '\0'; ++i) {
@@ -216,6 +220,7 @@ int get_data(FILE *stream_input, Data* cur_data) {
     char* temp_string = get_string(stream_input);
 
     if (strlen(temp_string) > MAX_DATA_SIZE || strlen(temp_string) == 0) {
+        free(temp_string);
         perror("get data error");
         return ERROR;
     }
