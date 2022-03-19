@@ -1,6 +1,6 @@
 #include "../../include/task_info.h"
 
-int print_task(const ptr_task task) {
+int print_task(ptr_task task) {
     if (task == NULL) {
         perror("Print_task() error");
         return ERROR;

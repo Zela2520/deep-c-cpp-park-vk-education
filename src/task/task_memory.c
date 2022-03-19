@@ -98,18 +98,15 @@ char** create_string() {
     }
 
     for (size_t i = 0; i < MAX_STR_SIZE; ++i) {
-        if (string[i] != NULL) {
-            free(string[i]);
-            string[i] = NULL;
-        }
-
         string[i] = (char*)calloc(MAX_STR_SIZE, sizeof (char));
+
         if (string[i] == NULL) {
             if (i == 0) {
                 free(string);
                 string = NULL;
                 return NULL;
             }
+
             while(i) {
                 --i;
                 free(string[i]);
@@ -131,10 +128,8 @@ int delete_string(char** string) {
     }
 
     for (size_t i = 0; i < MAX_STR_SIZE; ++i) {
-        if (string[i] != NULL) {
-            free(string[i]);
-            string[i] = NULL;
-        }
+        free(string[i]);
+        string[i] = NULL;
     }
 
     free(string);
