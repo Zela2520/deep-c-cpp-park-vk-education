@@ -1,35 +1,19 @@
 #include "../../include/task_list.h"
 
-int put_elem(list* cur_list, const ptr_task task) {
-    if (cur_list == NULL || task == NULL) {
-        perror("put_elem method error");
-        return ERROR;
-    }
-
-    if (cur_list->data == NULL) {
-        if (create_list_data(cur_list)) {
-            puts("put_elem function error");
-            return ERROR;
-        }
-    }
-
-    if ((cur_list->size - cur_list->insert_pos == 1)) {
-        if (increase_list(cur_list, INCREMENT)) {
-            puts("put_elem function error");
-            return ERROR;
-        }
-    }
-    cur_list->data[cur_list->insert_pos++] = task;
-    return SUCCESS;
-}
-
-int increase_list(list* tasks, const size_t str_len) {
+static int increase_list(list* tasks, const size_t str_len) { // можно сделать статическими поскольку юзаем только в put_elem
     if (tasks == NULL) {
-        tasks = create_list(DEFAULT_SIZE);
+        tasks = create_list(str_len);
         if (!(tasks)) {
             return ERROR;
         }
         return SUCCESS;
+    }
+
+    if (tasks->data == NULL) {
+        if (create_list_data(tasks)) {
+            perror("increase_list function error");
+            return ERROR;
+        }
     }
 
     tasks->size += str_len;
@@ -39,10 +23,6 @@ int increase_list(list* tasks, const size_t str_len) {
         tasks->capasity = 2 * tasks->size;
         ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity * sizeof(ptr_task));
         if (new_data == NULL) {
-            if (tasks->data) {
-                perror("Memory allocation error");
-                return ERROR;
-            }
             perror("Memory allocation error");
             return ERROR;
         }
@@ -52,6 +32,15 @@ int increase_list(list* tasks, const size_t str_len) {
         }
 
         if (delete_tasks(tasks)) {
+
+            for (size_t i = 0; i < tasks->capasity; ++i) {
+                if (delete_task(new_data[i])) {
+                    perror("attempt to free unallocated memory in delete tasks function");
+                }
+            }
+
+            free(new_data);
+            new_data = NULL;
             perror("increase list error");
             return ERROR;
         }
@@ -62,7 +51,51 @@ int increase_list(list* tasks, const size_t str_len) {
     return SUCCESS;
 }
 
-int swap_task(ptr_task* left, ptr_task* right) {
+int put_elem(list* cur_list, ptr_task task) {
+
+    if (cur_list == NULL && task == NULL) {
+        perror("put_elem method error");
+        return ERROR;
+    }
+
+    if (cur_list == NULL && task != NULL) {
+        delete_task(task);
+        perror("put_elem method error");
+        return ERROR;
+    }
+
+    if (cur_list != NULL && task == NULL) {
+        free_list(cur_list);
+        perror("put_elem method error");
+        return ERROR;
+    }
+
+    if (cur_list->data == NULL) {
+        if (create_list_data(cur_list)) {
+            free_list(cur_list);
+            cur_list = NULL;
+            delete_task(task);
+            task = NULL;
+            perror("put_elem function error");
+            return ERROR;
+        }
+    }
+
+    if ((cur_list->size - cur_list->insert_pos == 1)) {
+        if (increase_list(cur_list, INCREMENT)) {
+            free_list(cur_list);
+            cur_list = NULL;
+            delete_task(task);
+            task = NULL;
+            puts("put_elem function error");
+            return ERROR;
+        }
+    }
+    cur_list->data[cur_list->insert_pos++] = task;
+    return SUCCESS;
+}
+
+static int swap_task(ptr_task* left, ptr_task* right) {
     if (right == NULL || left == NULL) {
         perror("swap error");
         return ERROR;

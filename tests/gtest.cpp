@@ -84,15 +84,15 @@ TEST(TASK_LIST_TEST, put_elem) {
     free_list(new_list);
 }
 
-TEST(TASK_LIST_TEST, increase_list) {
-    list* new_list = create_list(DEFAULT_SIZE);
-
-    EXPECT_EQ(new_list->size, DEFAULT_SIZE);
-    EXPECT_EQ(increase_list(new_list, DEFAULT_SIZE), SUCCESS);
-    EXPECT_EQ(new_list->size, DEFAULT_SIZE * 2);
-
-    free_list(new_list);
-}
+//TEST(TASK_LIST_TEST, increase_list) {
+//    list* new_list = create_list(DEFAULT_SIZE);
+//
+//    EXPECT_EQ(new_list->size, DEFAULT_SIZE);
+//    EXPECT_EQ(increase_list(new_list, DEFAULT_SIZE), SUCCESS);
+//    EXPECT_EQ(new_list->size, DEFAULT_SIZE * 2);
+//
+//    free_list(new_list);
+//}
 
 TEST(TASK_LIST_TEST, sort_list) {
     list* new_list = create_list(DEFAULT_SIZE);
