@@ -1,6 +1,6 @@
 #include "../../include/task_list.h"
 
-static int increase_list(list* tasks, const size_t str_len) { // можно сделать статическими поскольку юзаем только в put_elem
+static int increase_list(list* tasks, const size_t str_len) {
     if (tasks == NULL) {
         tasks = create_list(str_len);
         if (!(tasks)) {
@@ -21,6 +21,7 @@ static int increase_list(list* tasks, const size_t str_len) { // можно сд
     if (tasks->capasity < tasks->size) {
 
         tasks->capasity = 2 * tasks->size;
+        printf("%zu\n", tasks->capasity);
         ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity * sizeof(ptr_task));
         if (new_data == NULL) {
             perror("Memory allocation error");
@@ -29,20 +30,6 @@ static int increase_list(list* tasks, const size_t str_len) { // можно сд
 
         for (size_t i = tasks->size; i < tasks->capasity; ++i) {
             memset(&tasks->data[i], 0, sizeof(tasks->data[i]));
-        }
-
-        if (delete_tasks(tasks)) {
-
-            for (size_t i = 0; i < tasks->capasity; ++i) {
-                if (delete_task(new_data[i])) {
-                    perror("attempt to free unallocated memory in delete tasks function");
-                }
-            }
-
-            free(new_data);
-            new_data = NULL;
-            perror("increase list error");
-            return ERROR;
         }
 
         tasks->data = new_data;
@@ -107,7 +94,14 @@ static int swap_task(ptr_task* left, ptr_task* right) {
 }
 
 list* sort_list(list* cur_list) {
-    if (cur_list == NULL || cur_list->data == NULL) {
+    if (cur_list == NULL) {
+        perror("sort list error cur_list = NULL");
+        return NULL;
+    }
+
+    if (cur_list->data == NULL) {
+        free(cur_list);
+        cur_list = NULL;
         perror("sort list error cur_list = NULL");
         return NULL;
     }
@@ -116,12 +110,16 @@ list* sort_list(list* cur_list) {
         for (size_t j = 0; j + 1 < cur_list->insert_pos - i; ++j) {
 
             if (cur_list->data[j + 1] == NULL || cur_list->data[j] == NULL) {
+                free(cur_list);
+                cur_list = NULL;
                 perror("sort list error. null pointer");
                 return NULL;
             }
 
             if (atoi(cur_list->data[j + 1]->priority) > atoi(cur_list->data[j]->priority)) {
                 if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
+                    free(cur_list);
+                    cur_list = NULL;
                     perror("swap error");
                     return NULL;
                 }
@@ -131,6 +129,8 @@ list* sort_list(list* cur_list) {
                 if (cur_list->data[j + 1]->when->year < cur_list->data[j]->when->year) {
 
                     if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
+                        free(cur_list);
+                        cur_list = NULL;
                         perror("swap error");
                         return NULL;
                     }
@@ -140,6 +140,8 @@ list* sort_list(list* cur_list) {
                     cur_list->data[j + 1]->when->month < cur_list->data[j]->when->month) {
 
                     if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
+                        free(cur_list);
+                        cur_list = NULL;
                         perror("swap error");
                         return NULL;
                     }
@@ -150,6 +152,8 @@ list* sort_list(list* cur_list) {
                     cur_list->data[j + 1]->when->number < cur_list->data[j]->when->number) {
 
                     if (swap_task(&cur_list->data[j + 1], &cur_list->data[j])) {
+                        free(cur_list);
+                        cur_list = NULL;
                         perror("swap error");
                         return NULL;
                     }

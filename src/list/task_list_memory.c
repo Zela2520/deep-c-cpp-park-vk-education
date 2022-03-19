@@ -59,7 +59,7 @@ int delete_tasks(list* tasks) {
         return ERROR;
     }
 
-    for (size_t i = 0; i < tasks->capasity; ++i) {
+    for (size_t i = 0; i < tasks->capasity && tasks->data[i]; ++i) {
         if (delete_task(tasks->data[i])) {
             perror("attempt to free unallocated memory in delete tasks function");
         }
