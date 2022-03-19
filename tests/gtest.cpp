@@ -60,7 +60,7 @@ TEST(TASK_LIST_TEST, free_list) {
 
 TEST(TASK_LIST_TEST, put_elem) {
     ptr_task new_task = create_task();
-    list* new_list = create_list(DEFAULT_SIZE); // утечка тут
+    list* new_list = create_list(DEFAULT_SIZE);
 
     EXPECT_FALSE(new_task == NULL);
     EXPECT_FALSE(new_list == NULL);
@@ -95,7 +95,7 @@ TEST(TASK_LIST_TEST, increase_list) {
 }
 
 TEST(TASK_LIST_TEST, sort_list) {
-    list* new_list = create_list(DEFAULT_SIZE); // утечка тут
+    list* new_list = create_list(DEFAULT_SIZE);
     EXPECT_FALSE(new_list == NULL);
 
     ptr_task first_task = create_task();

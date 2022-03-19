@@ -5,7 +5,7 @@ ptr_task create_task() {
     ptr_task task = (ptr_task)calloc(1, sizeof(task_info));
 
     if (task == NULL) {
-        // perror("Memory allocation error");
+        perror("Memory allocation error");
         return NULL;
     }
 
@@ -17,7 +17,7 @@ ptr_task create_task() {
     }
 
     if (!(task->description = create_string())) {
-        // perror("Memory allocation error");
+        perror("Memory allocation error");
         free(task->number);
         memset(task, 0, sizeof(task_info));
         free(task);
@@ -39,7 +39,7 @@ ptr_task create_task() {
         return NULL;
     }
 
-    if (!(task->when = (Data*)calloc(1, sizeof(Data)))) { // тут утечка
+    if (!(task->when = (Data*)calloc(1, sizeof(Data)))) {
         perror("Memory allocation error");
 
         if (delete_string(task->description)) {
@@ -90,9 +90,9 @@ int delete_task(ptr_task task) {
 
 char** create_string() {
 
-    char** string = (char**)calloc(MAX_STR_SIZE, sizeof(char*)); // тут утечка
+    char** string = (char**)calloc(MAX_STR_SIZE, sizeof(char*));
     if (string == NULL) {
-        // perror("Memory allocation error in create_string function");
+        perror("Memory allocation error in create_string function");
         return NULL;
     }
 
@@ -102,7 +102,7 @@ char** create_string() {
             string[i] = NULL;
         }
 
-        string[i] = (char*)calloc(MAX_STR_SIZE, sizeof (char)); // тут утечка
+        string[i] = (char*)calloc(MAX_STR_SIZE, sizeof (char));
         if (string[i] == NULL) {
             if (i == 0) {
                 free(string);

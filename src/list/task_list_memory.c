@@ -33,7 +33,7 @@ int create_list_data(list* cur_list) {
     }
 
     for (size_t i = 0; i < cur_list->capasity; ++i) {
-        cur_list->data[i] = (task_info*)calloc(INCREMENT, sizeof (task_info)); // утечка тут
+        cur_list->data[i] = (task_info*)calloc(INCREMENT, sizeof (task_info));
 
         if (cur_list->data[i] == NULL) {
             if (i == 0) {
