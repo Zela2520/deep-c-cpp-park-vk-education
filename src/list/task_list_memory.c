@@ -54,7 +54,7 @@ int create_list_data(list* cur_list) {
 }
 
 int delete_tasks(list* tasks) {
-    if (tasks->data == NULL) {
+    if (tasks == NULL || tasks->data == NULL) {
         perror("delete_task_list() error");
         return ERROR;
     }
