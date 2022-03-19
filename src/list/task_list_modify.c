@@ -28,10 +28,6 @@ static int increase_list(list* tasks, const size_t str_len) {
             return ERROR;
         }
 
-//        for (size_t i = tasks->size; i < tasks->capasity; ++i) {
-//            memset(&tasks->data[i], 0, sizeof(tasks->data[i]));
-//        }
-
         tasks->data = new_data;
     }
 
