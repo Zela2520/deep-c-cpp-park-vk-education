@@ -1,8 +1,8 @@
 #include "../include/task_list.h"
 
-int main() {
+int main(void) {
 
-    const char *input_stream_path = "./start_server";
+    const char *input_stream_path = "tests/correct_data.txt";
 
     list* user_list = create_list(DEFAULT_SIZE);
 

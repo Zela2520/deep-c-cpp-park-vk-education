@@ -26,6 +26,6 @@ int put_elem(list* cur_list, const ptr_task task);
 list* sort_list(list* cur_list);
 
 int business_logic(list* task_list, const char* input_stream);
-int print_list(const list* tasks);
+int print_list(list* tasks);
 
 #endif //  PROJECT_INCLUDE_TASK_LIST_H_
