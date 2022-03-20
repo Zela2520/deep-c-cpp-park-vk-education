@@ -130,6 +130,7 @@ TEST(TASK_LIST_TEST, free_list) {
     list* new_list = create_list(DEFAULT_SIZE);
 
     EXPECT_EQ(free_list(new_list), SUCCESS);
+    EXPECT_TRUE(new_list == NULL);
 }
 
 
