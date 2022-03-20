@@ -22,18 +22,22 @@ static int increase_list(list* tasks, const size_t str_len) {
 
         size_t prev_capasity = tasks->capasity;
         tasks->capasity = 2 * tasks->size;
-        printf("%zu\n", tasks->capasity);
+        printf("%zu\n", tasks->capasity); // отладка
+
         ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity * sizeof(ptr_task));
+
         if (new_data == NULL) {
             perror("Memory allocation error");
             return ERROR;
         }
 
-        for (size_t i = prev_capasity + 1; i < tasks->capasity; ++i) {
-            new_data[i] = NULL;
+        for (size_t i = prev_capasity; i < tasks->capasity; ++i) {
+             new_data[i] = NULL;
+             printf("%zu %s\n", i, "allocate new element in list data"); // отладка
         }
 
         tasks->data = new_data;
+        new_data = NULL;
     }
 
     return SUCCESS;
@@ -46,13 +50,13 @@ int put_elem(list* cur_list, ptr_task task) {
         return ERROR;
     }
 
-    if (cur_list == NULL && task != NULL) {
+    if (cur_list == NULL) {
         delete_task(task);
         perror("put_elem method error");
         return ERROR;
     }
 
-    if (cur_list != NULL && task == NULL) {
+    if (task == NULL) {
         free_list(cur_list);
         perror("put_elem method error");
         return ERROR;
@@ -79,6 +83,7 @@ int put_elem(list* cur_list, ptr_task task) {
             return ERROR;
         }
     }
+
     cur_list->data[cur_list->insert_pos++] = task;
     return SUCCESS;
 }

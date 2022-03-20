@@ -1,6 +1,7 @@
 #include "../../include/task_info.h"
 
 ptr_task create_task() {
+    printf("\n%s\n", "allocate new element in list data"); // отладка
 
     ptr_task task = (ptr_task)calloc(1, sizeof(task_info));
 
