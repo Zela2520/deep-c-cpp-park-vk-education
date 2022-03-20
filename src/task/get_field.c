@@ -64,6 +64,8 @@ int get_description(FILE* stream_input, char** string) {
             perror("string copy error");
             return ERROR;
         }
+        free(new_line);
+        new_line = NULL;
         ++i;
     }
 
