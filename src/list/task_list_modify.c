@@ -22,7 +22,6 @@ static int increase_list(list* tasks, const size_t str_len) {
 
         size_t prev_capasity = tasks->capasity;
         tasks->capasity = 2 * tasks->size;
-        printf("%zu\n", tasks->capasity); // отладка
 
         ptr_task* new_data = (ptr_task*)realloc(tasks->data, tasks->capasity * sizeof(ptr_task));
 
@@ -33,7 +32,6 @@ static int increase_list(list* tasks, const size_t str_len) {
 
         for (size_t i = prev_capasity; i < tasks->capasity; ++i) {
              new_data[i] = NULL;
-             printf("%zu %s\n", i, "allocate new element in list data"); // отладка
         }
 
         tasks->data = new_data;
@@ -112,7 +110,7 @@ list* sort_list(list* cur_list) {
         return NULL;
     }
 
-    for (size_t i = 0; i + 1< cur_list->insert_pos; ++i) {
+    for (size_t i = 0; i + 1 < cur_list->insert_pos; ++i) {
         for (size_t j = 0; j + 1 < cur_list->insert_pos - i; ++j) {
 
             if (cur_list->data[j + 1] == NULL || cur_list->data[j] == NULL) {
