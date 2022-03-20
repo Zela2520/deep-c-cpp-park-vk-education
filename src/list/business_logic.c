@@ -6,7 +6,7 @@ int business_logic(list* task_list, const char* path_file) {
         return ERROR;
     }
 
-    if (path_file == NULL && task_list != NULL) {
+    if (path_file == NULL) {
         free_list(task_list);
         perror("path to the file doesn't exist or list doesn't exist");
         return ERROR;
@@ -17,7 +17,6 @@ int business_logic(list* task_list, const char* path_file) {
     if (input_stream == NULL) {
         perror("file open error");
         free_list(task_list);
-        task_list = NULL;
         return ERROR;
     }
 
@@ -27,7 +26,6 @@ int business_logic(list* task_list, const char* path_file) {
 
         if (new_task == NULL) {
             free_list(task_list);
-            task_list = NULL;
 
             fclose(input_stream);
             input_stream = NULL;
