@@ -76,3 +76,6 @@ local*
 venv
 *.log
 *-debug
+
+# Environment file
+Dockerfile
