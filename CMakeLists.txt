@@ -10,7 +10,10 @@ add_executable(${PROJECT_NAME} main.c)
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov" )
 
+# Добавляем пути поиска заголовков к цели
 target_include_directories(${PROJECT_NAME} PUBLIC ${MATRIX_LIB_INCLUDE_DIRS})
+
+# Добавляем список библиотек для компоновки с целью
 target_link_libraries(${PROJECT_NAME} PRIVATE ${MATRIX_LIB_LIBRARIES})
 
 add_subdirectory(tests)
