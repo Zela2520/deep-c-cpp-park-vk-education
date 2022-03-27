@@ -17,4 +17,11 @@ Matrix* create_matrix_from_file(const char* path_file);
 Matrix* create_matrix(size_t rows, size_t cols);
 void free_matrix(Matrix* matrix);
 
+double* print_result(double* result) {
+    if (result == NULL) {
+        perror("print result error");
+        return NULL;
+    }
+}
+
 #endif  // PROJECT_MATRIX_H_
