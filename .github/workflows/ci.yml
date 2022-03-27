@@ -5,14 +5,14 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
-    container: ivanbir/gentlemans_kitc
+    container: zela28/deep_c
     steps:
       - uses: actions/checkout@v2
       - run: make check
   build:
     needs: [check]
     runs-on: ubuntu-latest
-    container: ivanbir/gentlemans_kitc
+    container: zela28/deep_c
     steps:
       - uses: actions/checkout@v2
       - run: make build
@@ -22,7 +22,7 @@ jobs:
           path: build/main
   test:
     runs-on: ubuntu-latest
-    container: ivanbir/gentlemans_kitc
+    container: zela28/deep_c
     needs: [build]
     steps:
       - uses: actions/checkout@v2
@@ -34,7 +34,7 @@ jobs:
           path: build/main
   memtest:
     runs-on: ubuntu-latest
-    container: ivanbir/gentlemans_kitc
+    container: zela28/deep_c
     needs: [build]
     steps:
       - uses: actions/checkout@v2
@@ -47,7 +47,7 @@ jobs:
           path: valgrind.log
   covtest:
     runs-on: ubuntu-latest
-    container: ivanbir/gentlemans_kitc
+    container: zela28/deep_c
     needs: [test]
     steps:
       - uses: actions/checkout@v2
