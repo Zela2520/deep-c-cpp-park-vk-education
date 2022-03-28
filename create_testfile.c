@@ -5,21 +5,26 @@ static int fill_file(FILE* file_input, Matrix* cur_matrix) {
     int arg_count = 0;
     bool error_flag = 0;
 
+    if (!(set_random_values(cur_matrix))) {
+        return ERROR;
+    }
+
     for (size_t current_row = 0; current_row < cur_matrix->rows; ++current_row) {
         for (size_t current_col = 0; current_col < cur_matrix->columns; ++current_col) {
 
-            arg_count = fprintf(file_input, "%lf",
+            arg_count = fprintf(file_input, "%-10lf",
                                 cur_matrix->matrix[current_row * cur_matrix->columns + current_col]);
 
             if (current_col + 1 != cur_matrix->columns) {
                 fprintf(file_input, "%c", ' ');
             }
 
-            if (arg_count != 1 * DOUBLE_SIZE) {
-                perror("writting error");
-                error_flag = 1;
-                break;
-            }
+//            if (arg_count != 1 + DOUBLE_SIZE) {
+//                printf("%d\n", arg_count);
+//                perror("third writting error");
+//                error_flag = 1;
+//                break;
+//            }
         }
 
         if (current_row + 1 != cur_matrix->rows) {
@@ -66,7 +71,7 @@ int main(int argc, char *argv[]) {
     int ret_val = fprintf(file_input, "%d ", 3); // так удобнее отлаживать
     if (ret_val != 1 + 1) {
         printf("%d\n", ret_val);
-        perror("writing error");
+        perror("first writing error");
         free_matrix(cur_matrix);
         fclose(file_input);
         return ERROR;
@@ -75,7 +80,7 @@ int main(int argc, char *argv[]) {
     ret_val = fprintf(file_input, "%d\n", 6);
     if (ret_val != (1 + 1)) {
         printf("%d\n", ret_val);
-        perror("writing error");
+        perror("second writing error");
         free_matrix(cur_matrix);
         fclose(file_input);
         return ERROR;
