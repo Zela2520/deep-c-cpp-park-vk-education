@@ -1,5 +1,5 @@
-#ifndef PROJECT_MATRIX_H_
-#define PROJECT_MATRIX_H_
+#ifndef PROJECT_MATRIX_MATRIX_H_
+#define PROJECT_MATRIX_MATRIX_H_
 
 #include <stddef.h>
 #include <stdbool.h>
@@ -11,6 +11,9 @@
 
 #define BIG_ROWS 10000
 #define BIG_COLS 5000
+
+#define ERROR -1
+#define SUCCESS 0
 
 
 typedef struct Matrix {
@@ -27,4 +30,4 @@ void free_matrix(Matrix* matrix);
 double* calculate_sum_cols(Matrix* user_matrix);
 int print_result(double* result);
 
-#endif  // PROJECT_MATRIX_H_
+#endif  // PROJECT_MATRIX_MATRIX_H_
