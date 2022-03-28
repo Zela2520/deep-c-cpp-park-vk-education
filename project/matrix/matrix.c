@@ -74,48 +74,35 @@ void free_matrix(Matrix* matrix) {
     free(matrix);
 }
 
-
-// Basic operations
-int get_rows(const Matrix* matrix, size_t* rows) {
-    if (matrix == NULL || matrix->matrix == NULL || rows == NULL) {
-        return 1;
+double* calculate_sum_cols(Matrix* user_matrix) {
+    if (user_matrix == NULL) {
+        perror("calculate_sum_cols error");
+        return NULL;
     }
 
-    *rows = matrix->rows;
-    return 0;
+    double* result = calloc(user_matrix->columns, sizeof(double));
+    if (result == NULL) {
+        perror("memory allocation error");
+        return NULL
+    }
+
+    for (size_t current_col = 0; current_col < user_matrix->columns; ++current_col) {
+        for (size_t step = 0; step < (user_matrix->rows * user_matrix->columns); step += user_matrix->columns) {
+            result[current_col] += user_matrix[current_col + step];
+        }
+    }
+
+    return result;
 }
 
-int get_cols(const Matrix* matrix, size_t* cols) {
-    if (matrix == NULL || matrix->matrix == NULL || cols == NULL) {
-        return 1;
+int print_result(double* result) {
+    if (result == NULL) {
+        perror("print result error");
+        return -1;
     }
 
-    *cols = matrix->columns;
-    return 0;
-}
-
-int get_elem(const Matrix* matrix, size_t row, size_t col, double* val) {
-    if (matrix == NULL || matrix->matrix == NULL || val == NULL) {
-        return 1;
+    for (size_t i = 0; &result[i] != NULL; ++i) {
+        printf("%lf ", result[i]);
     }
-
-    if (row >= matrix->rows || col >= matrix->columns) {
-        return 1;
-    }
-
-    *val = matrix->matrix[row * (matrix->columns) + col];
-    return 0;
-}
-
-int set_elem(Matrix* matrix, size_t row, size_t col, double val) {
-    if (matrix == NULL || matrix->matrix == NULL) {
-        return 1;
-    }
-
-    if (row >= matrix->rows || col >= matrix->columns) {
-        return 1;
-    }
-
-    matrix->matrix[row * matrix->columns + col] = val;
     return 0;
 }
