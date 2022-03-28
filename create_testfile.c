@@ -43,46 +43,51 @@ static int fill_file(FILE* file_input, Matrix* cur_matrix) {
 }
 
 
-int main(void) {
+int main(int argc, char *argv[]) {
 
-     Matrix *cur_matrix = create_matrix(BIG_ROWS, BIG_COLS); // создали матрицу с нулями
-     if (cur_matrix == NULL) {
-         perror("filling testfiles error");
-         return ERROR;
-     }
+    if (argc != 2) {
+        perror("not enough arguments for main");
+        return -1;
+    }
 
-     FILE *file_input = fopen("tests/test_files/big.txt", "wt"); // открыли фай
-     if (file_input == NULL) {
-         free_matrix(cur_matrix);
-         return ERROR;
-     }
+    Matrix *cur_matrix = create_matrix(3, 6); // создали матрицу с нулями
+    if (cur_matrix == NULL) {
+        perror("filling testfiles error");
+        return ERROR;
+    }
 
-     // заполнили стркоу отвечающую за поля rows и cols в файле
-     int ret_val = fprintf(file_input, "%d ", BIG_ROWS); // так удобнее отлаживать
-     if (ret_val != BIG_ROWS_SIZE + 1) {
-         printf("%d\n", ret_val);
-         perror("writing error");
-         free_matrix(cur_matrix);
-         fclose(file_input);
-         return ERROR;
-     }
+    FILE *file_input = fopen(argv[1], "wt"); // открыли файл
+    if (file_input == NULL) {
+        free_matrix(cur_matrix);
+        return ERROR;
+    }
 
-     ret_val = fprintf(file_input, "%d\n", BIG_COLS);
-     if (ret_val != (BIG_COLS_SIZE + 1)) {
-         printf("%d\n", ret_val);
-         perror("writing error");
-         free_matrix(cur_matrix);
-         fclose(file_input);
-         return ERROR;
-     }
+    // заполнили стркоу отвечающую за поля rows и cols в файле
+    int ret_val = fprintf(file_input, "%d ", 3); // так удобнее отлаживать
+    if (ret_val != 1 + 1) {
+        printf("%d\n", ret_val);
+        perror("writing error");
+        free_matrix(cur_matrix);
+        fclose(file_input);
+        return ERROR;
+    }
 
-     // заполнили файл нулями содержащимися в матрице
-     if (fill_file(file_input, cur_matrix)) {
-         perror("file_file error");
-         return ERROR;
-     }
+    ret_val = fprintf(file_input, "%d\n", 6);
+    if (ret_val != (1 + 1)) {
+        printf("%d\n", ret_val);
+        perror("writing error");
+        free_matrix(cur_matrix);
+        fclose(file_input);
+        return ERROR;
+    }
 
-     free_matrix(cur_matrix);
+    // заполнили файл нулями содержащимися в матрице
+    if (fill_file(file_input, cur_matrix)) {
+        perror("file_file error");
+        return ERROR;
+    }
 
-     return SUCCESS;
+    free_matrix(cur_matrix);
+
+    return SUCCESS;
 }

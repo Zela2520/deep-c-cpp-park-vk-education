@@ -33,7 +33,13 @@ Matrix* create_matrix_from_file(const char* path_file);
 Matrix* create_matrix(size_t rows, size_t cols);
 void free_matrix(Matrix* matrix);
 
+// Basic operations
+int set_elem(Matrix* matrix, size_t row, size_t col, double val);
+
+// Calculation
 double* calculate_sum_cols(Matrix* user_matrix);
+
+// Input/output
 int print_result(double* result);
 
 #endif  // PROJECT_MATRIX_MATRIX_H_
