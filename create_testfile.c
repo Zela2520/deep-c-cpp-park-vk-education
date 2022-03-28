@@ -51,7 +51,7 @@ int main(void) {
          return ERROR;
      }
 
-     FILE *file_input = fopen("tests/test_files/big.txt", "wt"); // открыли файл
+     FILE *file_input = fopen("tests/test_files/big.txt", "wt"); // открыли фай
      if (file_input == NULL) {
          free_matrix(cur_matrix);
          return ERROR;
