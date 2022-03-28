@@ -45,21 +45,21 @@ static int fill_file(FILE* file_input, Matrix* cur_matrix) {
 
 int main(void) {
 
-     Matrix *cur_matrix = create_matrix(MEDIUM_ROWS, MEDIUM_COLS); // создали матрицу с нулями
+     Matrix *cur_matrix = create_matrix(BIG_ROWS, BIG_COLS); // создали матрицу с нулями
      if (cur_matrix == NULL) {
          perror("filling testfiles error");
          return ERROR;
      }
 
-     FILE *file_input = fopen("tests/test_files/medium.txt", "wt"); // открыли файл
+     FILE *file_input = fopen("tests/test_files/big.txt", "wt"); // открыли файл
      if (file_input == NULL) {
          free_matrix(cur_matrix);
          return ERROR;
      }
 
      // заполнили стркоу отвечающую за поля rows и cols в файле
-     int ret_val = fprintf(file_input, "%d", MEDIUM_ROWS); // так удобнее отлаживать
-     if (ret_val != MEDIUM_ROWS_SIZE) {
+     int ret_val = fprintf(file_input, "%d", BIG_ROWS); // так удобнее отлаживать
+     if (ret_val != BIG_ROWS_SIZE) {
          printf("%d\n", ret_val);
          perror("writing error");
          free_matrix(cur_matrix);
@@ -67,8 +67,8 @@ int main(void) {
          return ERROR;
      }
 
-     ret_val = fprintf(file_input, "%d\n", MEDIUM_COLS);
-     if (ret_val != (MEDIUM_COLS_SIZE + 1)) {
+     ret_val = fprintf(file_input, "%d\n", BIG_COLS);
+     if (ret_val != (BIG_COLS_SIZE + 1)) {
          printf("naslansclksan%d\n", ret_val);
          perror("writing error");
          free_matrix(cur_matrix);
