@@ -58,8 +58,8 @@ int main(void) {
      }
 
      // заполнили стркоу отвечающую за поля rows и cols в файле
-     int ret_val = fprintf(file_input, "%d", BIG_ROWS); // так удобнее отлаживать
-     if (ret_val != BIG_ROWS_SIZE) {
+     int ret_val = fprintf(file_input, "%d ", BIG_ROWS); // так удобнее отлаживать
+     if (ret_val != BIG_ROWS_SIZE + 1) {
          printf("%d\n", ret_val);
          perror("writing error");
          free_matrix(cur_matrix);
