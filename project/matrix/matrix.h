@@ -22,6 +22,11 @@ double* print_result(double* result) {
         perror("print result error");
         return NULL;
     }
+
+    for (size_t i = 0; &result[i] != NULL; ++i) {
+        printf("%lf ", result[i]);
+    }
+    return result;
 }
 
 #endif  // PROJECT_MATRIX_H_
