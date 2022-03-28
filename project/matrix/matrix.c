@@ -45,7 +45,7 @@ Matrix* create_matrix_from_file(const char* path_file) {
 }
 
 Matrix* create_matrix(size_t rows, size_t cols) {
-    Matrix* ret = (Matrix*) malloc(sizeof(Matrix));
+    Matrix* ret = (Matrix*) calloc(1, sizeof(Matrix));
     if (ret == NULL) {
         free_matrix(ret);
         return NULL;
