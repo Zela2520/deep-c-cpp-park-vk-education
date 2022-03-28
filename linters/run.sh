@@ -11,9 +11,9 @@ print_header "RUN cppcheck"
 cppcheck project/matrix --enable=all --inconclusive --error-exitcode=1 -I project/matrix --suppress=missingIncludeSystem
 
 print_header "RUN clang-tidy"
-clang-tidy project/**/* -- -std=c99 -Iproject/matrix
+clang-tidy project/matrix/* -- -std=c99 -Iproject/matrix
 
 print_header "RUN cpplint.py"
-python3 ./linters/cpplint/cpplint.py --extensions=c,cpp project/matrix/* project/processes/* project/threads/*
+python3 ./linters/cpplint/cpplint.py --extensions=c,cpp project/matrix/*
 
 print_header "SUCCESS"
