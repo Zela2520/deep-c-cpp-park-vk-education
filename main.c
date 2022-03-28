@@ -1,6 +1,7 @@
-#include "matrix.h"
+#include "project/matrix/matrix.h"
 
 int main(void) {
-    const char* path;
+    Matrix* user_matrix = create_matrix_from_file();
+
     return 0;
 }

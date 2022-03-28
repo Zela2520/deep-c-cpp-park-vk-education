@@ -17,16 +17,7 @@ Matrix* create_matrix_from_file(const char* path_file);
 Matrix* create_matrix(size_t rows, size_t cols);
 void free_matrix(Matrix* matrix);
 
-double* print_result(double* result) {
-    if (result == NULL) {
-        perror("print result error");
-        return NULL;
-    }
-
-    for (size_t i = 0; &result[i] != NULL; ++i) {
-        printf("%lf ", result[i]);
-    }
-    return result;
-}
+double* calculate_sum_cols(Matrix* user_matrix);
+int print_result(double* result);
 
 #endif  // PROJECT_MATRIX_H_
