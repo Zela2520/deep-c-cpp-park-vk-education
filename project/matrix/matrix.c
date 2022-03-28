@@ -83,12 +83,12 @@ double* calculate_sum_cols(Matrix* user_matrix) {
     double* result = calloc(user_matrix->columns, sizeof(double));
     if (result == NULL) {
         perror("memory allocation error");
-        return NULL
+        return NULL;
     }
 
     for (size_t current_col = 0; current_col < user_matrix->columns; ++current_col) {
         for (size_t step = 0; step < (user_matrix->rows * user_matrix->columns); step += user_matrix->columns) {
-            result[current_col] += user_matrix[current_col + step];
+            result[current_col] += user_matrix->matrix[current_col + step];
         }
     }
 
