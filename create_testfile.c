@@ -13,17 +13,17 @@
          return -1;
      }
 
-     if (fprintf(file_input, "%d ", MEDIUM_ROWS != 2) {
+     if (fprintf(file_input, "%d ", MEDIUM_ROWS) != 2) {
          perror("writing error");
          free_matrix(cur_matrix);
-         fclose(matrix_input);
+         fclose(file_input);
          return -1;
      }
 
-     if (fprintf(file_input, "%d\n", MEDIUM_COLS != 2) {
+     if (fprintf(file_input, "%d\n", MEDIUM_COLS) != 2) {
          perror("writing error");
          free_matrix(cur_matrix);
-         fclose(matrix_input);
+         fclose(file_input);
          return -1;
      }
 
