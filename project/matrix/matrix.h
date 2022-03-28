@@ -12,6 +12,12 @@
 #define BIG_ROWS 10000
 #define BIG_COLS 5000
 
+#define MEDIUM_ROWS_SIZE 4
+#define MEDIUM_COLS_SIZE 3
+#define BIG_ROWS_SIZE 5
+#define BIG_COLS_SIZE 4
+#define DOUBLE_SIZE 8
+
 #define ERROR -1
 #define SUCCESS 0
 
