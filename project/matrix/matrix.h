@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define MEDIUM_ROWS 1000
 #define MEDIUM_COLS 500
@@ -35,6 +36,7 @@ void free_matrix(Matrix* matrix);
 
 // Basic operations
 int set_elem(Matrix* matrix, size_t row, size_t col, double val);
+double* set_random_values(Matrix* user_matrix);
 
 // Calculation
 double* calculate_sum_cols(Matrix* user_matrix);
