@@ -69,7 +69,7 @@ int main(void) {
 
      ret_val = fprintf(file_input, "%d\n", BIG_COLS);
      if (ret_val != (BIG_COLS_SIZE + 1)) {
-         printf("naslansclksan%d\n", ret_val);
+         printf("%d\n", ret_val);
          perror("writing error");
          free_matrix(cur_matrix);
          fclose(file_input);
