@@ -79,3 +79,4 @@ venv
 
 # Environment file
 Dockerfile
+.gitattributes
