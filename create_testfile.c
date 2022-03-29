@@ -19,12 +19,12 @@ static int fill_file(FILE* file_input, Matrix* cur_matrix) {
                 fprintf(file_input, "%c", ' ');
             }
 
-//            if (arg_count != 1 + DOUBLE_SIZE) {
-//                printf("%d\n", arg_count);
-//                perror("third writting error");
-//                error_flag = 1;
-//                break;
-//            }
+            if (arg_count != 2 + DOUBLE_SIZE) {
+                printf("%d\n", arg_count);
+                perror("third writting error");
+                error_flag = 1;
+                break;
+            }
         }
 
         if (current_row + 1 != cur_matrix->rows) {
