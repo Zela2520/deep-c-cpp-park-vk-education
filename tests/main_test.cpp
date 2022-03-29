@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-    #include "../porject/matrix/matrix.h"
+    #include "../project/matrix/matrix.h"
     #include "../project/business_logic/business_logic.h"
 }
 
