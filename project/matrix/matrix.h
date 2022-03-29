@@ -42,6 +42,6 @@ double* set_random_values(Matrix* user_matrix);
 double* calculate_sum_cols(Matrix* user_matrix);
 
 // Input/output
-int print_result(double* result);
+int print_result(double* result, size_t len);
 
 #endif  // PROJECT_MATRIX_MATRIX_H_
