@@ -1,4 +1,4 @@
-TARGET = build/tests/matrix_test
+TARGET = build/tests/matrix_tests
 
 .PHONY: all build rebuild check test memtest covtest clean dock stop
 
