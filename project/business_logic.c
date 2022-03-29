@@ -13,7 +13,7 @@ int business_logic() {
         return ERROR;
     }
 
-    if (print_result(user_matrix->matrix, user_matrix->columns)) {
+    if (print_result(result, user_matrix->columns)) {
         perror("matrix printing error");
         return ERROR;
     }
