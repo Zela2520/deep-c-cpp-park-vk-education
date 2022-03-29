@@ -16,7 +16,7 @@ build:
 rebuild: clean build
 
 check:
-	./linters/check.sh
+	./linters/run.sh
 
 test:
 	./build.sh
