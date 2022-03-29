@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.14)
 project(matrix_lib)
 
 # compilation options so that it constructs additional instructions that will later collect coverage information

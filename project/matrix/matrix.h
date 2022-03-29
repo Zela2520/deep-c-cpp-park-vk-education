@@ -34,10 +34,6 @@ Matrix* create_matrix_from_file(const char* path_file);
 Matrix* create_matrix(size_t rows, size_t cols);
 void free_matrix(Matrix* matrix);
 
-// Basic operations
-int set_elem(Matrix* matrix, size_t row, size_t col, double val);
-double* set_random_values(Matrix* user_matrix);
-
 // Calculation
 double* calculate_sum_cols(Matrix* user_matrix);
 
