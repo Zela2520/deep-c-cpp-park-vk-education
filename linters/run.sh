@@ -8,12 +8,6 @@ function print_header() {
 }
 
 print_header "RUN cppcheck"
-cppcheck project/matrix --enable=all --inconclusive --error-exitcode=1 -I project/matrix --suppress=missingIncludeSystem
-
-print_header "RUN clang-tidy"
-clang-tidy project/matrix/* -- -std=c99 -Iproject/matrix
-
-print_header "RUN cpplint.py"
-python3 ./linters/cpplint/cpplint.py --extensions=c,cpp project/matrix/*
+cppcheck main.c project/**/*.c --enable=all --inconclusive --error-exitcode=1 -I project/matrix -I project/business_logic --suppress=missingIncludeSystem
 
 print_header "SUCCESS"
