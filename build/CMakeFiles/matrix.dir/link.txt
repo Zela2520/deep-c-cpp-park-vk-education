@@ -1,0 +1,1 @@
+/usr/bin/cc  -coverage -lgcov CMakeFiles/matrix.dir/main.c.o -o matrix  project/business_logic/libbusiness_logic_lib.a project/business_logic/build/libmatrix_lib.a 

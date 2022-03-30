@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Hw/project/matrix/matrix.h
+stddef.h
+-
+stdbool.h
+-
+stdio.h
+-
+stdlib.h
+-
+time.h
+-
+
+/Hw/project/matrix/matrix_calculations.c
+matrix.h
+/Hw/project/matrix/matrix.h
+
+/Hw/project/matrix/matrix_inout.c
+matrix.h
+/Hw/project/matrix/matrix.h
+
+/Hw/project/matrix/matrix_memory.c
+matrix.h
+/Hw/project/matrix/matrix.h
+
