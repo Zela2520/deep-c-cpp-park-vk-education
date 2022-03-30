@@ -18,6 +18,7 @@ int business_logic() {
         return ERROR;
     }
 
+    free_matrix(user_matrix);
     free(result);
 
     return SUCCESS;
