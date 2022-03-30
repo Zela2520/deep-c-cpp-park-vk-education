@@ -147,8 +147,8 @@ Syntax: cpplint.py [--verbose=#] [--output=vs7] [--filter=-x,+y,...]
         --headers=hpp,hxx
         --headers=hpp
 
-    cpplint.py supports per-directory configurations specified in CPPLINT.cfg
-    files. CPPLINT.cfg file can contain a number of key=value pairs.
+    cpplint.py supports per-directory configurations specified in CPPLINT.cfg.cfg
+    files. CPPLINT.cfg.cfg file can contain a number of key=value pairs.
     Currently the following options are supported:
 
       set noparent
@@ -173,12 +173,12 @@ Syntax: cpplint.py [--verbose=#] [--output=vs7] [--filter=-x,+y,...]
     "linelength" allows to specify the allowed line length for the project.
 
     The "root" option is similar in function to the --root flag (see example
-    above). Paths are relative to the directory of the CPPLINT.cfg.
+    above). Paths are relative to the directory of the CPPLINT.cfg.cfg.
 
     The "headers" option is similar in function to the --headers flag
     (see example above).
 
-    CPPLINT.cfg has an effect on files in the same directory and all
+    CPPLINT.cfg.cfg has an effect on files in the same directory and all
     sub-directories, unless overridden by a nested configuration file.
 
       Example file:
@@ -5945,7 +5945,7 @@ def ProcessConfigOverrides(filename):
         if not base_name:
             break  # Reached the root directory.
 
-        cfg_file = os.path.join(abs_path, "CPPLINT.cfg")
+        cfg_file = os.path.join(abs_path, "CPPLINT.cfg.cfg")
         abs_filename = abs_path
         if not os.path.isfile(cfg_file):
             continue
@@ -5968,7 +5968,7 @@ def ProcessConfigOverrides(filename):
                         # When matching exclude_files pattern, use the base_name of
                         # the current file name or the directory name we are processing.
                         # For example, if we are checking for lint errors in /foo/bar/baz.cc
-                        # and we found the .cfg file at /foo/CPPLINT.cfg, then the config
+                        # and we found the .cfg file at /foo/CPPLINT.cfg.cfg, then the config
                         # file's "exclude_files" filter is meant to be checked against "bar"
                         # and not "baz" nor "bar/baz.cc".
                         if base_name:
@@ -5990,7 +5990,7 @@ def ProcessConfigOverrides(filename):
                             sys.stderr.write('Line length must be numeric.')
                     elif name == 'root':
                         global _root
-                        # root directories are specified relative to CPPLINT.cfg dir.
+                        # root directories are specified relative to CPPLINT.cfg.cfg dir.
                         _root = os.path.join(os.path.dirname(cfg_file), val)
                     elif name == 'headers':
                         ProcessHppHeadersOption(val)
