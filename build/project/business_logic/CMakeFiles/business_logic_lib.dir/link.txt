@@ -1,2 +1,0 @@
-/usr/bin/ar qc libbusiness_logic_lib.a CMakeFiles/business_logic_lib.dir/business_logic.c.o
-/usr/bin/ranlib libbusiness_logic_lib.a
