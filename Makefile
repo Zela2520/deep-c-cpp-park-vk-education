@@ -1,15 +1,9 @@
-TARGET = build/tests/matrix_tests
-ASYNC_TARGET = build/tests/matrix_tests
+TARGET = build/tests/sync_matrix_tests
+ASYNC_TARGET = build/tests/async_matrix_tests
 
-.PHONY: all build rebuild check test memtest covtest clean dock stop
+.PHONY: all build rebuild check test test_2 memtest memtest_2 covtest clean
 
 all: clean check build test memtest covtest
-
-dock:
-	docker run -it -v "/Users/sugarbearzelagmail.com/Documents/IT/Deep_C/:/TPark" --rm zela28/deep_c
-
-stop:
-	docker stop zela28/deep_c
 
 build:
 	./build.sh
@@ -23,9 +17,17 @@ test:
 	./build.sh
 	./${TARGET}
 
+test_2:
+	./build.sh
+	./${ASYNC_TARGET}
+
 memtest:
 	./build.sh
 	./tests/memtest.sh ./${TARGET}
+
+memtest_2:
+	./build.sh
+	./tests/memtest.sh ./${ASYNC_TARGET}
 
 covtest:
 	./build.sh
