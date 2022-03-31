@@ -1,7 +1,6 @@
-#include "matrix/matrix.h"
-#include "processes/processes.h"
+#include "../processes/processes.h"
 
-double* calculate_sum_cols(Matrix* user_matrix) {
+double* async_calculate_sum_cols(Matrix* user_matrix) {
     if (user_matrix == NULL) {
         perror("calculate_sum_cols error");
         return NULL;

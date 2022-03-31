@@ -1,6 +1,6 @@
-#include "project//matrix/matrix.h"
+#include "../processes/processes.h"
 
-int business_logic() {
+int async_business_logic() {
     Matrix* user_matrix = create_matrix_from_file("tests/test_files/normal.txt");
     if (user_matrix == NULL) {
         perror("create matrix error");
