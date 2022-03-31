@@ -6,6 +6,8 @@ add_subdirectory(project)
 message("CALCULATION_LIB_INCLUDE_DIRS = ${CALCULATION_LIB_INCLUDE_DIRS}")
 message("CALCULATION_LIB_LIBRARIES = ${CALCULATION_LIB_LIBRARIES}")
 
+set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC")
+
 add_executable(${PROJECT_NAME} business_logic.c main.c)
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov")

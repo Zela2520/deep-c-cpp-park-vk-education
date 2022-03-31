@@ -8,7 +8,7 @@ add_subdirectory(processes)
 set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC")
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS} "-g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC")
 
-file(GLOB SOURCES matrix_calculations.c)
+file(GLOB SOURCES *.c)
 file(GLOB INCLUDE_DIRS matrix processes)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
