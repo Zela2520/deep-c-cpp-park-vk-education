@@ -1,4 +1,4 @@
-#include "business_logic.h"
+#include "project//matrix/matrix.h"
 
 int business_logic() {
     Matrix* user_matrix = create_matrix_from_file("tests/test_files/normal.txt");

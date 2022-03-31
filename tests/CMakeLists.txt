@@ -16,5 +16,5 @@ file(GLOB SOURCES *.cpp)
 # from sources we collect an executable file for tests
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${MATRIX_LIB_INCLUDE_DIRS} ${BUSINESS_LIB_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${MATRIX_LIB_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${MATRIX_LIB_LIBRARIES} ${BUSINESS_LIB_LIBRARIES} GTest::GTest GTest::Main)

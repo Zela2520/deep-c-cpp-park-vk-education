@@ -1,4 +1,5 @@
-#include "matrix.h"
+#include "matrix/matrix.h"
+#include "processes/processes.h"
 
 double* calculate_sum_cols(Matrix* user_matrix) {
     if (user_matrix == NULL) {
