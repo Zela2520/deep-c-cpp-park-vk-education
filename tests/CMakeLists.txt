@@ -12,5 +12,5 @@ file(GLOB SOURCES *.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${CALCULATION_LIB_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${CALCULATION_LIB_LIBRARIES} GTest::GTest GTest::Main)
+target_link_libraries(${PROJECT_NAME} ${SYNC_MATRIX_LIB_LIBRARIES} GTest::GTest GTest::Main)
+target_link_libraries(${PROJECT_NAME} ${ASYNC_MATRIX_LIB_LIBRARIES} GTest::GTest GTest::Main)
