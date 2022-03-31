@@ -1,22 +1,23 @@
 cmake_minimum_required(VERSION 3.14)
-project(processes_lib)
-
-add_subdirectory(../sync_lib/matrix)
+project(matrix_lib)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC")
 set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS} "-g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov")
 
-add_library(${PROJECT_NAME} processes/*.c logic/)
+add_library(async_matrix_lib SHARED matrix/matrix.c
+        processes/processes.c
+        logic/async_business_logic.c
+        logic/async_calculations.c)
 
-target_link_libraries(${PROJECT_NAME} SYNC_MATRIX_LIB_LIBRARIES)
+target_include_directories(async_matrix_lib PUBLIC matrix)
+target_include_directories(async_matrix_lib PUBLIC processes)
 
-file(GLOB SOURCES *.c)
-file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
+add_executable(${PROJECT_NAME} main.c)
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
+target_link_libraries(${PROJECT_NAME} async_matrix_lib)
 
-# global scope notification appeared
-set(PROCESSES_LIB_LIBRARIES ${PROJECT_NAME} PARENT_SCOPE)
-set(PROCESSES_LIB_INCLUDE_DIRS ${INCLUDE_DIRS} PARENT_SCOPE)
+set(ASYNC_MATRIX_LIB_LIBRARIES ${PROJECT_NAME} PARENT_SCOPE)
+
+add_subdirectory(tests)
