@@ -12,7 +12,7 @@ set(SOURCE_SYNC_TESTS sync_test.cpp)
 set(SOURCE_ASYNC_TESTS async_test.cpp)
 
 add_executable(sync_tests ${SOURCE_SYNC_TESTS})
-add_executable(async_tests ${SOURCE_ASYNC_TESTS})
-
 target_link_libraries(sync_tests ${SYNC_MATRIX_LIB_LIBRARIES} GTest::GTest GTest::Main)
+
+add_executable(async_tests ${SOURCE_ASYNC_TESTS})
 target_link_libraries(async_tests ${ASYNC_MATRIX_LIB_LIBRARIES} GTest::GTest GTest::Main)
