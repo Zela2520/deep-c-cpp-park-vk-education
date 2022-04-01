@@ -7,7 +7,7 @@ int async_business_logic() {
         return ERROR;
     }
 
-    double* result = calculate_sum_cols(user_matrix);
+    double* result = async_calculate_sum_cols(user_matrix);
     if (result == NULL) {
         perror("Failed to calculate the sum of the matrix elements");
         return ERROR;
