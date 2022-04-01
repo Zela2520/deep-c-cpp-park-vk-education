@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS} "-g -O0 -Wall -Wextra -Werror -Wpedantic -f
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov")
 
 # create a shared library
-add_library(async_matrix_lib SHARED matrix/matrix.c
+add_library(async_matrix_lib STATIC matrix/matrix.c
         processes/processes.c
         logic/async_business_logic.c
         logic/async_calculations.c)

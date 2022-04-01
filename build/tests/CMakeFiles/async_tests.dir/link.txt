@@ -1,1 +1,1 @@
-/usr/local/bin/c++ -g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC -pthread  -coverage -lgcov CMakeFiles/async_tests.dir/async_test.cpp.o -o async_tests  -Wl,-rpath,/hw/build/async_lib ../async_lib/libasync_matrix_lib.so /usr/lib/aarch64-linux-gnu/libgtest.a 
+/usr/local/bin/c++ -g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC -pthread  -coverage -lgcov -coverage -lgcov CMakeFiles/async_tests.dir/async_test.cpp.o -o async_tests  ../async_lib/libasync_matrix_lib.a /usr/lib/aarch64-linux-gnu/libgtest.a 
