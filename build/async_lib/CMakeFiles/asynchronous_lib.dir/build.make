@@ -98,7 +98,7 @@ asynchronous_lib_EXTERNAL_OBJECTS =
 
 async_lib/asynchronous_lib: async_lib/CMakeFiles/asynchronous_lib.dir/main.c.o
 async_lib/asynchronous_lib: async_lib/CMakeFiles/asynchronous_lib.dir/build.make
-async_lib/asynchronous_lib: async_lib/libasync_matrix_lib.so
+async_lib/asynchronous_lib: async_lib/libasync_matrix_lib.a
 async_lib/asynchronous_lib: async_lib/CMakeFiles/asynchronous_lib.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/hw/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable asynchronous_lib"
 	cd /hw/build/async_lib && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/asynchronous_lib.dir/link.txt --verbose=$(VERBOSE)

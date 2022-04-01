@@ -1,1 +1,2 @@
-/usr/bin/cc -fPIC -g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC -shared -Wl,-soname,libasync_matrix_lib.so -o libasync_matrix_lib.so CMakeFiles/async_matrix_lib.dir/matrix/matrix.c.o CMakeFiles/async_matrix_lib.dir/processes/processes.c.o CMakeFiles/async_matrix_lib.dir/logic/async_business_logic.c.o CMakeFiles/async_matrix_lib.dir/logic/async_calculations.c.o 
+/usr/bin/ar qc libasync_matrix_lib.a CMakeFiles/async_matrix_lib.dir/matrix/matrix.c.o CMakeFiles/async_matrix_lib.dir/processes/processes.c.o CMakeFiles/async_matrix_lib.dir/logic/async_business_logic.c.o CMakeFiles/async_matrix_lib.dir/logic/async_calculations.c.o
+/usr/bin/ranlib libasync_matrix_lib.a

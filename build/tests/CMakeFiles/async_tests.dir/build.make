@@ -98,7 +98,7 @@ async_tests_EXTERNAL_OBJECTS =
 
 tests/async_tests: tests/CMakeFiles/async_tests.dir/async_test.cpp.o
 tests/async_tests: tests/CMakeFiles/async_tests.dir/build.make
-tests/async_tests: async_lib/libasync_matrix_lib.so
+tests/async_tests: async_lib/libasync_matrix_lib.a
 tests/async_tests: /usr/lib/aarch64-linux-gnu/libgtest.a
 tests/async_tests: tests/CMakeFiles/async_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/hw/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable async_tests"

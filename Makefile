@@ -25,7 +25,8 @@ memtest:
 
 covtest:
 	./build.sh
-	./coverage.sh
+	./coverage_2.sh ${ASYNC_TARGET}
+	./coverage.sh ${TARGET}
 
 clean:
-	rm -rf build valgrind.log
+	rm -rf build valgrind.log coverage.info
