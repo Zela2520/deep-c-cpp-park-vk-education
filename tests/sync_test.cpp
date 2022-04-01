@@ -10,7 +10,7 @@ extern "C" {
 #define SMALL_FILE "test_files/small.txt"
 
 TEST(MATRIX, create_matrix_from_file) {
-//    EXPECT_EQ(async_business_logic(), SUCCESS);
+//    EXPECT_EQ(business_logic(), SUCCESS);
 }
 
 TEST(MATRIX, create_matrix) {
