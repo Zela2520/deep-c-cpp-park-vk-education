@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/hw/async_lib/matrix/matrix.h
+stddef.h
+-
+stdbool.h
+-
+stdio.h
+-
+stdlib.h
+-
+time.h
+-
+
+/hw/async_lib/processes/processes.h
+sys/types.h
+-
+stddef.h
+-
+stdbool.h
+-
+stdlib.h
+-
+../matrix/matrix.h
+/hw/async_lib/matrix/matrix.h
+
+/hw/tests/async_test.cpp
+gtest/gtest.h
+-
+../async_lib/matrix/matrix.h
+/hw/async_lib/matrix/matrix.h
+../async_lib/processes/processes.h
+/hw/async_lib/processes/processes.h
+
