@@ -1,1 +1,0 @@
-/usr/bin/cc -g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC  -coverage -lgcov CMakeFiles/asynchronous_lib.dir/main.c.o -o asynchronous_lib  -Wl,-rpath,/hw/build/async_lib libasync_matrix_lib.so 
