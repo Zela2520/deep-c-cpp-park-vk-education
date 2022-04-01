@@ -14,7 +14,7 @@ add_library(async_matrix_lib SHARED matrix/matrix.c
 target_include_directories(async_matrix_lib PUBLIC matrix)
 target_include_directories(async_matrix_lib PUBLIC processes)
 
-add_executable(${PROJECT_NAME} main.c)
+add_executable(${PROJECT_NAME} SHARED main.c)
 
 target_link_libraries(${PROJECT_NAME} async_matrix_lib)
 
