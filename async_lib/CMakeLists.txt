@@ -19,5 +19,3 @@ add_executable(${PROJECT_NAME} main.c)
 target_link_libraries(${PROJECT_NAME} async_matrix_lib)
 
 set(ASYNC_MATRIX_LIB_LIBRARIES ${PROJECT_NAME} PARENT_SCOPE)
-
-add_subdirectory(tests)
