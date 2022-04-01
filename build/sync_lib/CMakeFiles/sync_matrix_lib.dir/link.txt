@@ -1,2 +1,0 @@
-/usr/bin/ar qc libsync_matrix_lib.a CMakeFiles/sync_matrix_lib.dir/matrix/matrix.c.o CMakeFiles/sync_matrix_lib.dir/logic/business_logic.c.o CMakeFiles/sync_matrix_lib.dir/logic/calculations.c.o
-/usr/bin/ranlib libsync_matrix_lib.a

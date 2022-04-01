@@ -1,1 +1,0 @@
-/usr/bin/cc -g -O0 -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -fPIC  -coverage -lgcov CMakeFiles/sequential_lib.dir/main.c.o -o sequential_lib  libsync_matrix_lib.a 
