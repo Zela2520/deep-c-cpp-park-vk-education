@@ -1,10 +1,5 @@
-#TARGET = build/tests/sync_matrix_tests
-TARGET = build/tests/matrix_tests
-ASYNC_TARGET = build/tests/async_matrix_tests
-
-#.PHONY: all build rebuild check test test_2 memtest memtest_2 covtest clean
-#
-#all: clean check build test memtest covtest
+TARGET = build/tests/sync_tests
+ASYNC_TARGET = build/tests/async_tests
 
 .PHONY: all build rebuild check test memtest covtest clean
 
@@ -21,12 +16,12 @@ check:
 test:
 	./build.sh
 	./${TARGET}
-	#./${ASYNC_TARGET}
+	./${ASYNC_TARGET}
 
 memtest:
 	./build.sh
 	./tests/memtest.sh ./${TARGET}
-	#./tests/memtest.sh ./${ASYNC_TARGET}
+	./tests/memtest.sh ./${ASYNC_TARGET}
 
 covtest:
 	./build.sh
